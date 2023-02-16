@@ -34,3 +34,8 @@ class TransactionType(str, Enum):
     TICKET_CREATE = "TicketCreate"
     TRUST_SET = "TrustSet"
     SET_HOOK = "SetHook"
+    URITOKEN_BURN = "URITokenBurn"
+    URITOKEN_BUY = "URITokenBuy"
+    URITOKEN_CLEAR = "URITokenClear"
+    URITOKEN_MINT = "URITokenMint"
+    URITOKEN_SELL = "URITokenSell"
