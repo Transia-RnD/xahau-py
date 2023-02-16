@@ -30,3 +30,8 @@ class TransactionType(str, Enum):
     SIGNER_LIST_SET = "SignerListSet"
     TICKET_CREATE = "TicketCreate"
     TRUST_SET = "TrustSet"
+    URITOKEN_BURN = "URITokenBurn"
+    URITOKEN_BUY = "URITokenBuy"
+    URITOKEN_CLEAR = "URITokenClear"
+    URITOKEN_MINT = "URITokenMint"
+    URITOKEN_SELL = "URITokenSell"

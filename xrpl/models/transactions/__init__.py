@@ -53,6 +53,15 @@ from xrpl.models.transactions.trust_set import (
     TrustSetFlag,
     TrustSetFlagInterface,
 )
+from xrpl.models.transactions.uritoken_burn import URITokenBurn
+from xrpl.models.transactions.uritoken_buy import URITokenBuy
+from xrpl.models.transactions.uritoken_clear import URITokenClear
+from xrpl.models.transactions.uritoken_mint import (
+    URITokenMint,
+    URITokenMintFlag,
+    URITokenMintFlagInterface,
+)
+from xrpl.models.transactions.uritoken_sell import URITokenSell
 
 __all__ = [
     "AccountDelete",
@@ -98,4 +107,11 @@ __all__ = [
     "TrustSet",
     "TrustSetFlag",
     "TrustSetFlagInterface",
+    "URITokenBurn",
+    "URITokenBuy",
+    "URITokenClear",
+    "URITokenMint",
+    "URITokenMintFlag",
+    "URITokenMintFlagInterface",
+    "URITokenSell",
 ]
