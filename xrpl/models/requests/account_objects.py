@@ -27,6 +27,7 @@ class AccountObjectType(str, Enum):
     STATE = "state"
     TICKET = "ticket"
     NFT_OFFER = "nft_offer"
+    URI_TOKEN = "uri_token"
 
 
 @require_kwargs_on_init
