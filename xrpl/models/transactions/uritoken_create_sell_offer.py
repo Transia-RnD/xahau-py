@@ -11,9 +11,9 @@ from xrpl.models.utils import require_kwargs_on_init
 
 @require_kwargs_on_init
 @dataclass(frozen=True)
-class URITokenSell(Transaction):
+class URITokenCreateSellOffer(Transaction):
     """
-    The URITokenSell transaction creates either an offer to buy a
+    The URITokenCreateSellOffer transaction creates either an offer to buy a
     Token the submitting account does not own, or an offer to sell a Token
     the submitting account does own.
     """
@@ -47,6 +47,6 @@ class URITokenSell(Transaction):
     """
 
     transaction_type: TransactionType = field(
-        default=TransactionType.URITOKEN_SELL,
+        default=TransactionType.URITOKEN_CREATE_SELL_OFFER,
         init=False,
     )

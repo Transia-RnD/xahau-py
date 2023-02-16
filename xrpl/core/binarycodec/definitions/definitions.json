@@ -2344,8 +2344,8 @@
     "URITokenMint": 45,
     "URITokenBurn": 46,
     "URITokenBuy": 47,
-    "URITokenSell": 48,
-    "URITokenClear": 49,
+    "URITokenCreateSellOffer": 48,
+    "URITokenCancelSellOffer": 49,
     "EnableAmendment": 100,
     "SetFee": 101,
     "UNLModify": 102

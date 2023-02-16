@@ -9,9 +9,9 @@ from xrpl.models.utils import require_kwargs_on_init
 
 @require_kwargs_on_init
 @dataclass(frozen=True)
-class URITokenClear(Transaction):
+class URITokenCancelSellOffer(Transaction):
     """
-    The URITokenClear transaction is used to remove the sell Amount on the
+    The URITokenCancelSellOffer transaction is used to remove the sell Amount on the
     URIToken
     """
 
@@ -33,6 +33,6 @@ class URITokenClear(Transaction):
     """
 
     transaction_type: TransactionType = field(
-        default=TransactionType.URITOKEN_CLEAR,
+        default=TransactionType.URITOKEN_CANCEL_SELL_OFFER,
         init=False,
     )
