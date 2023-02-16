@@ -36,6 +36,6 @@ class TransactionType(str, Enum):
     SET_HOOK = "SetHook"
     URITOKEN_BURN = "URITokenBurn"
     URITOKEN_BUY = "URITokenBuy"
-    URITOKEN_CLEAR = "URITokenClear"
+    URITOKEN_CANCEL_SELL_OFFER = "URITokenCancelSellOffer"
+    URITOKEN_CREATE_SELL_OFFER = "URITokenCreateSellOffer"
     URITOKEN_MINT = "URITokenMint"
-    URITOKEN_SELL = "URITokenSell"

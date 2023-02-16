@@ -1,13 +1,17 @@
 """Model for URITokenMint transaction type."""
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional
+from typing import Dict, Optional
+
+from typing_extensions import Final
 
 from xrpl.models.flags import FlagInterface
 from xrpl.models.required import REQUIRED
 from xrpl.models.transactions.transaction import Transaction
 from xrpl.models.transactions.types import TransactionType
 from xrpl.models.utils import require_kwargs_on_init
+
+_MAX_URI_LENGTH: Final[int] = 270
 
 
 class URITokenMintFlag(int, Enum):
@@ -59,3 +63,18 @@ class URITokenMint(Transaction):
         default=TransactionType.URITOKEN_MINT,
         init=False,
     )
+
+    def _get_errors(self: "URITokenMint") -> Dict[str, str]:
+        return {
+            key: value
+            for key, value in {
+                **super()._get_errors(),
+                "uri": self._get_uri_error(),
+            }.items()
+            if value is not None
+        }
+
+    def _get_uri_error(self: "URITokenMint") -> Optional[str]:
+        if self.uri is not None and len(self.uri) > _MAX_URI_LENGTH:
+            return f"Must not be longer than {_MAX_URI_LENGTH} characters"
+        return None
