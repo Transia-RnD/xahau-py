@@ -32,6 +32,9 @@ class LedgerEntryType(str, Enum):
     DIRECTORY = "directory"
     DID = "did"
     ESCROW = "escrow"
+    HOOK = "hook"
+    HOOK_STATE = "hook_state"
+    HOOK_DEFINITION = "hook_definition"
     FEE = "fee"
     HASHES = "hashes"
     OFFER = "offer"
@@ -41,6 +44,7 @@ class LedgerEntryType(str, Enum):
     STATE = "state"
     TICKET = "ticket"
     NFT_OFFER = "nft_offer"
+    URI_TOKEN = "uri_token"
 
 
 @require_kwargs_on_init
@@ -232,6 +236,121 @@ class XChainCreateAccountClaimID(XChainBridge):
 
 @require_kwargs_on_init
 @dataclass(frozen=True, **KW_ONLY_DATACLASS)
+class Hook(BaseModel):
+    """
+    Required fields for requesting a Hook if not querying by
+    object ID.
+    """
+
+    account: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+
+@dataclass(frozen=True, **KW_ONLY_DATACLASS)
+class HookState(BaseModel):
+    """
+    Required fields for requesting a Hook if not querying by
+    object ID.
+    """
+
+    account: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+    key: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+    namespace_id: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+
+@require_kwargs_on_init
+@dataclass(frozen=True, **KW_ONLY_DATACLASS)
+class HookDefinition(BaseModel):
+    """
+    Required fields for requesting a Hook if not querying by
+    object ID.
+    """
+
+    hook_definition: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+
+@dataclass(frozen=True)
+class ImportVLSequence(BaseModel):
+    """
+    Required fields for requesting a ImportVLSequence if not querying by
+    object ID.
+    """
+
+    public_key: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+
+@require_kwargs_on_init
+@dataclass(frozen=True, **KW_ONLY_DATACLASS)
+class EmittedTxn(BaseModel):
+    """
+    Required fields for requesting a Hook if not querying by
+    object ID.
+    """
+
+    emitted_txn: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+
+@require_kwargs_on_init
+@dataclass(frozen=True, **KW_ONLY_DATACLASS)
+class URIToken(BaseModel):
+    """
+    Required fields for requesting a URIToken if not querying by
+    object ID.
+    """
+
+    issuer: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+    uri: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+
+@require_kwargs_on_init
+@dataclass(frozen=True, **KW_ONLY_DATACLASS)
 class LedgerEntry(Request, LookupByLedgerRequest):
     """
     The ledger_entry method returns a single ledger
@@ -248,7 +367,12 @@ class LedgerEntry(Request, LookupByLedgerRequest):
     deposit_preauth: Optional[Union[str, DepositPreauth]] = None
     did: Optional[str] = None
     directory: Optional[Union[str, Directory]] = None
+    emitted_txn: Optional[Union[str, EmittedTxn]] = None
     escrow: Optional[Union[str, Escrow]] = None
+    hook: Optional[Union[str, Hook]] = None
+    hook_definition: Optional[Union[str, HookDefinition]] = None
+    hook_state: Optional[Union[str, HookState]] = None
+    import_vlseq: Optional[Union[str, ImportVLSequence]] = None
     offer: Optional[Union[str, Offer]] = None
     oracle: Optional[Oracle] = None
     payment_channel: Optional[str] = None
@@ -260,6 +384,9 @@ class LedgerEntry(Request, LookupByLedgerRequest):
     xchain_create_account_claim_id: Optional[
         Union[str, XChainCreateAccountClaimID]
     ] = None
+    uri_token: Optional[Union[str, URIToken]] = None
+    ledger_hash: Optional[str] = None
+    ledger_index: Optional[Union[str, int]] = None
 
     binary: bool = False
     nft_page: Optional[str] = None
@@ -276,12 +403,18 @@ class LedgerEntry(Request, LookupByLedgerRequest):
                 self.deposit_preauth,
                 self.did,
                 self.directory,
+                self.emitted_txn,
                 self.escrow,
+                self.hook,
+                self.hook_definition,
+                self.hook_state,
+                self.import_vlseq,
                 self.offer,
                 self.oracle,
                 self.payment_channel,
                 self.ripple_state,
                 self.ticket,
+                self.uri_token,
                 self.xchain_claim_id,
                 self.xchain_create_account_claim_id,
             ]

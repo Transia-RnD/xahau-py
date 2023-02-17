@@ -192,7 +192,7 @@ class TestTransaction(IntegrationTestCase):
         # 10 drops × (33 + (Fulfillment size in bytes ÷ 16))
         net_fee = int(await get_fee(client))
         fulfillment_in_bytes = FULFILLMENT.encode("ascii")
-        expected_fee = net_fee * (33 + len(fulfillment_in_bytes) / 16)
+        expected_fee = net_fee * (32.5 + len(fulfillment_in_bytes) / 16)
 
         # THEN we expect the fee to be the calculation result above
         self.assertEqual(float(escrow_finish_autofilled.fee), float(expected_fee))

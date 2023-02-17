@@ -28,12 +28,19 @@ class EscrowFinish(Transaction):
     :meta hide-value:
     """
 
-    offer_sequence: int = REQUIRED  # type: ignore
+    offer_sequence: Optional[int] = None
     """
     Transaction sequence (or Ticket number) of the EscrowCreate transaction
     that created the Escrow. This field is required.
 
     :meta hide-value:
+    """
+
+    escrow_id: Optional[str] = None
+    """
+    The ID of the `Escrow ledger object
+    <https://xrpl.org/escrow.html>`_ to cancel, as a 64-character
+    hexadecimal string.
     """
 
     condition: Optional[str] = None

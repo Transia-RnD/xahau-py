@@ -22,6 +22,7 @@ from xahau.models.transactions import (
     AuthAccount,
     CheckCreate,
     Memo,
+    MintURIToken,
     Payment,
     Signer,
     SignerEntry,
@@ -749,3 +750,26 @@ class TestFromDict(TestCase):
         )
         self.assertEqual(tx_obj.to_xrpl(), tx_json)
         self.assertEqual(Transaction.from_xrpl(tx_json), tx_obj)
+
+    def test_to_mint_uri_token(self):
+        mint_uri_token = MintURIToken(
+            uri="DEADBEEF",
+        )
+        expected = {
+            "uri": "DEADBEEF",
+            "flags": 0,
+        }
+        self.assertEqual(mint_uri_token.to_dict(), expected)
+
+    def test_from_mint_uri_token(self):
+        mint_uri_token = MintURIToken.from_dict(
+            {
+                "uri": "DEADBEEF",
+                "flags": 0,
+            }
+        )
+        expected = {
+            "uri": "DEADBEEF",
+            "flags": 0,
+        }
+        self.assertEqual(mint_uri_token.to_dict(), expected)

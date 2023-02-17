@@ -29,6 +29,7 @@ class RequestMethod(str, Enum):
     ACCOUNT_INFO = "account_info"
     ACCOUNT_LINES = "account_lines"
     ACCOUNT_NFTS = "account_nfts"
+    ACCOUNT_NAMESPACE = "account_namespace"
     ACCOUNT_OBJECTS = "account_objects"
     ACCOUNT_OFFERS = "account_offers"
     ACCOUNT_TX = "account_tx"
@@ -75,9 +76,9 @@ class RequestMethod(str, Enum):
     FEATURE = "feature"
     FEE = "fee"
     MANIFEST = "manifest"
-    SERVER_DEFINITIONS = "server_definitions"
     SERVER_INFO = "server_info"
     SERVER_STATE = "server_state"
+    SERVER_DEFINITIONS = "server_definitions"
 
     # utility methods
     PING = "ping"

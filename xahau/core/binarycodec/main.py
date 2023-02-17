@@ -9,6 +9,7 @@ from typing_extensions import Final
 
 from xahau.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
 from xahau.core.binarycodec.types.account_id import AccountID
+from xahau.core.binarycodec.types.amount import Amount
 from xahau.core.binarycodec.types.hash256 import Hash256
 from xahau.core.binarycodec.types.st_object import STObject
 from xahau.core.binarycodec.types.uint64 import UInt64
@@ -67,9 +68,14 @@ def encode_for_signing_claim(json: Dict[str, Any]) -> str:
     """
     prefix = _PAYMENT_CHANNEL_CLAIM_PREFIX
     channel = Hash256.from_value(json["channel"])
-    amount = UInt64.from_value(int(json["amount"]))
 
-    buffer = prefix + bytes(channel) + bytes(amount)
+    if isinstance(json["amount"], dict):
+        ic = Amount.from_value(json["amount"])
+        buffer = prefix + bytes(channel) + bytes(ic)
+        return buffer.hex().upper()
+
+    native = UInt64.from_value(int(json["amount"]))
+    buffer = prefix + bytes(channel) + bytes(native)
     return buffer.hex().upper()
 
 

@@ -35,6 +35,7 @@ class Fields(TypedDict):
     Expiration: NotRequired[int]
     NFTokens: NotRequired[List[NFTokenMetadata]]
     XChainClaimID: NotRequired[str]
+    EmittedTxn: NotRequired[Dict[str, Union[str, Dict[str, str]]]]
 
 
 class CreatedNodeFields(TypedDict):
@@ -83,9 +84,47 @@ class DeletedNode(TypedDict):
     DeletedNode: DeletedNodeFields
 
 
+class HookExecutionFields(TypedDict):
+    """Fields of a HookExecution."""
+
+    HookAccount: str
+    HookEmitCount: int
+    HookExecutionIndex: int
+    HookHash: str
+    HookInstructionCount: str
+    HookResult: int
+    HookReturnCode: str
+    HookReturnString: str
+    HookStateChangeCount: int
+    Flags: int
+
+
+class HookExecution(TypedDict):
+    """HookExecution model."""
+
+    HookExecution: HookExecutionFields
+
+
+class HookEmissionFields(TypedDict):
+    """Fields of a HookEmission."""
+
+    EmittedTxnID: str
+    HookAccount: str
+    HookHash: str
+    EmitNonce: str
+
+
+class HookEmission(TypedDict):
+    """HookEmission model."""
+
+    HookEmission: HookEmissionFields
+
+
 class TransactionMetadata(TypedDict):
     """A model for a transaction's metadata."""
 
+    HookEmissions: NotRequired[List[HookEmission]]
+    HookExecutions: NotRequired[List[HookExecution]]
     AffectedNodes: List[Union[CreatedNode, ModifiedNode, DeletedNode]]
     TransactionIndex: int
     TransactionResult: str

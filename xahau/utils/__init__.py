@@ -2,6 +2,7 @@
 
 from xahau.utils.get_nftoken_id import get_nftoken_id
 from xahau.utils.get_xchain_claim_id import get_xchain_claim_id
+from xahau.utils.hooks import calculate_hook_on, hex_hook_parameters
 from xahau.utils.parse_nftoken_id import parse_nftoken_id
 from xahau.utils.str_conversions import hex_to_str, str_to_hex
 from xahau.utils.time_conversions import (
@@ -35,4 +36,6 @@ __all__ = [
     "get_nftoken_id",
     "parse_nftoken_id",
     "get_xchain_claim_id",
+    "calculate_hook_on",
+    "hex_hook_parameters",
 ]
