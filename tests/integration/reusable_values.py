@@ -4,7 +4,13 @@ from tests.integration.it_utils import (
     fund_wallet_async,
     sign_and_reliable_submission_async,
 )
-from xahau.models import IssuedCurrencyAmount, OfferCreate, PaymentChannelCreate
+from xahau.models import (
+    IssuedCurrencyAmount,
+    OfferCreate,
+    Payment,
+    PaymentChannelCreate,
+    TrustSet,
+)
 from xahau.wallet import Wallet
 
 
@@ -16,10 +22,58 @@ async def _set_up_reusable_values():
     await fund_wallet_async(wallet)
     destination = Wallet.create()
     await fund_wallet_async(destination)
-    door_wallet = Wallet.create()
-    await fund_wallet_async(door_wallet)
-    witness_wallet = Wallet.create()
-    await fund_wallet_async(witness_wallet)
+    gateway = Wallet.create()
+    await fund_wallet_async(gateway)
+
+    await sign_and_reliable_submission_async(
+        TrustSet(
+            account=wallet.classic_address,
+            limit_amount=IssuedCurrencyAmount(
+                currency="USD",
+                issuer=gateway.classic_address,
+                value="10000",
+            ),
+        ),
+        wallet,
+    )
+
+    await sign_and_reliable_submission_async(
+        TrustSet(
+            account=destination.classic_address,
+            limit_amount=IssuedCurrencyAmount(
+                currency="USD",
+                issuer=gateway.classic_address,
+                value="10000",
+            ),
+        ),
+        destination,
+    )
+
+    await sign_and_reliable_submission_async(
+        Payment(
+            account=gateway.classic_address,
+            destination=wallet.classic_address,
+            amount=IssuedCurrencyAmount(
+                currency="USD",
+                issuer=gateway.classic_address,
+                value="10000",
+            ),
+        ),
+        gateway,
+    )
+
+    await sign_and_reliable_submission_async(
+        Payment(
+            account=gateway.classic_address,
+            destination=destination.classic_address,
+            amount=IssuedCurrencyAmount(
+                currency="USD",
+                issuer=gateway.classic_address,
+                value="10000",
+            ),
+        ),
+        gateway,
+    )
 
     offer = await sign_and_reliable_submission_async(
         OfferCreate(
@@ -48,6 +102,7 @@ async def _set_up_reusable_values():
     return (
         wallet,
         destination,
+        gateway,
         offer,
         payment_channel,
     )
@@ -56,6 +111,7 @@ async def _set_up_reusable_values():
 (
     WALLET,
     DESTINATION,
+    GATEWAY,
     OFFER,
     PAYMENT_CHANNEL,
 ) = asyncio.run(_set_up_reusable_values())

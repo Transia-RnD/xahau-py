@@ -1,4 +1,5 @@
 """High-level transaction methods with XAHL transactions."""
+
 import math
 from typing import Any, Dict, Optional, cast
 
@@ -6,7 +7,11 @@ from typing_extensions import Final
 
 from xahau.asyncio.account import get_next_valid_seq_number
 from xahau.asyncio.clients import Client, XAHLRequestFailureException
-from xahau.asyncio.ledger import get_fee, get_latest_validated_ledger_sequence
+from xahau.asyncio.ledger import (
+    get_fee,
+    get_fee_estimate,
+    get_latest_validated_ledger_sequence,
+)
 from xahau.constants import XAHLException
 from xahau.core.addresscodec import is_valid_xaddress, xaddress_to_classic_address
 from xahau.core.binarycodec import encode, encode_for_multisigning, encode_for_signing
@@ -237,13 +242,13 @@ async def autofill(
     if "sequence" not in transaction_json:
         sequence = await get_next_valid_seq_number(transaction_json["account"], client)
         transaction_json["sequence"] = sequence
-    if "fee" not in transaction_json:
-        transaction_json["fee"] = await _calculate_fee_per_transaction_type(
-            transaction, client, signers_count
-        )
     if "last_ledger_sequence" not in transaction_json:
         ledger_sequence = await get_latest_validated_ledger_sequence(client)
         transaction_json["last_ledger_sequence"] = ledger_sequence + _LEDGER_OFFSET
+    if "fee" not in transaction_json:
+        transaction_json["fee"] = await _calculate_fee_hooksv3d(
+            client, transaction_json
+        )
     return Transaction.from_dict(transaction_json)
 
 
@@ -420,6 +425,15 @@ async def _check_fee(
             "incorrectly, since it is much larger than the typical XAH transaction "
             "cost. If this is intentional, use `check_fee=False`."
         )
+
+
+async def _calculate_fee_hooksv3d(
+    client: Optional[Client] = None,
+    transaction: Optional[Dict[str, Any]] = None,
+) -> str:
+    transaction["fee"] = "0"
+    tx_blob = encode(Transaction.from_dict(transaction).to_xrpl())
+    return str(await get_fee_estimate(client, tx_blob))
 
 
 async def _calculate_fee_per_transaction_type(

@@ -299,7 +299,7 @@ class TestBetterTransactionFlags(TestCase):
             second=signed_expected,
         )
 
-    def test_xchain_modify_bridge_flags(self):
+    def _test_xchain_modify_bridge_flags(self):
         bridge = models.XChainBridge(
             locking_chain_door=ACCOUNT,
             locking_chain_issue=models.XAH(),

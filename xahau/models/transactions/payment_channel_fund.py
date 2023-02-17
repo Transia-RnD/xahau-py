@@ -1,7 +1,9 @@
 """Model for a PaymentChannelFund transaction type."""
+
 from dataclasses import dataclass, field
 from typing import Optional
 
+from xahau.models.amounts import Amount
 from xahau.models.required import REQUIRED
 from xahau.models.transactions.transaction import Transaction
 from xahau.models.transactions.types import TransactionType
@@ -27,7 +29,7 @@ class PaymentChannelFund(Transaction):
     :meta hide-value:
     """
 
-    amount: str = REQUIRED  # type: ignore
+    amount: Amount = REQUIRED  # type: ignore
     """
     The amount of XAH, in drops, to add to the channel. This field is
     required.

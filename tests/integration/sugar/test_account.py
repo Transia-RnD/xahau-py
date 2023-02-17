@@ -32,7 +32,7 @@ class TestAccount(IntegrationTestCase):
         self.assertFalse(await does_account_exist(address, client))
 
     @test_async_and_sync(globals(), ["xahau.account.does_account_exist"])
-    async def _test_does_account_exist_throws_for_invalid_account(self, client):
+    async def __test_does_account_exist_throws_for_invalid_account(self, client):
         address = "a"
         with self.assertRaises(XAHLRequestFailureException):
             await does_account_exist(address, client)

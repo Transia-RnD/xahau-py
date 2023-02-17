@@ -107,6 +107,13 @@ class OfferCreate(Transaction):
     when placing this Offer.
     """
 
+    offer_id: Optional[str] = None
+    """
+    The ID of the `Offer ledger object
+    <https://xrpl.org/offer.html>`_ to cancel, as a 64-character
+    hexadecimal string.
+    """
+
     transaction_type: TransactionType = field(
         default=TransactionType.OFFER_CREATE,
         init=False,

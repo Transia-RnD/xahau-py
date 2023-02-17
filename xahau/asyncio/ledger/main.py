@@ -5,7 +5,7 @@ from typing import Optional, cast
 from xahau.asyncio.clients import Client, XAHLRequestFailureException
 from xahau.asyncio.ledger.utils import calculate_fee_dynamically
 from xahau.constants import XAHLException
-from xahau.models.requests import Fee, Ledger
+from xahau.models.requests import Fee, GenericRequest, Ledger
 from xahau.utils import xah_to_drops
 
 
@@ -96,3 +96,31 @@ async def get_fee(
         if max_fee_drops < int(fee):
             fee = str(max_fee_drops)
     return fee
+
+
+async def get_fee_estimate(client: Client, tx_blob: str) -> str:
+    """
+    Query the ledger for the estimated transaction fee.
+
+    Args:
+        client: the network client used to make network calls.
+        tx_blob: the encoded transaction that you want the fee estimate for.
+
+    Returns:
+        The transaction fee, in drops.
+        `Read more about drops <https://xrpl.org/currency-formats.html#xrp-amounts>`_
+
+    Raises:
+        XAHLException: if an incorrect option for `fee_type` is passed in.
+        XAHLRequestFailureException: if the rippled API call fails.
+    """
+    fee_request = GenericRequest(command="fee", tx_blob=tx_blob)
+    response = await client._request_impl(fee_request)
+    if not response.is_successful():
+        raise XAHLRequestFailureException(response.result)
+
+    result = response.result
+    if "drops" not in result or "base_fee" not in result["drops"]:
+        raise XAHLException("could not estimate transaction fee")
+
+    return str(result["drops"]["base_fee"])

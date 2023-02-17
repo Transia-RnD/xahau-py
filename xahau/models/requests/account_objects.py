@@ -6,6 +6,7 @@ AccountLinesRequest instead.
 
 `See account_objects <https://xrpl.org/account_objects.html>`_
 """
+
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Optional
@@ -25,6 +26,7 @@ class AccountObjectType(str, Enum):
     DID = "did"
     ESCROW = "escrow"
     NFT_OFFER = "nft_offer"
+    HOOK = "hook"
     OFFER = "offer"
     ORACLE = "oracle"
     PAYMENT_CHANNEL = "payment_channel"
@@ -33,6 +35,7 @@ class AccountObjectType(str, Enum):
     TICKET = "ticket"
     XCHAIN_OWNED_CREATE_ACCOUNT_CLAIM_ID = "xchain_owned_create_account_claim_id"
     XCHAIN_OWNED_CLAIM_ID = "xchain_owned_claim_id"
+    URI_TOKEN = "uri_token"
 
 
 @require_kwargs_on_init

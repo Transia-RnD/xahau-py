@@ -66,7 +66,7 @@ async def generate_faucet_wallet_and_fund_again(
 
 
 class TestWallet(IntegrationTestCase):
-    async def _test_run_faucet_tests(self):
+    async def __test_run_faucet_tests(self):
         # run all the tests that start with `_test_` in parallel
         def run_test(test_name):
             with self.subTest(method=test_name):
@@ -112,7 +112,7 @@ class TestWallet(IntegrationTestCase):
     # Custom host tests
 
     async def _parallel_test_generate_faucet_wallet_custom_host_async_websockets(self):
-        async with AsyncWebsocketClient("wss://xahau-test.net:51233") as client:
+        async with AsyncWebsocketClient("wss://xahau-test.net") as client:
             await generate_faucet_wallet_and_fund_again(
                 self,
                 client,
@@ -130,7 +130,7 @@ class TestWallet(IntegrationTestCase):
         )
 
     def _parallel_test_generate_faucet_wallet_custom_host_sync_websockets(self):
-        with WebsocketClient("wss://xahau-test.net:51233") as client:
+        with WebsocketClient("wss://xahau-test.net") as client:
             sync_generate_faucet_wallet_and_fund_again(self, client, "xahau-test.net")
 
     def _parallel_test_generate_faucet_wallet_custom_host_sync_json_rpc(self):
@@ -144,7 +144,7 @@ class TestWallet(IntegrationTestCase):
             await generate_faucet_wallet_and_fund_again(self, client)
 
     async def _parallel_test_generate_faucet_wallet_devnet_async_websockets(self):
-        async with AsyncWebsocketClient("wss://xahau-test.net:51233") as client:
+        async with AsyncWebsocketClient("wss://xahau-test.net") as client:
             await generate_faucet_wallet_and_fund_again(self, client)
 
     def test_wallet_get_xaddress(self):

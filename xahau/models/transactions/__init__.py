@@ -27,6 +27,7 @@ from xahau.models.transactions.amm_withdraw import (
 from xahau.models.transactions.check_cancel import CheckCancel
 from xahau.models.transactions.check_cash import CheckCash
 from xahau.models.transactions.check_create import CheckCreate
+from xahau.models.transactions.claim_reward import ClaimReward
 from xahau.models.transactions.clawback import Clawback
 from xahau.models.transactions.deposit_preauth import DepositPreauth
 from xahau.models.transactions.did_delete import DIDDelete
@@ -34,6 +35,8 @@ from xahau.models.transactions.did_set import DIDSet
 from xahau.models.transactions.escrow_cancel import EscrowCancel
 from xahau.models.transactions.escrow_create import EscrowCreate
 from xahau.models.transactions.escrow_finish import EscrowFinish
+from xahau.models.transactions.import_ import Import
+from xahau.models.transactions.invoke import Invoke
 from xahau.models.transactions.metadata import TransactionMetadata
 from xahau.models.transactions.nftoken_accept_offer import NFTokenAcceptOffer
 from xahau.models.transactions.nftoken_burn import NFTokenBurn
@@ -64,6 +67,15 @@ from xahau.models.transactions.payment_channel_claim import (
 )
 from xahau.models.transactions.payment_channel_create import PaymentChannelCreate
 from xahau.models.transactions.payment_channel_fund import PaymentChannelFund
+from xahau.models.transactions.remit import MintURIToken, Remit
+from xahau.models.transactions.set_hook import (
+    Hook,
+    HookGrant,
+    HookParameter,
+    SetHook,
+    SetHookFlag,
+    SetHookFlagInterface,
+)
 from xahau.models.transactions.set_regular_key import SetRegularKey
 from xahau.models.transactions.signer_list_set import SignerEntry, SignerListSet
 from xahau.models.transactions.ticket_create import TicketCreate
@@ -72,6 +84,15 @@ from xahau.models.transactions.trust_set import (
     TrustSet,
     TrustSetFlag,
     TrustSetFlagInterface,
+)
+from xahau.models.transactions.uritoken_burn import URITokenBurn
+from xahau.models.transactions.uritoken_buy import URITokenBuy
+from xahau.models.transactions.uritoken_cancel_sell_offer import URITokenCancelSellOffer
+from xahau.models.transactions.uritoken_create_sell_offer import URITokenCreateSellOffer
+from xahau.models.transactions.uritoken_mint import (
+    URITokenMint,
+    URITokenMintFlag,
+    URITokenMintFlagInterface,
 )
 from xahau.models.transactions.xchain_account_create_commit import (
     XChainAccountCreateCommit,
@@ -112,6 +133,7 @@ __all__ = [
     "CheckCancel",
     "CheckCash",
     "CheckCreate",
+    "ClaimReward",
     "Clawback",
     "DepositPreauth",
     "DIDDelete",
@@ -119,6 +141,8 @@ __all__ = [
     "EscrowCancel",
     "EscrowCreate",
     "EscrowFinish",
+    "Import",
+    "Invoke",
     "Memo",
     "NFTokenAcceptOffer",
     "NFTokenBurn",
@@ -143,6 +167,14 @@ __all__ = [
     "PaymentChannelFund",
     "PaymentFlag",
     "PaymentFlagInterface",
+    "Remit",
+    "MintURIToken",
+    "HookGrant",
+    "HookParameter",
+    "Hook",
+    "SetHook",
+    "SetHookFlag",
+    "SetHookFlagInterface",
     "SetRegularKey",
     "Signer",
     "SignerEntry",
@@ -153,6 +185,13 @@ __all__ = [
     "TrustSet",
     "TrustSetFlag",
     "TrustSetFlagInterface",
+    "URITokenBurn",
+    "URITokenBuy",
+    "URITokenCancelSellOffer",
+    "URITokenCreateSellOffer",
+    "URITokenMint",
+    "URITokenMintFlag",
+    "URITokenMintFlagInterface",
     "XChainAccountCreateCommit",
     "XChainAddAccountCreateAttestation",
     "XChainAddClaimAttestation",
