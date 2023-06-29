@@ -3,17 +3,19 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Dict, List, Optional, Pattern
 
 from typing_extensions import Final
 
+from xrpl.models.flags import FlagInterface
 from xrpl.models.nested_model import NestedModel
 from xrpl.models.required import REQUIRED
 from xrpl.models.transactions.transaction import Transaction
 from xrpl.models.transactions.types import TransactionType
 from xrpl.models.utils import require_kwargs_on_init
 
-MAX_HOOKS: Final[int] = 4
+MAX_HOOKS: Final[int] = 10
 """
 Maximum number of hooks allowed.
 
@@ -25,6 +27,27 @@ Matches hex-encoded WalletLocator in the format allowed by XRPL.
 
 :meta private:
 """
+
+
+class SetHookFlag(int, Enum):
+    """"""
+
+    HSF_OVERRIDE = 0x00000001
+    """"""
+
+    HSF_NS_DELETE = 0x00000010
+    """"""
+
+    HSF_COLLECT = 0x00000100
+    """"""
+
+
+class SetHookFlagInterface(FlagInterface):
+    """"""
+
+    HSF_OVERRIDE: bool
+    HSF_NS_DELETE: bool
+    HSF_COLLECT: bool
 
 
 @require_kwargs_on_init
@@ -86,6 +109,9 @@ class Hook(NestedModel):
 
     :meta hide-value:
     """
+
+    hook_hash: Optional[str] = None
+    """"""
 
     hook_on: Optional[str] = None
     """The transactions that triggers the hook. Represented as a 256Hash"""

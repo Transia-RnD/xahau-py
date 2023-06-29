@@ -16,6 +16,7 @@ from xrpl.models.transactions.deposit_preauth import DepositPreauth
 from xrpl.models.transactions.escrow_cancel import EscrowCancel
 from xrpl.models.transactions.escrow_create import EscrowCreate
 from xrpl.models.transactions.escrow_finish import EscrowFinish
+from xrpl.models.transactions.invoke import Invoke
 from xrpl.models.transactions.metadata import TransactionMetadata
 from xrpl.models.transactions.nftoken_accept_offer import NFTokenAcceptOffer
 from xrpl.models.transactions.nftoken_burn import NFTokenBurn
@@ -44,7 +45,12 @@ from xrpl.models.transactions.payment_channel_claim import (
 )
 from xrpl.models.transactions.payment_channel_create import PaymentChannelCreate
 from xrpl.models.transactions.payment_channel_fund import PaymentChannelFund
-from xrpl.models.transactions.set_hook import Hook, SetHook
+from xrpl.models.transactions.set_hook import (
+    Hook, 
+    SetHook,
+    SetHookFlag,
+    SetHookFlagInterface,
+)
 from xrpl.models.transactions.set_regular_key import SetRegularKey
 from xrpl.models.transactions.signer_list_set import SignerEntry, SignerListSet
 from xrpl.models.transactions.ticket_create import TicketCreate
@@ -67,6 +73,7 @@ __all__ = [
     "EscrowCancel",
     "EscrowCreate",
     "EscrowFinish",
+    "Invoke",
     "Memo",
     "NFTokenAcceptOffer",
     "NFTokenBurn",
@@ -91,6 +98,8 @@ __all__ = [
     "PaymentChannelFund",
     "Hook",
     "SetHook",
+    "SetHookFlag",
+    "SetHookFlagInterface",
     "SetRegularKey",
     "Signer",
     "SignerEntry",

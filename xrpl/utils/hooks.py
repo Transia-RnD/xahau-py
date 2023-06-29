@@ -38,19 +38,6 @@ def calculate_hook_on(arr: List[str]) -> str:
     return s.upper()
 
 
-def hex_namespace(namespace: str) -> str:
-    """
-    Hash the encoded namespace and return the hex upper
-
-    Args:
-        namespace: The namespace string
-
-    Returns:
-        A 256 hash of the transactions the hook will invoke on
-    """
-    return hashlib.sha256(namespace.encode("utf-8")).digest().hex().upper()
-
-
 def hex_hook_parameters(data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
     Hexlify the hook parameters

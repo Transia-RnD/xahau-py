@@ -15,6 +15,7 @@ class TransactionType(str, Enum):
     ESCROW_CANCEL = "EscrowCancel"
     ESCROW_CREATE = "EscrowCreate"
     ESCROW_FINISH = "EscrowFinish"
+    INVOKE = "Invoke"
     NFTOKEN_ACCEPT_OFFER = "NFTokenAcceptOffer"
     NFTOKEN_BURN = "NFTokenBurn"
     NFTOKEN_CANCEL_OFFER = "NFTokenCancelOffer"
