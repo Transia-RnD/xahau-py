@@ -4,8 +4,7 @@
 """Hooks-related helper util functions."""
 
 import binascii
-import hashlib
-from typing import Any, Dict, List, Optional  # noqa: F401
+from typing import Any, Dict, List  # noqa: F401
 
 from xrpl.constants import XRPLException
 from xrpl.core.binarycodec.definitions import _TRANSACTION_TYPE_MAP, _TRANSACTION_TYPES
@@ -25,7 +24,7 @@ def calculate_hook_on(arr: List[str]) -> str:
         XRPLException: if the HookOn transaction type is not in the transaction types
     """
     tts = _TRANSACTION_TYPE_MAP
-    s = "0x3e3ff5bf"
+    s = "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbfffff"
     for n in arr:
         if n not in _TRANSACTION_TYPES:
             raise XRPLException(f"invalid transaction type '{n}' in HookOn array")
