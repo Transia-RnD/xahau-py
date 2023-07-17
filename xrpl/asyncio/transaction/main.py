@@ -6,7 +6,11 @@ from typing_extensions import Final
 
 from xrpl.asyncio.account import get_next_valid_seq_number
 from xrpl.asyncio.clients import Client, XRPLRequestFailureException
-from xrpl.asyncio.ledger import get_fee, get_latest_validated_ledger_sequence
+from xrpl.asyncio.ledger import (
+    get_fee,
+    get_fee_estimate,
+    get_latest_validated_ledger_sequence,
+)
 from xrpl.constants import XRPLException
 from xrpl.core.addresscodec import is_valid_xaddress, xaddress_to_classic_address
 from xrpl.core.binarycodec import encode, encode_for_multisigning, encode_for_signing
@@ -228,18 +232,18 @@ async def autofill(
         The autofilled transaction.
     """
     transaction_json = transaction.to_dict()
-    if client.network_id > 1024 and not transaction_json["network_id"]:
+    if client.network_id > 1024 and 'network_id' not in transaction_json:
         transaction_json["network_id"] = client.network_id
     if "sequence" not in transaction_json:
         sequence = await get_next_valid_seq_number(transaction_json["account"], client)
         transaction_json["sequence"] = sequence
-    if "fee" not in transaction_json:
-        transaction_json["fee"] = await _calculate_fee_per_transaction_type(
-            transaction, client, signers_count
-        )
     if "last_ledger_sequence" not in transaction_json:
         ledger_sequence = await get_latest_validated_ledger_sequence(client)
         transaction_json["last_ledger_sequence"] = ledger_sequence + _LEDGER_OFFSET
+    if "fee" not in transaction_json:
+        transaction_json["fee"] = await _calculate_fee_hooksv3d(
+            client, transaction_json
+        )
     return Transaction.from_dict(transaction_json)
 
 
@@ -316,6 +320,15 @@ async def _check_fee(transaction: Transaction, client: Optional[Client] = None) 
             "incorrectly, since it is much larger than the typical XRP transaction "
             "cost. If this is intentional, use `check_fee=False`."
         )
+
+
+async def _calculate_fee_hooksv3d(
+    client: Optional[Client] = None,
+    transaction: Optional[Dict[str, Any]] = None,
+) -> str:
+    transaction['fee'] = '0'
+    tx_blob = encode(Transaction.from_dict(transaction).to_xrpl())
+    return str(await get_fee_estimate(client, tx_blob))
 
 
 async def _calculate_fee_per_transaction_type(
