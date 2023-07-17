@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from xrpl.models.base_model import BaseModel, _key_to_json
+from xrpl.models.flags import interface_to_flag_list
 
 NM = TypeVar("NM", bound="NestedModel")  # any type inherited from NestedModel
 
@@ -62,6 +63,29 @@ class NestedModel(BaseModel):
             return super(NestedModel, cls).from_dict(value)
         return super(NestedModel, cls).from_dict(value[_get_nested_name(cls)])
 
+    def _iter_to_int(
+        self: NestedModel,
+        lst: List[int],
+    ) -> int:
+        """Calculate flag as int."""
+        accumulator = 0
+        for flag in lst:
+            accumulator |= flag
+        return accumulator
+
+    def _flags_to_int(self: NestedModel) -> int:
+        if isinstance(self.flags, int):
+            return self.flags
+        if isinstance(self.flags, dict):
+            return self._iter_to_int(
+                lst=interface_to_flag_list(
+                    tx_type=self.transaction_type,
+                    tx_flags=self.flags,
+                )
+            )
+
+        return self._iter_to_int(lst=self.flags)
+
     def to_dict(self: NestedModel) -> Dict[str, Any]:
         """
         Returns the dictionary representation of a NestedModel.
@@ -69,4 +93,11 @@ class NestedModel(BaseModel):
         Returns:
             The dictionary representation of a NestedModel.
         """
+        if _get_nested_name(self) == "hook":
+            return {
+                _get_nested_name(self): {
+                    **super().to_dict(),
+                    "flags": self._flags_to_int(),
+                }
+            }
         return {_get_nested_name(self): super().to_dict()}
