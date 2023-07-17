@@ -70,6 +70,7 @@ class DeletedNode(TypedDict):
 
 class HookExecutionFields(TypedDict):
     """Fields of a HookExecution."""
+
     HookAccount: str
     HookEmitCount: int
     HookExecutionIndex: int

@@ -1,13 +1,9 @@
 """Model for SetHook transaction type."""
 from __future__ import annotations
 
-import re
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Pattern
+from typing import Dict
 
-from typing_extensions import Final
-
-from xrpl.models.nested_model import NestedModel
 from xrpl.models.required import REQUIRED
 from xrpl.models.transactions.transaction import Transaction
 from xrpl.models.transactions.types import TransactionType

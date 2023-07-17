@@ -4,7 +4,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict, List, Optional, Pattern
+from typing import Dict, List, Optional, Pattern, Union
 
 from typing_extensions import Final
 
@@ -30,7 +30,7 @@ Matches hex-encoded WalletLocator in the format allowed by XRPL.
 
 
 class SetHookFlag(int, Enum):
-    """"""
+    """SetHookFlag"""
 
     HSF_OVERRIDE = 0x00000001
     """"""
@@ -43,7 +43,7 @@ class SetHookFlag(int, Enum):
 
 
 class SetHookFlagInterface(FlagInterface):
-    """"""
+    """SetHookFlagInterface"""
 
     HSF_OVERRIDE: bool
     HSF_NS_DELETE: bool
@@ -94,7 +94,7 @@ class HookParameter(NestedModel):
 class Hook(NestedModel):
     """Represents one hook in a list of hooks deployed to an account."""
 
-    create_code: str = REQUIRED  # type: ignore
+    create_code: Optional[str] = None
     """
     The code that is executed when the hook is triggered.
     This field is required.
@@ -102,7 +102,7 @@ class Hook(NestedModel):
     :meta hide-value:
     """
 
-    flags: int = REQUIRED  # type: ignore
+    flags: Union[Dict[str, bool], int, List[int]] = 0
     """
     The flags that are set on the hook.
     This field is required.
