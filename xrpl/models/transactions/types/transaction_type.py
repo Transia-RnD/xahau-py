@@ -15,6 +15,7 @@ class TransactionType(str, Enum):
     ESCROW_CANCEL = "EscrowCancel"
     ESCROW_CREATE = "EscrowCreate"
     ESCROW_FINISH = "EscrowFinish"
+    INVOKE = "Invoke"
     NFTOKEN_ACCEPT_OFFER = "NFTokenAcceptOffer"
     NFTOKEN_BURN = "NFTokenBurn"
     NFTOKEN_CANCEL_OFFER = "NFTokenCancelOffer"
@@ -35,3 +36,4 @@ class TransactionType(str, Enum):
     URITOKEN_CANCEL_SELL_OFFER = "URITokenCancelSellOffer"
     URITOKEN_CREATE_SELL_OFFER = "URITokenCreateSellOffer"
     URITOKEN_MINT = "URITokenMint"
+    SET_HOOK = "SetHook"

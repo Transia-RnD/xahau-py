@@ -68,9 +68,30 @@ class DeletedNode(TypedDict):
     DeletedNode: DeletedNodeFields
 
 
+class HookExecutionFields(TypedDict):
+    """Fields of a HookExecution."""
+
+    HookAccount: str
+    HookEmitCount: int
+    HookExecutionIndex: int
+    HookHash: str
+    HookInstructionCount: str
+    HookResult: int
+    HookReturnCode: int
+    HookReturnString: str
+    HookStateChangeCount: int
+
+
+class HookExecution(TypedDict):
+    """HookExecution model."""
+
+    HookExecution: HookExecutionFields
+
+
 class TransactionMetadata(TypedDict):
     """A model for a transaction's metadata."""
 
+    HookExecutions: NotRequired[List[HookExecution]]
     AffectedNodes: List[Union[CreatedNode, ModifiedNode, DeletedNode]]
     TransactionIndex: int
     TransactionResult: str
