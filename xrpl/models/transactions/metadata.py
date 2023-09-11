@@ -77,7 +77,7 @@ class HookExecutionFields(TypedDict):
     HookHash: str
     HookInstructionCount: str
     HookResult: int
-    HookReturnCode: int
+    HookReturnCode: str
     HookReturnString: str
     HookStateChangeCount: int
 
