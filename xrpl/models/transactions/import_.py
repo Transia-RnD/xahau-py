@@ -11,12 +11,12 @@ from xrpl.models.utils import require_kwargs_on_init
 
 @require_kwargs_on_init
 @dataclass(frozen=True)
-class Invoke(Transaction):
-    """Invokes a hook."""
+class Import(Transaction):
+    """Imorts an xpop into the account."""
 
-    destination: Optional[str] = None
+    issuer: Optional[str] = None
     """
-    If present, invokes the Hook on the Destination account.
+    If present, invokes the Hook on the Issuer account.
     """
 
     blob: Optional[str] = None
@@ -25,10 +25,10 @@ class Invoke(Transaction):
     """
 
     transaction_type: TransactionType = field(
-        default=TransactionType.INVOKE,
+        default=TransactionType.IMPORT,
         init=False,
     )
 
-    def _get_errors(self: Invoke) -> Dict[str, str]:
+    def _get_errors(self: Import) -> Dict[str, str]:
         errors = super()._get_errors()
         return errors
