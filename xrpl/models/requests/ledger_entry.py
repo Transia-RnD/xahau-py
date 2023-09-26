@@ -65,6 +65,22 @@ class Directory(BaseModel):
 
 @require_kwargs_on_init
 @dataclass(frozen=True)
+class EmittedTxn(BaseModel):
+    """
+    Required fields for requesting an EmittedTxn if not querying by
+    object ID.
+    """
+
+    emitted_txn: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+
+@require_kwargs_on_init
+@dataclass(frozen=True)
 class Escrow(BaseModel):
     """
     Required fields for requesting a Escrow if not querying by
@@ -79,6 +95,68 @@ class Escrow(BaseModel):
     """
 
     seq: int = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+
+@require_kwargs_on_init
+@dataclass(frozen=True)
+class Hook(BaseModel):
+    """
+    Required fields for requesting a Hook if not querying by
+    object ID.
+    """
+
+    account: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+
+@require_kwargs_on_init
+@dataclass(frozen=True)
+class HookDefinition(BaseModel):
+    """
+    Required fields for requesting a Hook if not querying by
+    object ID.
+    """
+
+    hook_definition: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+
+@require_kwargs_on_init
+@dataclass(frozen=True)
+class HookState(BaseModel):
+    """
+    Required fields for requesting a Hook if not querying by
+    object ID.
+    """
+
+    account: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+    key: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+    namespace_id: str = REQUIRED  # type: ignore
     """
     This field is required.
 
@@ -154,75 +232,20 @@ class Ticket(BaseModel):
 
 @require_kwargs_on_init
 @dataclass(frozen=True)
-class Hook(BaseModel):
+class URIToken(BaseModel):
     """
-    Required fields for requesting a Hook if not querying by
+    Required fields for requesting a URIToken if not querying by
     object ID.
     """
 
-    account: str = REQUIRED  # type: ignore
+    issuer: str = REQUIRED  # type: ignore
     """
     This field is required.
 
     :meta hide-value:
     """
 
-
-@require_kwargs_on_init
-@dataclass(frozen=True)
-class HookState(BaseModel):
-    """
-    Required fields for requesting a Hook if not querying by
-    object ID.
-    """
-
-    account: str = REQUIRED  # type: ignore
-    """
-    This field is required.
-
-    :meta hide-value:
-    """
-
-    key: str = REQUIRED  # type: ignore
-    """
-    This field is required.
-
-    :meta hide-value:
-    """
-
-    namespace_id: str = REQUIRED  # type: ignore
-    """
-    This field is required.
-
-    :meta hide-value:
-    """
-
-
-@require_kwargs_on_init
-@dataclass(frozen=True)
-class HookDefinition(BaseModel):
-    """
-    Required fields for requesting a Hook if not querying by
-    object ID.
-    """
-
-    hook_definition: str = REQUIRED  # type: ignore
-    """
-    This field is required.
-
-    :meta hide-value:
-    """
-
-
-@require_kwargs_on_init
-@dataclass(frozen=True)
-class EmittedTxn(BaseModel):
-    """
-    Required fields for requesting a Hook if not querying by
-    object ID.
-    """
-
-    emitted_txn: str = REQUIRED  # type: ignore
+    uri: str = REQUIRED  # type: ignore
     """
     This field is required.
 
@@ -256,6 +279,7 @@ class LedgerEntry(Request):
     payment_channel: Optional[str] = None
     ripple_state: Optional[RippleState] = None
     ticket: Optional[Union[str, Ticket]] = None
+    uri_token: Optional[Union[str, URIToken]] = None
     binary: bool = False
     ledger_hash: Optional[str] = None
     ledger_index: Optional[Union[str, int]] = None
@@ -267,18 +291,19 @@ class LedgerEntry(Request):
             for param in [
                 self.index,
                 self.account_root,
-                self.directory,
-                self.offer,
-                self.ripple_state,
                 self.check,
-                self.escrow,
+                self.deposit_preauth,
+                self.directory,
                 self.emitted_txn,
+                self.escrow,
                 self.hook,
                 self.hook_definition,
                 self.hook_state,
+                self.offer,
                 self.payment_channel,
-                self.deposit_preauth,
+                self.ripple_state,
                 self.ticket,
+                self.uri_token,
             ]
             if param is not None
         ]
