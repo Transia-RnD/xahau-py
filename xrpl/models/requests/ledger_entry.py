@@ -166,6 +166,22 @@ class HookState(BaseModel):
 
 @require_kwargs_on_init
 @dataclass(frozen=True)
+class ImportVLSequence(BaseModel):
+    """
+    Required fields for requesting a ImportVLSequence if not querying by
+    object ID.
+    """
+
+    public_key: str = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+
+@require_kwargs_on_init
+@dataclass(frozen=True)
 class Offer(BaseModel):
     """
     Required fields for requesting a Offer if not querying by
@@ -275,6 +291,7 @@ class LedgerEntry(Request):
     hook: Optional[Union[str, Hook]] = None
     hook_definition: Optional[Union[str, HookDefinition]] = None
     hook_state: Optional[Union[str, HookState]] = None
+    import_vlseq: Optional[Union[str, ImportVLSequence]] = None
     offer: Optional[Union[str, Offer]] = None
     payment_channel: Optional[str] = None
     ripple_state: Optional[RippleState] = None
@@ -299,6 +316,7 @@ class LedgerEntry(Request):
                 self.hook,
                 self.hook_definition,
                 self.hook_state,
+                self.import_vlseq,
                 self.offer,
                 self.payment_channel,
                 self.ripple_state,
