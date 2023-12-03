@@ -35,10 +35,10 @@ class SetHookFlag(int, Enum):
     HSF_OVERRIDE = 0x00000001
     """"""
 
-    HSF_NS_DELETE = 0x00000010
+    HSF_NS_DELETE = 0x00000002
     """"""
 
-    HSF_COLLECT = 0x00000100
+    HSF_COLLECT = 0x00000004
     """"""
 
 
