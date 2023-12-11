@@ -5,6 +5,7 @@ from typing import Dict, Optional
 
 from typing_extensions import Final
 
+from xrpl.models.amounts import Amount
 from xrpl.models.flags import FlagInterface
 from xrpl.models.required import REQUIRED
 from xrpl.models.transactions.transaction import Transaction
@@ -57,6 +58,23 @@ class URITokenMint(Transaction):
 
     digest: Optional[str] = None
     """
+    """
+
+    destination: Optional[str] = None
+    """
+    If present, indicates that this offer may only be
+    accepted by the specified account. Attempts by other
+    accounts to accept this offer MUST fail.
+    """
+
+    amount: Optional[Amount] = None
+    """
+    Indicates the amount expected or offered for the Token.
+
+    The amount must be non-zero, except when this is a sell
+    offer and the asset is XRP. This would indicate that the current
+    owner of the token is giving it away free, either to anyone at all,
+    or to the account identified by the Destination field.
     """
 
     transaction_type: TransactionType = field(
