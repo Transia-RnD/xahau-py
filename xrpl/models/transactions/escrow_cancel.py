@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass, field
 
-from xrpl.models.required import REQUIRED
+from xrpl.models.required import REQUIRED, Optional
 from xrpl.models.transactions.transaction import Transaction
 from xrpl.models.transactions.types import TransactionType
 from xrpl.models.utils import require_kwargs_on_init
@@ -30,6 +30,13 @@ class EscrowCancel(Transaction):
     that created the Escrow. This field is required.
 
     :meta hide-value:
+    """
+
+    escrow_id: Optional[str] = None
+    """
+    The ID of the `Escrow ledger object
+    <https://xrpl.org/escrow.html>`_ to cancel, as a 64-character
+    hexadecimal string.
     """
 
     transaction_type: TransactionType = field(
