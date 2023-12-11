@@ -12,10 +12,13 @@ from xrpl.models.transactions.account_set import (
 from xrpl.models.transactions.check_cancel import CheckCancel
 from xrpl.models.transactions.check_cash import CheckCash
 from xrpl.models.transactions.check_create import CheckCreate
+from xrpl.models.transactions.claim_reward import ClaimReward
 from xrpl.models.transactions.deposit_preauth import DepositPreauth
 from xrpl.models.transactions.escrow_cancel import EscrowCancel
 from xrpl.models.transactions.escrow_create import EscrowCreate
 from xrpl.models.transactions.escrow_finish import EscrowFinish
+from xrpl.models.transactions.import_ import Import
+from xrpl.models.transactions.invoke import Invoke
 from xrpl.models.transactions.metadata import TransactionMetadata
 from xrpl.models.transactions.nftoken_accept_offer import NFTokenAcceptOffer
 from xrpl.models.transactions.nftoken_burn import NFTokenBurn
@@ -44,6 +47,14 @@ from xrpl.models.transactions.payment_channel_claim import (
 )
 from xrpl.models.transactions.payment_channel_create import PaymentChannelCreate
 from xrpl.models.transactions.payment_channel_fund import PaymentChannelFund
+from xrpl.models.transactions.set_hook import (
+    HookGrant,
+    HookParameter,
+    Hook,
+    SetHook,
+    SetHookFlag,
+    SetHookFlagInterface,
+)
 from xrpl.models.transactions.set_regular_key import SetRegularKey
 from xrpl.models.transactions.signer_list_set import SignerEntry, SignerListSet
 from xrpl.models.transactions.ticket_create import TicketCreate
@@ -52,6 +63,15 @@ from xrpl.models.transactions.trust_set import (
     TrustSet,
     TrustSetFlag,
     TrustSetFlagInterface,
+)
+from xrpl.models.transactions.uritoken_burn import URITokenBurn
+from xrpl.models.transactions.uritoken_buy import URITokenBuy
+from xrpl.models.transactions.uritoken_cancel_sell_offer import URITokenCancelSellOffer
+from xrpl.models.transactions.uritoken_create_sell_offer import URITokenCreateSellOffer
+from xrpl.models.transactions.uritoken_mint import (
+    URITokenMint,
+    URITokenMintFlag,
+    URITokenMintFlagInterface,
 )
 
 __all__ = [
@@ -62,10 +82,13 @@ __all__ = [
     "CheckCancel",
     "CheckCash",
     "CheckCreate",
+    "ClaimReward",
     "DepositPreauth",
     "EscrowCancel",
     "EscrowCreate",
     "EscrowFinish",
+    "Import",
+    "Invoke",
     "Memo",
     "NFTokenAcceptOffer",
     "NFTokenBurn",
@@ -88,6 +111,12 @@ __all__ = [
     "PaymentChannelClaimFlagInterface",
     "PaymentChannelCreate",
     "PaymentChannelFund",
+    "HookGrant",
+    "HookParameter",
+    "Hook",
+    "SetHook",
+    "SetHookFlag",
+    "SetHookFlagInterface",
     "SetRegularKey",
     "Signer",
     "SignerEntry",
@@ -98,4 +127,11 @@ __all__ = [
     "TrustSet",
     "TrustSetFlag",
     "TrustSetFlagInterface",
+    "URITokenBurn",
+    "URITokenBuy",
+    "URITokenCancelSellOffer",
+    "URITokenCreateSellOffer",
+    "URITokenMint",
+    "URITokenMintFlag",
+    "URITokenMintFlagInterface",
 ]

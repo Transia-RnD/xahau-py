@@ -33,6 +33,13 @@ class EscrowFinish(Transaction):
     :meta hide-value:
     """
 
+    escrow_id: Optional[str] = None
+    """
+    The ID of the `Escrow ledger object
+    <https://xrpl.org/escrow.html>`_ to cancel, as a 64-character
+    hexadecimal string.
+    """
+
     condition: Optional[str] = None
     """
     The previously-supplied `PREIMAGE-SHA-256 crypto-condition

@@ -27,6 +27,7 @@ _ABBREVIATIONS: Final[Dict[str, str]] = {
     "id": "ID",
     "uri": "URI",
     "nftoken": "NFToken",
+    "uritoken": "URIToken",
 }
 
 
@@ -120,6 +121,33 @@ class Memo(NestedModel):
         ]
         if len(present_memo_fields) < 1:
             errors["Memo"] = "Memo must contain at least one field"
+        return errors
+
+
+@require_kwargs_on_init
+@dataclass(frozen=True)
+class HookParameter(NestedModel):
+    """Represents one parameter in a list of parameters on the transaction."""
+
+    hook_parameter_name: str = REQUIRED  # type: ignore
+    """
+    The name of the parameter.
+    This field is required.
+
+    :meta hide-value:
+    """
+
+    hook_parameter_value: str = REQUIRED  # type: ignore
+    """
+    The value of the parameter.
+    This field is required.
+
+    :meta hide-value:
+    """
+
+    def _get_errors(self: HookParameter) -> Dict[str, str]:
+        errors = super()._get_errors()
+        # DA: TODO
         return errors
 
 
@@ -254,6 +282,16 @@ class Transaction(BaseModel):
     The cryptographic signature from the sender that authorizes this
     transaction. Automatically added during signing.
     """
+
+    network_id: Optional[int] = None
+    """
+    The network id of the transaction.
+
+    :meta hide-value:
+    """
+
+    hook_parameters: Optional[List[HookParameter]] = None
+    """The parameters of the hook."""
 
     def _get_errors(self: Transaction) -> Dict[str, str]:
         errors = super()._get_errors()
