@@ -68,6 +68,7 @@ class RequestMethod(str, Enum):
     MANIFEST = "manifest"
     SERVER_INFO = "server_info"
     SERVER_STATE = "server_state"
+    SERVER_DEFINITIONS = "server_definitions"
 
     # utility methods
     PING = "ping"
