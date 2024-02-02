@@ -20,6 +20,7 @@ class Fields(TypedDict):
     TakerPays: NotRequired[Union[Dict[str, str], str]]
     BookDirectory: NotRequired[str]
     Expiration: NotRequired[int]
+    EmittedTxn: NotRequired[Dict[str, Union[str, Dict[str, str]]]]
 
 
 class CreatedNodeFields(TypedDict):
@@ -80,6 +81,7 @@ class HookExecutionFields(TypedDict):
     HookReturnCode: str
     HookReturnString: str
     HookStateChangeCount: int
+    Flags: int
 
 
 class HookExecution(TypedDict):
@@ -88,9 +90,24 @@ class HookExecution(TypedDict):
     HookExecution: HookExecutionFields
 
 
+class HookEmissionFields(TypedDict):
+    """Fields of a HookEmission."""
+    EmittedTxnID: str
+    HookAccount: str
+    HookHash: str
+    EmitNonce: str
+
+
+class HookEmission(TypedDict):
+    """HookEmission model."""
+
+    HookEmission: HookEmissionFields
+
+
 class TransactionMetadata(TypedDict):
     """A model for a transaction's metadata."""
 
+    HookEmissions: NotRequired[List[HookEmission]]
     HookExecutions: NotRequired[List[HookExecution]]
     AffectedNodes: List[Union[CreatedNode, ModifiedNode, DeletedNode]]
     TransactionIndex: int
