@@ -25,7 +25,7 @@ class EscrowCancel(Transaction):
     :meta hide-value:
     """
 
-    offer_sequence: int = REQUIRED  # type: ignore
+    offer_sequence: Optional[int] = None
     """
     Transaction sequence (or Ticket number) of the EscrowCreate transaction
     that created the Escrow. This field is required.
