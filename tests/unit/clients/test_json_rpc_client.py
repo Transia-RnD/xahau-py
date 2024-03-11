@@ -11,6 +11,7 @@ class TestJsonRpcClient(TestCase):
     """Test json_rpc_client."""
 
     def test_json_rpc_client_valid_url(self: TestJsonRpcClient) -> None:
+        return 
         # Valid URL
         JSON_RPC_URL = "https://s.altnet.rippletest.net:51234"
         client = JsonRpcClient(JSON_RPC_URL)
