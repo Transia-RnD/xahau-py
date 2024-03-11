@@ -47,6 +47,7 @@ from xrpl.models.transactions.payment_channel_claim import (
 )
 from xrpl.models.transactions.payment_channel_create import PaymentChannelCreate
 from xrpl.models.transactions.payment_channel_fund import PaymentChannelFund
+from xrpl.models.transactions.remit import Remit, MintURIToken
 from xrpl.models.transactions.set_hook import (
     HookGrant,
     HookParameter,
@@ -111,6 +112,8 @@ __all__ = [
     "PaymentChannelClaimFlagInterface",
     "PaymentChannelCreate",
     "PaymentChannelFund",
+    "MintURIToken",
+    "Remit",
     "HookGrant",
     "HookParameter",
     "Hook",

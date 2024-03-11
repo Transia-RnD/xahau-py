@@ -9,7 +9,6 @@ from xrpl.models.amounts.issued_currency_amount import IssuedCurrencyAmount
 
 Amount = Union[IssuedCurrencyAmount, str]
 
-
 def is_xrp(amount: Amount) -> bool:
     """
     Returns whether amount is an XRP value, as opposed to an issued currency.

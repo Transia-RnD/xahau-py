@@ -12,7 +12,8 @@ from xrpl.models.transactions.transaction import Transaction
 from xrpl.models.transactions.types import TransactionType
 from xrpl.models.utils import require_kwargs_on_init
 
-_MAX_URI_LENGTH: Final[int] = 270
+_MAX_URI_LENGTH: Final[int] = 512
+_MAX_DIGEST_LENGTH: Final[int] = 64
 
 
 class URITokenMintFlag(int, Enum):
@@ -88,6 +89,9 @@ class URITokenMint(Transaction):
             for key, value in {
                 **super()._get_errors(),
                 "uri": self._get_uri_error(),
+                "amount": self._get_amount_error(),
+                "destination": self._get_destination_error(),
+                "digest": self._get_digest_error(),
             }.items()
             if value is not None
         }
@@ -95,4 +99,19 @@ class URITokenMint(Transaction):
     def _get_uri_error(self: "URITokenMint") -> Optional[str]:
         if self.uri is not None and len(self.uri) > _MAX_URI_LENGTH:
             return f"Must not be longer than {_MAX_URI_LENGTH} characters"
+        return None
+    
+    def _get_amount_error(self: "URITokenMint") -> Optional[str]:
+        if self.amount == 0 and not self.destination:
+            return f"Cannot be 0 without destination"
+        return None
+
+    def _get_destination_error(self: "URITokenMint") -> Optional[str]:
+        if self.destination == self.account:
+            return "Must not be equal to the account"
+        return None
+
+    def _get_digest_error(self: "URITokenMint") -> Optional[str]:
+        if self.digest is not None and len(self.digest) > _MAX_DIGEST_LENGTH:
+            return f"Must not be longer than {_MAX_DIGEST_LENGTH} characters"
         return None
