@@ -10,12 +10,13 @@ from xrpl.models.amounts.amount import (
     is_xrp,
 )
 from xrpl.models.amounts.issued_currency_amount import IssuedCurrencyAmount
-from xrpl.models.amounts.amount_entry import AmountEntry, Amounts
+from xrpl.models.amounts.amount_entry import AmountEntry, Amounts, InnerAmount
 
 __all__ = [
     "Amount",
     "AmountEntry",
     "Amounts",
+    "InnerAmount",
     "IssuedCurrencyAmount",
     "is_xrp",
     "is_issued_currency",

@@ -25,9 +25,11 @@ _TRANSACTION_HASH_PREFIX: Final[int] = 0x54584E00
 _ABBREVIATIONS: Final[Dict[str, str]] = {
     "unl": "UNL",
     "id": "ID",
+    "ids": "IDs",
     "uri": "URI",
     "nftoken": "NFToken",
     "uritoken": "URIToken",
+    "mint_uri_token": "MintURIToken",
 }
 
 

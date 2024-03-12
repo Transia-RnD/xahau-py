@@ -15,10 +15,22 @@ from xrpl.models.utils import require_kwargs_on_init
 
 @require_kwargs_on_init
 @dataclass(frozen=True)
+class InnerAmount(BaseModel):
+    """Represents an amount entry object."""
+
+    amount: Union[IssuedCurrencyAmount, str] = REQUIRED  # type: ignore
+    """
+    This field is required.
+
+    :meta hide-value:
+    """
+
+@require_kwargs_on_init
+@dataclass(frozen=True)
 class AmountEntry(BaseModel):
     """Represents an amount entry object."""
 
-    amount_entry: Union[IssuedCurrencyAmount, str] = REQUIRED  # type: ignore
+    amount_entry: InnerAmount = REQUIRED  # type: ignore
     """
     This field is required.
 

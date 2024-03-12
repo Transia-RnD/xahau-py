@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from xrpl.models.amounts import IssuedCurrencyAmount, AmountEntry
+from xrpl.models.amounts import IssuedCurrencyAmount, AmountEntry, InnerAmount
 from xrpl.models.exceptions import XRPLModelException
 from xrpl.models.transactions import Remit, MintURIToken
 from xrpl.utils import str_to_hex
@@ -12,10 +12,10 @@ _DIGEST = "AED08CC1F50DD5F23A1948AF86153A3F3B7593E5EC77D65A02BB1B29E05AB6AF"
 _URI_TOKEN_ID = "AED08CC1F50DD5F23A1948AF86153A3F3B7593E5EC77D65A02BB1B29E05AB6AF"
 _URI = "ipfs://CID"
 _BAD_URI = "ipfs://AED08CC1F50DD5F23A1948AF86153A3F3B7593E5EC77D65A02BB1B29E05AB6A"
-NATIVE_AMOUNT_ENTRY = AmountEntry(amount_entry="1")
-IC_AMOUNT_ENTRY = AmountEntry(amount_entry=IssuedCurrencyAmount(
+NATIVE_AMOUNT_ENTRY = AmountEntry(amount_entry=InnerAmount(amount="1"))
+IC_AMOUNT_ENTRY = AmountEntry(amount_entry=InnerAmount(amount=IssuedCurrencyAmount(
     currency="BTC", value="1.002", issuer=_ACCOUNT
-))
+)))
 _DESTINATION = "rf1BiGeXwwQoi8Z2ueFYTEXSwuJYfV2Jpn"
 
 class TestRemit(TestCase):

@@ -7,7 +7,7 @@ from typing_extensions import Final
 
 from xrpl.models.amounts import AmountEntry
 from xrpl.models.flags import FlagInterface
-from xrpl.models.nested_model import NestedModel
+from xrpl.models.base_model import BaseModel
 from xrpl.models.required import REQUIRED
 from xrpl.models.transactions.transaction import Transaction
 from xrpl.models.transactions.types import TransactionType
@@ -19,7 +19,7 @@ _DIGEST_LENGTH: Final[int] = 64
 
 @require_kwargs_on_init
 @dataclass(frozen=True)
-class MintURIToken(NestedModel):
+class MintURIToken(BaseModel):
     """Represents a uritoken object."""
 
     uri: str = REQUIRED  # type: ignore
@@ -109,12 +109,12 @@ class Remit(Transaction):
             seen = set()
             seen_xrp = False
             for amount in self.amounts:
-                if isinstance(amount.amount_entry, str):
+                if isinstance(amount.amount_entry.amount, str):
                     if seen_xrp:
                         return "Duplicate Native amounts are not allowed"
                     seen_xrp = True 
                 else:
-                    amount_key = (amount.amount_entry.currency, amount.amount_entry.issuer)
+                    amount_key = (amount.amount_entry.amount.currency, amount.amount_entry.amount.issuer)
                     if amount_key in seen:
                         return "Duplicate amounts are not allowed"
                     seen.add(amount_key)
@@ -147,7 +147,7 @@ class Remit(Transaction):
         return None
     
     def _get_digest_error(self: "Remit") -> Optional[str]:
-        if self.mint_uri_token is not None and len(self.mint_uri_token.digest) != _DIGEST_LENGTH:
+        if self.mint_uri_token is not None and self.mint_uri_token.digest is not None and len(self.mint_uri_token.digest) != _DIGEST_LENGTH:
             return f"Must be exactly {_DIGEST_LENGTH} characters"
         return None
     
