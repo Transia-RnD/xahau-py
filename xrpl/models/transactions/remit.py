@@ -105,6 +105,10 @@ class Remit(Transaction):
         }
     
     def _get_amounts_error(self: "Remit") -> Optional[str]:
+        if len(self.uri_token_ids) < 1:
+            return "Empty Amounts"
+        if len(self.amounts) > 32:
+            return "Max Amounts"
         if self.amounts is not None:
             seen = set()
             seen_xrp = False
@@ -121,6 +125,10 @@ class Remit(Transaction):
         return None
     
     def _get_uri_token_ids_error(self: "Remit") -> Optional[str]:
+        if len(self.uri_token_ids) < 1:
+            return "Empty URI token IDs"
+        if len(self.uri_token_ids) > 32:
+            return "Max URI token IDs"
         if self.uri_token_ids is not None:
             seen = set()
             for token_id in self.uri_token_ids:
