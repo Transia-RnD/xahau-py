@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl import CryptoAlgorithm
-from xrpl.core.addresscodec.exceptions import XRPLAddressCodecException
-from xrpl.wallet import Wallet
+from xahau import CryptoAlgorithm
+from xahau.core.addresscodec.exceptions import XAHLAddressCodecException
+from xahau.wallet import Wallet
 
 SEED = "ssQgsaM2ujhyWoDw3Yb1TNjkZTVT2"
 SECP_ADDRESS = "r9o97fQwt54s73b1UzgbhvZTPDHYgSqz7G"
@@ -49,5 +49,5 @@ class TestWallet(TestCase):
         self.assertEqual(wallet.algorithm, CryptoAlgorithm.ED25519)
 
     def test_init_secp256k1_with_sEd_seed_fail(self):
-        with self.assertRaises(XRPLAddressCodecException):
+        with self.assertRaises(XAHLAddressCodecException):
             Wallet.from_seed(SED_SEED, algorithm=CryptoAlgorithm.SECP256K1)

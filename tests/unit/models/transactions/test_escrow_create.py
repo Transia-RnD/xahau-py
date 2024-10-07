@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import EscrowCreate
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.transactions import EscrowCreate
 
 
 class TestEscrowCreate(TestCase):
@@ -14,7 +14,7 @@ class TestEscrowCreate(TestCase):
         fee = "0.00001"
         sequence = 19048
 
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             EscrowCreate(
                 account=account,
                 amount=amount,

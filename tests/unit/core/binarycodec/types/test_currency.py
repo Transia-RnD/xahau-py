@@ -1,14 +1,14 @@
 from unittest import TestCase
 
-import xrpl.core.binarycodec.types.currency as currency
-from xrpl.core.binarycodec.exceptions import XRPLBinaryCodecException
+import xahau.core.binarycodec.types.currency as currency
+from xahau.core.binarycodec.exceptions import XAHLBinaryCodecException
 
-XRP_HEX_CODE = "0000000000000000000000000000000000000000"
-ILLEGAL_XRP_HEX_CODE = "0000000000000000000000005852500000000000"
+XAH_HEX_CODE = "0000000000000000000000000000000000000000"
+ILLEGAL_XAH_HEX_CODE = "0000000000000000000000005841480000000000"
 USD_HEX_CODE = "0000000000000000000000005553440000000000"
 NONSTANDARD_HEX_CODE = "015841551A748AD2C1F76FF6ECB0CCCD00000000"
 NOT_RECOMMENDED_HEX_CODE = "0000000000414C6F676F30330000000000000000"
-XRP_ISO = "XRP"
+XAH_ISO = "XAH"
 USD_ISO = "USD"
 
 
@@ -35,33 +35,33 @@ class TestCurrency(TestCase):
         self.assertFalse(currency._is_hex(invalid_hex_chars))
 
     def test_iso_to_bytes(self):
-        # Valid non-XRP
+        # Valid non-XAH
         usd_iso_bytes = currency._iso_to_bytes(USD_ISO)
         # convert bytes to hex string for comparison to expectation
         self.assertEqual(usd_iso_bytes.hex(), USD_HEX_CODE)
 
-        # Valid XRP
-        xrp_iso_bytes = currency._iso_to_bytes(XRP_ISO)
+        # Valid XAH
+        xrp_iso_bytes = currency._iso_to_bytes(XAH_ISO)
         # convert bytes to hex string for comparison to expectation
-        self.assertEqual(xrp_iso_bytes.hex(), XRP_HEX_CODE)
+        self.assertEqual(xrp_iso_bytes.hex(), XAH_HEX_CODE)
 
         # Error case
         invalid_iso = "INVALID"
-        self.assertRaises(XRPLBinaryCodecException, currency._iso_to_bytes, invalid_iso)
+        self.assertRaises(XAHLBinaryCodecException, currency._iso_to_bytes, invalid_iso)
 
     def test_construction_from_hex_standard(self):
-        # XRP case
-        currency_object = currency.Currency.from_value(XRP_HEX_CODE)
-        self.assertEqual(currency_object.to_json(), XRP_ISO)
+        # XAH case
+        currency_object = currency.Currency.from_value(XAH_HEX_CODE)
+        self.assertEqual(currency_object.to_json(), XAH_ISO)
 
         # General case
         currency_object = currency.Currency.from_value(USD_HEX_CODE)
         self.assertEqual(currency_object.to_json(), USD_ISO)
 
     def test_construction_from_iso_code_standard(self):
-        # XRP case
-        currency_object = currency.Currency.from_value(XRP_ISO)
-        self.assertEqual(currency_object.to_hex(), XRP_HEX_CODE)
+        # XAH case
+        currency_object = currency.Currency.from_value(XAH_ISO)
+        self.assertEqual(currency_object.to_hex(), XAH_HEX_CODE)
 
         # General case
         currency_object = currency.Currency.from_value(USD_ISO)
@@ -78,10 +78,10 @@ class TestCurrency(TestCase):
     def test_raises_invalid_value_type(self):
         invalid_value = [1, 2, 3]
         self.assertRaises(
-            XRPLBinaryCodecException, currency.Currency.from_value, invalid_value
+            XAHLBinaryCodecException, currency.Currency.from_value, invalid_value
         )
 
     def test_raises_invalid_xrp_encoding(self):
         self.assertRaises(
-            XRPLBinaryCodecException, currency.Currency.from_value, ILLEGAL_XRP_HEX_CODE
+            XAHLBinaryCodecException, currency.Currency.from_value, ILLEGAL_XAH_HEX_CODE
         )

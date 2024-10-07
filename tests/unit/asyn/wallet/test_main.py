@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl.constants import CryptoAlgorithm, XRPLException
-from xrpl.core.addresscodec.exceptions import XRPLAddressCodecException
-from xrpl.wallet.main import Wallet
+from xahau.constants import CryptoAlgorithm, XAHLException
+from xahau.core.addresscodec.exceptions import XAHLAddressCodecException
+from xahau.wallet.main import Wallet
 
 constants = {
     "regular_key_pair": {
@@ -141,7 +141,7 @@ class TestWalletMain(TestCase):
         _test_wallet_values(self, wallet, "seed", "secp256k1")
 
     def test_wallet_contructor_throws_with_invalid_seed(self):
-        with self.assertRaises(XRPLAddressCodecException):
+        with self.assertRaises(XAHLAddressCodecException):
             Wallet(
                 constants["regular_key_pair"]["secp256k1"]["public_key"],
                 constants["regular_key_pair"]["secp256k1"]["private_key"],
@@ -360,7 +360,7 @@ class TestWalletMain(TestCase):
         invalid_array = constants["secret_numbers"]["array"].copy()
         invalid_array.append("605430")
 
-        with self.assertRaises(XRPLException):
+        with self.assertRaises(XAHLException):
             Wallet.from_secret_numbers(
                 invalid_array,
                 algorithm=CryptoAlgorithm.ED25519,
@@ -370,7 +370,7 @@ class TestWalletMain(TestCase):
         invalid_array = constants["secret_numbers"]["array"].copy()
         invalid_array[0] += "1"
 
-        with self.assertRaises(XRPLException):
+        with self.assertRaises(XAHLException):
             Wallet.from_secret_numbers(
                 invalid_array,
                 algorithm=CryptoAlgorithm.ED25519,

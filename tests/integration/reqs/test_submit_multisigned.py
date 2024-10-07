@@ -1,12 +1,12 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.it_utils import sign_and_reliable_submission, test_async_and_sync
 from tests.integration.reusable_values import WALLET
-from xrpl.asyncio.transaction.main import autofill, sign
-from xrpl.models.requests import SubmitMultisigned
-from xrpl.models.transactions import AccountSet, SignerEntry, SignerListSet
-from xrpl.transaction.multisign import multisign
-from xrpl.utils.str_conversions import str_to_hex
-from xrpl.wallet import Wallet
+from xahau.asyncio.transaction.main import autofill, sign
+from xahau.models.requests import SubmitMultisigned
+from xahau.models.transactions import AccountSet, SignerEntry, SignerListSet
+from xahau.transaction.multisign import multisign
+from xahau.utils.str_conversions import str_to_hex
+from xahau.wallet import Wallet
 
 FIRST_SIGNER = Wallet.from_seed("sEdTLQkHAWpdS7FDk7EvuS7Mz8aSMRh")
 SECOND_SIGNER = Wallet.from_seed("sEd7DXaHkGQD8mz8xcRLDxfMLqCurif")
@@ -36,8 +36,8 @@ class TestSubmitMultisigned(IntegrationTestCase):
     @test_async_and_sync(
         globals(),
         [
-            "xrpl.transaction.sign",
-            "xrpl.transaction.autofill",
+            "xahau.transaction.sign",
+            "xahau.transaction.autofill",
         ],
     )
     async def test_basic_functionality(self, client):

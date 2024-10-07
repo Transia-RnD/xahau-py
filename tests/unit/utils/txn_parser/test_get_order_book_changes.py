@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from unittest import TestCase
 
-from xrpl.utils import get_order_book_changes
+from xahau.utils import get_order_book_changes
 
 path_to_json = "tests/unit/utils/txn_parser/transaction_jsons/"
 with open(path_to_json + "offer_created.json", "r") as infile:
@@ -25,7 +25,7 @@ class TestGetOrderBookChanges(TestCase):
                 "offer_changes": [
                     {
                         "flags": 131072,
-                        "taker_gets": {"currency": "XRP", "value": "44.930000"},
+                        "taker_gets": {"currency": "XAH", "value": "44.930000"},
                         "taker_pays": {
                             "currency": "USD",
                             "issuer": "rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B",
@@ -102,7 +102,7 @@ class TestGetOrderBookChanges(TestCase):
                             "issuer": "rMJAXYsbNzhwp7FfYnAsYP5ty3R9XnurPo",
                             "value": "-82335.52909",
                         },
-                        "taker_pays": {"currency": "XRP", "value": "-47.504858"},
+                        "taker_pays": {"currency": "XAH", "value": "-47.504858"},
                         "sequence": 70922543,
                         "status": "cancelled",
                         "maker_exchange_rate": "0.0005769666937838341642215588998",
@@ -120,7 +120,7 @@ class TestGetOrderBookChanges(TestCase):
                 "offer_changes": [
                     {
                         "flags": 0,
-                        "taker_gets": {"currency": "XRP", "value": "-50.000000"},
+                        "taker_gets": {"currency": "XAH", "value": "-50.000000"},
                         "taker_pays": {
                             "currency": "457175696C69627269756D000000000000000000",
                             "issuer": "rpakCr61Q92abPXJnVboKENmpKssWyHpwu",

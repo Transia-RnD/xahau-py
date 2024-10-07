@@ -2,7 +2,7 @@ name: Unit test
 
 on:
   push:
-    branches: [main]
+    branches: [main, xahau]
   pull_request:
   workflow_dispatch:
 
@@ -49,11 +49,11 @@ jobs:
 
       - name: Lint
         run: |
-          poetry run flake8 xrpl tests snippets --darglint-ignore-regex="^_(.*)"
+          poetry run flake8 xahau tests snippets --darglint-ignore-regex="^_(.*)"
 
       - name: Type-check
         run: |
-          poetry run mypy --strict --implicit-reexport xrpl snippets
+          poetry run mypy --strict --implicit-reexport xahau snippets
 
   unit-test:
     name: Unit test

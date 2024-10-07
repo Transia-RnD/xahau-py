@@ -4,8 +4,8 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import WALLET
-from xrpl.models.response import ResponseStatus
-from xrpl.models.transactions import AccountSet
+from xahau.models.response import ResponseStatus
+from xahau.models.transactions import AccountSet
 
 ACCOUNT = WALLET.address
 

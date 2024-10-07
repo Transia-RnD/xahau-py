@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions.check_cash import CheckCash
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.transactions.check_cash import CheckCash
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _FEE = "0.00001"
@@ -12,7 +12,7 @@ _AMOUNT = "300"
 
 class TestCheckCash(TestCase):
     def test_amount_and_deliver_min_is_invalid(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             CheckCash(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -23,7 +23,7 @@ class TestCheckCash(TestCase):
             )
 
     def test_neither_amount_not_deliver_min_is_invalid(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             CheckCash(
                 account=_ACCOUNT,
                 fee=_FEE,

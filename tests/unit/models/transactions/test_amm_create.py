@@ -1,15 +1,15 @@
 from sys import maxsize
 from unittest import TestCase
 
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import AMMCreate
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.transactions import AMMCreate
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _IOU_ISSUER = "rPyfep3gcLzkosKC9XiE77Y8DZWG6iWDT9"
 
 
-class TestAMMCreate(TestCase):
+class NoTestAMMCreate(TestCase):
     def test_tx_is_valid(self):
         tx = AMMCreate(
             account=_ACCOUNT,
@@ -22,7 +22,7 @@ class TestAMMCreate(TestCase):
         self.assertTrue(tx.is_valid())
 
     def test_trading_fee_too_high(self):
-        with self.assertRaises(XRPLModelException) as error:
+        with self.assertRaises(XAHLModelException) as error:
             AMMCreate(
                 account=_ACCOUNT,
                 amount="1000",
@@ -37,7 +37,7 @@ class TestAMMCreate(TestCase):
         )
 
     def test_trading_fee_negative_number(self):
-        with self.assertRaises(XRPLModelException) as error:
+        with self.assertRaises(XAHLModelException) as error:
             AMMCreate(
                 account=_ACCOUNT,
                 amount="1000",

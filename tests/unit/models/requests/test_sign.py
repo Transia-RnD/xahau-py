@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from xrpl.constants import CryptoAlgorithm
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.requests import Sign
-from xrpl.models.transactions import AccountSet, AccountSetAsfFlag
+from xahau.constants import CryptoAlgorithm
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.requests import Sign
+from xahau.models.transactions import AccountSet, AccountSetAsfFlag
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _FEE = "0.00001"
@@ -12,7 +12,7 @@ _DOMAIN = "asjcsodafsaid0f9asdfasdf"
 _TRANSACTION = AccountSet(
     account=_ACCOUNT,
     fee=_FEE,
-    set_flag=AccountSetAsfFlag.ASF_DISALLOW_XRP,
+    set_flag=AccountSetAsfFlag.ASF_DISALLOW_XAH,
     domain=_DOMAIN,
     sequence=_SEQUENCE,
 )
@@ -25,11 +25,11 @@ _PASSPHRASE = "mytopsecretpassphrasethatwillneverbehacked"
 
 class TestSign(TestCase):
     def test_invalid_secret_and_seed(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             Sign(transaction=_TRANSACTION, secret=_SECRET, seed=_SEED)
 
     def test_invalid_seed_and_seed_hex(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             Sign(
                 transaction=_TRANSACTION,
                 seed=_SEED,
@@ -37,7 +37,7 @@ class TestSign(TestCase):
             )
 
     def test_invalid_seed_hex_and_passphrase(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             Sign(
                 transaction=_TRANSACTION,
                 seed_hex=_SEED_HEX,
@@ -45,7 +45,7 @@ class TestSign(TestCase):
             )
 
     def test_invalid_secret_and_passphrase(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             Sign(
                 transaction=_TRANSACTION,
                 secret=_SECRET,
@@ -53,7 +53,7 @@ class TestSign(TestCase):
             )
 
     def test_invalid_secret_and_key_type(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             Sign(
                 transaction=_TRANSACTION,
                 secret=_SECRET,

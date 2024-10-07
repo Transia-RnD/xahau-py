@@ -1,10 +1,10 @@
 from unittest import TestCase
 
-from xrpl.core.binarycodec import XRPLBinaryCodecException
-from xrpl.core.binarycodec.types.uint8 import UInt8
-from xrpl.core.binarycodec.types.uint16 import UInt16
-from xrpl.core.binarycodec.types.uint32 import UInt32
-from xrpl.core.binarycodec.types.uint64 import UInt64
+from xahau.core.binarycodec import XAHLBinaryCodecException
+from xahau.core.binarycodec.types.uint8 import UInt8
+from xahau.core.binarycodec.types.uint16 import UInt16
+from xahau.core.binarycodec.types.uint32 import UInt32
+from xahau.core.binarycodec.types.uint64 import UInt64
 
 
 class TestUInt(TestCase):
@@ -39,7 +39,7 @@ class TestUInt(TestCase):
 
     def test_raises_invalid_value_type(self):
         invalid_value = [1, 2, 3]
-        self.assertRaises(XRPLBinaryCodecException, UInt8.from_value, invalid_value)
-        self.assertRaises(XRPLBinaryCodecException, UInt16.from_value, invalid_value)
-        self.assertRaises(XRPLBinaryCodecException, UInt32.from_value, invalid_value)
-        self.assertRaises(XRPLBinaryCodecException, UInt64.from_value, invalid_value)
+        self.assertRaises(XAHLBinaryCodecException, UInt8.from_value, invalid_value)
+        self.assertRaises(XAHLBinaryCodecException, UInt16.from_value, invalid_value)
+        self.assertRaises(XAHLBinaryCodecException, UInt32.from_value, invalid_value)
+        self.assertRaises(XAHLBinaryCodecException, UInt64.from_value, invalid_value)

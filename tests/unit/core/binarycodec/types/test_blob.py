@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.core.binarycodec import XRPLBinaryCodecException
-from xrpl.core.binarycodec.types.blob import Blob
+from xahau.core.binarycodec import XAHLBinaryCodecException
+from xahau.core.binarycodec.types.blob import Blob
 
 
 class TestBlob(TestCase):
@@ -16,4 +16,4 @@ class TestBlob(TestCase):
 
     def test_raises_invalid_value_type(self):
         invalid_value = [1, 2, 3]
-        self.assertRaises(XRPLBinaryCodecException, Blob.from_value, invalid_value)
+        self.assertRaises(XAHLBinaryCodecException, Blob.from_value, invalid_value)

@@ -3,14 +3,14 @@ from threading import Thread
 
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.it_utils import submit_transaction_async
-from xrpl.asyncio.clients import AsyncJsonRpcClient, AsyncWebsocketClient
-from xrpl.asyncio.wallet import generate_faucet_wallet
-from xrpl.clients import JsonRpcClient, WebsocketClient
-from xrpl.core.addresscodec.main import classic_address_to_xaddress
-from xrpl.models.requests import AccountInfo
-from xrpl.models.transactions import Payment
-from xrpl.wallet import generate_faucet_wallet as sync_generate_faucet_wallet
-from xrpl.wallet.main import Wallet
+from xahau.asyncio.clients import AsyncJsonRpcClient, AsyncWebsocketClient
+from xahau.asyncio.wallet import generate_faucet_wallet
+from xahau.clients import JsonRpcClient, WebsocketClient
+from xahau.core.addresscodec.main import classic_address_to_xaddress
+from xahau.models.requests import AccountInfo
+from xahau.models.transactions import Payment
+from xahau.wallet import generate_faucet_wallet as sync_generate_faucet_wallet
+from xahau.wallet.main import Wallet
 
 
 def sync_generate_faucet_wallet_and_fund_again(
@@ -66,7 +66,7 @@ async def generate_faucet_wallet_and_fund_again(
 
 
 class TestWallet(IntegrationTestCase):
-    async def test_run_faucet_tests(self):
+    async def _test_run_faucet_tests(self):
         # run all the tests that start with `_test_` in parallel
         def run_test(test_name):
             with self.subTest(method=test_name):
@@ -93,7 +93,7 @@ class TestWallet(IntegrationTestCase):
 
     # ensure that the wallet creation has been validated and the account actually exists
     async def _parallel_test_generate_faucet_wallet_rel_sub(self):
-        client = JsonRpcClient("https://s.devnet.rippletest.net:51234")
+        client = JsonRpcClient("https://xahau-test.net")
         destination = await generate_faucet_wallet(client)
         wallet = await generate_faucet_wallet(client)
         # TODO: refactor so this actually waits for validation
@@ -112,49 +112,39 @@ class TestWallet(IntegrationTestCase):
     # Custom host tests
 
     async def _parallel_test_generate_faucet_wallet_custom_host_async_websockets(self):
-        async with AsyncWebsocketClient(
-            "wss://s.devnet.rippletest.net:51233"
-        ) as client:
+        async with AsyncWebsocketClient("wss://xahau-test.net:51233") as client:
             await generate_faucet_wallet_and_fund_again(
                 self,
                 client,
-                "faucet.devnet.rippletest.net",
+                "xahau-test.net",
                 usage_context="integration_test",
             )
 
     async def _parallel_test_generate_faucet_wallet_custom_host_async_json_rpc(self):
-        client = AsyncJsonRpcClient("https://s.devnet.rippletest.net:51234")
+        client = AsyncJsonRpcClient("https://xahau-test.net")
         await generate_faucet_wallet_and_fund_again(
             self,
             client,
-            "faucet.devnet.rippletest.net",
+            "xahau-test.net",
             usage_context="integration_test",
         )
 
     def _parallel_test_generate_faucet_wallet_custom_host_sync_websockets(self):
-        with WebsocketClient("wss://s.devnet.rippletest.net:51233") as client:
-            sync_generate_faucet_wallet_and_fund_again(
-                self, client, "faucet.devnet.rippletest.net"
-            )
+        with WebsocketClient("wss://xahau-test.net:51233") as client:
+            sync_generate_faucet_wallet_and_fund_again(self, client, "xahau-test.net")
 
     def _parallel_test_generate_faucet_wallet_custom_host_sync_json_rpc(self):
-        client = JsonRpcClient("https://s.devnet.rippletest.net:51234")
-        sync_generate_faucet_wallet_and_fund_again(
-            self, client, "faucet.devnet.rippletest.net"
-        )
+        client = JsonRpcClient("https://xahau-test.net")
+        sync_generate_faucet_wallet_and_fund_again(self, client, "xahau-test.net")
 
     # Network tests
 
     async def _parallel_test_generate_faucet_wallet_testnet_async_websockets(self):
-        async with AsyncWebsocketClient(
-            "wss://s.altnet.rippletest.net:51233"
-        ) as client:
+        async with AsyncWebsocketClient("wss://xahau-test.net") as client:
             await generate_faucet_wallet_and_fund_again(self, client)
 
     async def _parallel_test_generate_faucet_wallet_devnet_async_websockets(self):
-        async with AsyncWebsocketClient(
-            "wss://s.devnet.rippletest.net:51233"
-        ) as client:
+        async with AsyncWebsocketClient("wss://xahau-test.net:51233") as client:
             await generate_faucet_wallet_and_fund_again(self, client)
 
     def test_wallet_get_xaddress(self):

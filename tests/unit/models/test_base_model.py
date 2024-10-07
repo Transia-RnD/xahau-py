@@ -2,10 +2,10 @@ import json
 import os
 from unittest import TestCase
 
-from xrpl.models import XRPLModelException
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.currencies import XRP, IssuedCurrency
-from xrpl.models.requests import (
+from xahau.models import XAHLModelException
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.currencies import XAH, IssuedCurrency
+from xahau.models.requests import (
     AccountChannels,
     BookOffers,
     PathFind,
@@ -16,8 +16,8 @@ from xrpl.models.requests import (
     SubmitMultisigned,
     SubmitOnly,
 )
-from xrpl.models.requests.request import _DEFAULT_API_VERSION
-from xrpl.models.transactions import (
+from xahau.models.requests.request import _DEFAULT_API_VERSION
+from xahau.models.transactions import (
     AMMBid,
     AuthAccount,
     CheckCreate,
@@ -30,8 +30,8 @@ from xrpl.models.transactions import (
     TrustSetFlag,
     XChainClaim,
 )
-from xrpl.models.transactions.transaction import Transaction
-from xrpl.models.xchain_bridge import XChainBridge
+from xahau.models.transactions.transaction import Transaction
+from xahau.models.xchain_bridge import XChainBridge
 
 currency = "BTC"
 value = "100"
@@ -103,7 +103,7 @@ class TestFromDict(TestCase):
         self.assertEqual(expected_dict, check_create.to_dict())
 
     def test_from_dict_recursive_currency(self):
-        xrp = {"currency": "XRP"}
+        xrp = {"currency": "XAH"}
         issued_currency = {
             "currency": currency,
             "issuer": issuer,
@@ -117,7 +117,7 @@ class TestFromDict(TestCase):
         expected_dict = {
             **book_offers_dict,
             "method": "book_offers",
-            "taker_gets": {"currency": "XRP"},
+            "taker_gets": {"currency": "XAH"},
             "api_version": _DEFAULT_API_VERSION,
         }
         self.assertEqual(expected_dict, book_offers.to_dict())
@@ -251,7 +251,7 @@ class TestFromDict(TestCase):
                 "value": "100",
             },
         }
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             TrustSet.from_dict(dictionary)
 
     def test_from_dict_explicit_none(self):
@@ -304,7 +304,7 @@ class TestFromDict(TestCase):
                 }
             },  # this should be a List of signer entries instead
         }
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             SignerListSet.from_dict(dictionary)
 
     def test_from_dict_multisign(self):
@@ -413,7 +413,7 @@ class TestFromDict(TestCase):
             "fail_hard": False,
         }
 
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             Request.from_xrpl(request)
 
     def test_transaction_input_from_xrpl_accepts_only_camel_case(self):
@@ -432,7 +432,7 @@ class TestFromDict(TestCase):
             },
         }
 
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             Transaction.from_xrpl(tx_snake_case_keys)
 
     def test_from_xrpl(self):
@@ -653,7 +653,7 @@ class TestFromDict(TestCase):
     def test_to_xrpl_auth_accounts(self):
         tx = AMMBid(
             account="r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ",
-            asset=XRP(),
+            asset=XAH(),
             asset2=IssuedCurrency(
                 currency="ETH", issuer="rpGtkFRXhgVaBzC5XCR7gyE2AZN5SN3SEW"
             ),
@@ -676,7 +676,7 @@ class TestFromDict(TestCase):
         )
         expected = {
             "Account": "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ",
-            "Asset": {"currency": "XRP"},
+            "Asset": {"currency": "XAH"},
             "Asset2": {
                 "currency": "ETH",
                 "issuer": "rpGtkFRXhgVaBzC5XCR7gyE2AZN5SN3SEW",
@@ -725,9 +725,9 @@ class TestFromDict(TestCase):
             "Amount": value,
             "XChainBridge": {
                 "LockingChainDoor": "rGzx83BVoqTYbGn7tiVAnFw7cbxjin13jL",
-                "LockingChainIssue": {"currency": "XRP"},
+                "LockingChainIssue": {"currency": "XAH"},
                 "IssuingChainDoor": "r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV",
-                "IssuingChainIssue": {"currency": "XRP"},
+                "IssuingChainIssue": {"currency": "XAH"},
             },
             "Destination": destination,
             "TransactionType": "XChainClaim",
@@ -740,9 +740,9 @@ class TestFromDict(TestCase):
             amount=value,
             xchain_bridge=XChainBridge(
                 locking_chain_door="rGzx83BVoqTYbGn7tiVAnFw7cbxjin13jL",
-                locking_chain_issue=XRP(),
+                locking_chain_issue=XAH(),
                 issuing_chain_door="r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV",
-                issuing_chain_issue=XRP(),
+                issuing_chain_issue=XAH(),
             ),
             destination=destination,
             xchain_claim_id=1,

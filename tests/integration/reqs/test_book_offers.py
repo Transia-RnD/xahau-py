@@ -1,8 +1,8 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.it_utils import test_async_and_sync
 from tests.integration.reusable_values import WALLET
-from xrpl.models.currencies import XRP, IssuedCurrency
-from xrpl.models.requests import BookOffers
+from xahau.models.currencies import XAH, IssuedCurrency
+from xahau.models.requests import BookOffers
 
 
 class TestBookOffers(IntegrationTestCase):
@@ -11,7 +11,7 @@ class TestBookOffers(IntegrationTestCase):
         response = await client.request(
             BookOffers(
                 taker=WALLET.address,
-                taker_gets=XRP(),
+                taker_gets=XAH(),
                 taker_pays=IssuedCurrency(
                     currency="USD",
                     issuer="rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B",

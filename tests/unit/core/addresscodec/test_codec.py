@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.constants import CryptoAlgorithm
-from xrpl.core import addresscodec
+from xahau.constants import CryptoAlgorithm
+from xahau.core import addresscodec
 
 
 class TestCodec(TestCase):
@@ -106,7 +106,7 @@ class TestCodec(TestCase):
         encoded_string = "sEdV19BLfeQeKdEXyYA4NhjPJe6XBfG"
 
         self.assertRaises(
-            addresscodec.XRPLAddressCodecException,
+            addresscodec.XAHLAddressCodecException,
             addresscodec.decode_seed,
             encoded_string,
             CryptoAlgorithm.SECP256K1,
@@ -117,7 +117,7 @@ class TestCodec(TestCase):
         hex_string_bytes = bytes.fromhex(hex_string)
 
         self.assertRaises(
-            addresscodec.XRPLAddressCodecException,
+            addresscodec.XAHLAddressCodecException,
             addresscodec.encode_seed,
             hex_string_bytes,
             CryptoAlgorithm.SECP256K1,
@@ -128,7 +128,7 @@ class TestCodec(TestCase):
         hex_string_bytes = bytes.fromhex(hex_string)
 
         self.assertRaises(
-            addresscodec.XRPLAddressCodecException,
+            addresscodec.XAHLAddressCodecException,
             addresscodec.encode_seed,
             hex_string_bytes,
             CryptoAlgorithm.SECP256K1,
@@ -152,7 +152,7 @@ class TestCodec(TestCase):
         hex_string_bytes = bytes.fromhex(hex_string)
 
         self.assertRaises(
-            addresscodec.XRPLAddressCodecException,
+            addresscodec.XAHLAddressCodecException,
             addresscodec.encode_classic_address,
             hex_string_bytes,
         )

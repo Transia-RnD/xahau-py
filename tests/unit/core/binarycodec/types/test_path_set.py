@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl.core.binarycodec import XRPLBinaryCodecException
-from xrpl.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
-from xrpl.core.binarycodec.types.path_set import PathSet
+from xahau.core.binarycodec import XAHLBinaryCodecException
+from xahau.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
+from xahau.core.binarycodec.types.path_set import PathSet
 
 buffer = (
     "31585E1F3BD02A15D6"
@@ -82,7 +82,7 @@ expected_json = [
             "currency": "BTC",
             "issuer": "r3AWbdp2jQLXLywJypdoNwVSvr81xs3uhn",
         },
-        {"currency": "XRP"},
+        {"currency": "XAH"},
         {
             "currency": "USD",
             "issuer": "rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B",
@@ -107,4 +107,4 @@ class TestPathSet(TestCase):
 
     def test_raises_invalid_value_type(self):
         invalid_value = 1
-        self.assertRaises(XRPLBinaryCodecException, PathSet.from_value, invalid_value)
+        self.assertRaises(XAHLBinaryCodecException, PathSet.from_value, invalid_value)

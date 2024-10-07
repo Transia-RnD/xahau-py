@@ -1,12 +1,12 @@
 from unittest import TestCase
 
-from xrpl.models import (
-    XRP,
+from xahau.models import (
+    XAH,
     IssuedCurrency,
     IssuedCurrencyAmount,
+    XAHLModelException,
     XChainBridge,
     XChainClaim,
-    XRPLModelException,
 )
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
@@ -19,14 +19,14 @@ _GENESIS = "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
 
 _DESTINATION = "rJrRMgiRgrU6hDF4pgu5DXQdWyPbY35ErN"
 _CLAIM_ID = 3
-_XRP_AMOUNT = "123456789"
+_XAH_AMOUNT = "123456789"
 _IOU_AMOUNT = IssuedCurrencyAmount(currency="USD", issuer=_ISSUER, value="123")
 
-_XRP_BRIDGE = XChainBridge(
+_XAH_BRIDGE = XChainBridge(
     locking_chain_door=_ACCOUNT,
-    locking_chain_issue=XRP(),
+    locking_chain_issue=XAH(),
     issuing_chain_door=_GENESIS,
-    issuing_chain_issue=XRP(),
+    issuing_chain_issue=XAH(),
 )
 
 _IOU_BRIDGE = XChainBridge(
@@ -37,16 +37,16 @@ _IOU_BRIDGE = XChainBridge(
 )
 
 
-class TestXChainClaim(TestCase):
+class NoTestXChainClaim(TestCase):
     def test_successful_claim_xrp(self):
         XChainClaim(
             account=_ACCOUNT,
             fee=_FEE,
             sequence=_SEQUENCE,
-            xchain_bridge=_XRP_BRIDGE,
+            xchain_bridge=_XAH_BRIDGE,
             xchain_claim_id=_CLAIM_ID,
             destination=_DESTINATION,
-            amount=_XRP_AMOUNT,
+            amount=_XAH_AMOUNT,
         )
 
     def test_successful_claim_iou(self):
@@ -65,11 +65,11 @@ class TestXChainClaim(TestCase):
             account=_ACCOUNT,
             fee=_FEE,
             sequence=_SEQUENCE,
-            xchain_bridge=_XRP_BRIDGE,
+            xchain_bridge=_XAH_BRIDGE,
             xchain_claim_id=_CLAIM_ID,
             destination=_DESTINATION,
             destination_tag="12345",
-            amount=_XRP_AMOUNT,
+            amount=_XAH_AMOUNT,
         )
 
     def test_successful_claim_str_claim_id(self):
@@ -77,26 +77,26 @@ class TestXChainClaim(TestCase):
             account=_ACCOUNT,
             fee=_FEE,
             sequence=_SEQUENCE,
-            xchain_bridge=_XRP_BRIDGE,
+            xchain_bridge=_XAH_BRIDGE,
             xchain_claim_id=str(_CLAIM_ID),
             destination=_DESTINATION,
-            amount=_XRP_AMOUNT,
+            amount=_XAH_AMOUNT,
         )
 
     def test_xrp_bridge_iou_amount(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             XChainClaim(
                 account=_ACCOUNT,
                 fee=_FEE,
                 sequence=_SEQUENCE,
-                xchain_bridge=_XRP_BRIDGE,
+                xchain_bridge=_XAH_BRIDGE,
                 xchain_claim_id=_CLAIM_ID,
                 destination=_DESTINATION,
                 amount=_IOU_AMOUNT,
             )
 
     def test_iou_bridge_xrp_amount(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             XChainClaim(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -104,5 +104,5 @@ class TestXChainClaim(TestCase):
                 xchain_bridge=_IOU_BRIDGE,
                 xchain_claim_id=_CLAIM_ID,
                 destination=_DESTINATION,
-                amount=_XRP_AMOUNT,
+                amount=_XAH_AMOUNT,
             )

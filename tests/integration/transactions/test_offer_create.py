@@ -4,8 +4,8 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import WALLET
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.transactions import OfferCreate
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.transactions import OfferCreate
 
 
 class TestOfferCreate(IntegrationTestCase):

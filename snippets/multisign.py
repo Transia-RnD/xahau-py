@@ -1,12 +1,12 @@
 """Example of how we can multisign a transaction"""
 
-from xrpl.clients import JsonRpcClient
-from xrpl.models import AccountSet, SignerEntry, SignerListSet
-from xrpl.transaction import autofill, multisign, sign, submit_and_wait
-from xrpl.utils import str_to_hex
-from xrpl.wallet import Wallet, generate_faucet_wallet
+from xahau.clients import JsonRpcClient
+from xahau.models import AccountSet, SignerEntry, SignerListSet
+from xahau.transaction import autofill, multisign, sign, submit_and_wait
+from xahau.utils import str_to_hex
+from xahau.wallet import Wallet, generate_faucet_wallet
 
-client = JsonRpcClient("https://s.altnet.rippletest.net:51234")
+client = JsonRpcClient("https://xahau-test.net")
 
 # Create a wallets to use for multisigning
 # Prints debug info as it creates the wallet

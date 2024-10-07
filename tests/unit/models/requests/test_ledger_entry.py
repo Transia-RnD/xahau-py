@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl.models import XRP, LedgerEntry, XChainBridge
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.requests.ledger_entry import Oracle, RippleState
+from xahau.models import XAH, LedgerEntry, XChainBridge
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.requests.ledger_entry import Oracle, RippleState
 
 
 class TestLedgerEntry(TestCase):
@@ -85,36 +85,36 @@ class TestLedgerEntry(TestCase):
         req = LedgerEntry(
             bridge=XChainBridge(
                 locking_chain_door="rGzx83BVoqTYbGn7tiVAnFw7cbxjin13jL",
-                locking_chain_issue=XRP(),
+                locking_chain_issue=XAH(),
                 issuing_chain_door="r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV",
-                issuing_chain_issue=XRP(),
+                issuing_chain_issue=XAH(),
             ),
             bridge_account="rGzx83BVoqTYbGn7tiVAnFw7cbxjin13jL",
         )
         self.assertTrue(req.is_valid())
 
     def test_missing_bridge_field_is_invalid(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             LedgerEntry(
                 bridge=XChainBridge(
                     locking_chain_door="rGzx83BVoqTYbGn7tiVAnFw7cbxjin13jL",
-                    locking_chain_issue=XRP(),
+                    locking_chain_issue=XAH(),
                     issuing_chain_door="r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV",
-                    issuing_chain_issue=XRP(),
+                    issuing_chain_issue=XAH(),
                 ),
             )
 
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             LedgerEntry(
                 bridge_account="rGzx83BVoqTYbGn7tiVAnFw7cbxjin13jL",
             )
 
     def test_has_no_query_param_is_invalid(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             LedgerEntry()
 
     def test_has_multiple_query_params_is_invalid(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             LedgerEntry(
                 index="hello",
                 account_root="hello",
@@ -142,13 +142,13 @@ class TestLedgerEntry(TestCase):
 
     def test_invalid_price_oracle_object(self):
         # missing oracle_document_id
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             LedgerEntry(
                 oracle=Oracle(account="rB6XJbxKx2oBSK1E3Hvh7KcZTCCBukWyhv"),
             )
 
         # missing account information
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             LedgerEntry(
                 oracle=Oracle(oracle_document_id=1),
             )

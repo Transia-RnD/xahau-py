@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.requests import Tx
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.requests import Tx
 
 _TRANSACTION_HASH = "C53ECF838647FA5A4C780377025FEC7999AB4182590510CA461444B207AB74A9"
 _CTID = "C005523E00000000"
@@ -9,7 +9,7 @@ _CTID = "C005523E00000000"
 
 class TestTx(TestCase):
     def test_invalid_input_ctid_and_txn_hash(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             Tx(transaction=_TRANSACTION_HASH, ctid=_CTID)
 
     # Note: This test merely verifies the semantic correctness of the Request.

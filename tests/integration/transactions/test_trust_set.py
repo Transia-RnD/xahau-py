@@ -4,10 +4,10 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import WALLET
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import TrustSet, TrustSetFlag
-from xrpl.wallet import Wallet
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.transactions import TrustSet, TrustSetFlag
+from xahau.wallet import Wallet
 
 
 class TestTrustSet(IntegrationTestCase):
@@ -78,7 +78,7 @@ class TestTrustSet(IntegrationTestCase):
         self.assertTrue(response.is_successful())
 
         # currency codes must have exactly 3 characters
-        with self.assertRaises(XRPLModelException) as error:
+        with self.assertRaises(XAHLModelException) as error:
             TrustSet(
                 account=WALLET.address,
                 flags=TrustSetFlag.TF_SET_NO_RIPPLE,

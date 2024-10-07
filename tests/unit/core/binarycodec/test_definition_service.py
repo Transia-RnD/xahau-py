@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-import xrpl.core.binarycodec.definitions.definitions as definitions
+import xahau.core.binarycodec.definitions.definitions as definitions
 
 
 class TestDefinitionService(TestCase):

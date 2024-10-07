@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import AccountSet, AccountSetAsfFlag
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.transactions import AccountSet, AccountSetAsfFlag
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _ANOTHER_ACCOUNT = "rsA2LpzuawewSBQXkiju3YQTMzW13pAAdW"
@@ -22,7 +22,7 @@ class TestAccountSet(TestCase):
             "domain": domain,
             "sequence": _SEQUENCE,
         }
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             AccountSet(**transaction_dict)
 
     def test_no_set_flag_or_clear_flag(self):
@@ -45,7 +45,7 @@ class TestAccountSet(TestCase):
             "domain": domain,
             "sequence": _SEQUENCE,
         }
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             AccountSet(**transaction_dict)
 
     def test_domain_too_long(self):
@@ -56,7 +56,7 @@ class TestAccountSet(TestCase):
             "domain": domain * 1000,
             "sequence": _SEQUENCE,
         }
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             AccountSet(**transaction_dict)
 
     def test_invalid_tick_size(self):
@@ -69,7 +69,7 @@ class TestAccountSet(TestCase):
             "tick_size": tick_size,
             "sequence": _SEQUENCE,
         }
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             AccountSet(**transaction_dict)
 
     def test_invalid_transfer_rate(self):
@@ -82,11 +82,11 @@ class TestAccountSet(TestCase):
             "transfer_rate": transfer_rate,
             "sequence": _SEQUENCE,
         }
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             AccountSet(**transaction_dict)
 
     def test_nftoken_minter_set_without_minter_flag(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             AccountSet(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -94,7 +94,7 @@ class TestAccountSet(TestCase):
             )
 
     def test_nftoken_minter_not_set_with_minter_flag(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             AccountSet(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -102,7 +102,7 @@ class TestAccountSet(TestCase):
             )
 
     def test_nftoken_minter_set_with_clear_minter_flag(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             AccountSet(
                 account=_ACCOUNT,
                 fee=_FEE,

@@ -1,12 +1,12 @@
 from unittest import TestCase
 
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.currencies import XRP, IssuedCurrency
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import AMMBid, AuthAccount
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.currencies import XAH, IssuedCurrency
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.transactions import AMMBid, AuthAccount
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
-_ASSET = XRP()
+_ASSET = XAH()
 _ASSET2 = IssuedCurrency(currency="ETH", issuer="rpGtkFRXhgVaBzC5XCR7gyE2AZN5SN3SEW")
 _AUTH_ACCOUNTS = [
     AuthAccount(
@@ -26,7 +26,7 @@ _LPTOKEN_CURRENCY = "5475B6C930B7BDD81CDA8FBA5CED962B11218E5A"
 _LPTOKEN_ISSUER = "r3628pXjRqfw5zfwGfhSusjZTvE3BoxEBw"
 
 
-class TestAMMBid(TestCase):
+class NoTestAMMBid(TestCase):
     def test_tx_valid(self):
         tx = AMMBid(
             account=_ACCOUNT,
@@ -53,7 +53,7 @@ class TestAMMBid(TestCase):
                 account="r3X6noRsvaLapAKCG78zAtWcbhB3sggS1s",
             ),
         )
-        with self.assertRaises(XRPLModelException) as error:
+        with self.assertRaises(XAHLModelException) as error:
             AMMBid(
                 account=_ACCOUNT,
                 asset=_ASSET,

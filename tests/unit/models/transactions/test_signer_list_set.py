@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import SignerListSet
-from xrpl.models.transactions.signer_list_set import SignerEntry
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.transactions import SignerListSet
+from xahau.models.transactions.signer_list_set import SignerEntry
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _FEE = "0.00001"
@@ -26,7 +26,7 @@ _SIGNER_ENTRIES_VALID = [
 
 class TestSignerListSet(TestCase):
     def test_invalid_delete_has_signer_entries(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             SignerListSet(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -36,7 +36,7 @@ class TestSignerListSet(TestCase):
             )
 
     def test_invalid_delete_nonzero_signer_quorum(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             SignerListSet(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -46,7 +46,7 @@ class TestSignerListSet(TestCase):
 
     def test_invalid_signer_quorum_negative(self):
         signer_quorum = -7
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             SignerListSet(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -56,7 +56,7 @@ class TestSignerListSet(TestCase):
             )
 
     def test_invalid_signer_entries_empty(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             SignerListSet(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -108,7 +108,7 @@ class TestSignerListSet(TestCase):
                 signer_weight=1,
             ),
         ]
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             SignerListSet(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -119,7 +119,7 @@ class TestSignerListSet(TestCase):
 
     def test_invalid_signer_entries_sender_account(self):
         signer_entries = [SignerEntry(account=_ACCOUNT, signer_weight=5)]
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             SignerListSet(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -139,7 +139,7 @@ class TestSignerListSet(TestCase):
                 signer_weight=3,
             ),
         ]
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             SignerListSet(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -149,7 +149,7 @@ class TestSignerListSet(TestCase):
             )
 
     def test_invalid_signer_entries_bad_signer_quorum(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             SignerListSet(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -253,7 +253,7 @@ class TestSignerListSet(TestCase):
                 )
             )
 
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             SignerListSet(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -302,7 +302,7 @@ class TestSignerListSet(TestCase):
                 signer_weight=1,
             ),
         ]
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             SignerListSet(
                 account=_ACCOUNT,
                 fee=_FEE,

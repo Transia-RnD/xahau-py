@@ -6,23 +6,23 @@ from tests.integration.it_utils import (
 )
 from tests.integration.reusable_values import DESTINATION as DESTINATION_WALLET
 from tests.integration.reusable_values import WALLET
-from xrpl.asyncio.ledger import get_fee, get_latest_validated_ledger_sequence
-from xrpl.asyncio.transaction import (
-    XRPLReliableSubmissionException,
+from xahau.asyncio.ledger import get_fee, get_latest_validated_ledger_sequence
+from xahau.asyncio.transaction import (
+    XAHLReliableSubmissionException,
     autofill,
     autofill_and_sign,
     sign,
 )
-from xrpl.asyncio.transaction import submit as submit_transaction_alias_async
-from xrpl.asyncio.transaction import submit_and_wait
-from xrpl.asyncio.transaction.main import sign_and_submit
-from xrpl.clients import XRPLRequestFailureException
-from xrpl.core.addresscodec import classic_address_to_xaddress
-from xrpl.core.binarycodec.main import encode
-from xrpl.models.exceptions import XRPLException
-from xrpl.models.requests import ServerState, Tx
-from xrpl.models.transactions import AccountDelete, AccountSet, EscrowFinish, Payment
-from xrpl.utils import xrp_to_drops
+from xahau.asyncio.transaction import submit as submit_transaction_alias_async
+from xahau.asyncio.transaction import submit_and_wait
+from xahau.asyncio.transaction.main import sign_and_submit
+from xahau.clients import XAHLRequestFailureException
+from xahau.core.addresscodec import classic_address_to_xaddress
+from xahau.core.binarycodec.main import encode
+from xahau.models.exceptions import XAHLException
+from xahau.models.requests import ServerState, Tx
+from xahau.models.transactions import AccountDelete, AccountSet, EscrowFinish, Payment
+from xahau.utils import xah_to_drops
 
 ACCOUNT = WALLET.address
 DESTINATION = DESTINATION_WALLET.address
@@ -34,7 +34,7 @@ MESSAGE_KEY = "03AB40A0490F9B7ED8DF29D246BF2D6269820A0EE7742ACDD457BEA7C7D0931ED
 SET_FLAG = 8
 TRANSFER_RATE = 0
 TICK_SIZE = 10
-FEE = xrp_to_drops(60)  # standalone has a delete fee of 50 XRP
+FEE = xah_to_drops(60)  # standalone has a delete fee of 50 XAH
 DESTINATION_TAG = 3
 OFFER_SEQUENCE = 7
 CONDITION = (
@@ -74,7 +74,7 @@ class TestTransaction(IntegrationTestCase):
         )
 
         # AND we expect the result Account to be the same as the original payment Acct
-        self.assertEqual(payment.result["tx_json"]["Account"], ACCOUNT)
+        self.assertEqual(payment.result["Account"], ACCOUNT)
         # AND we expect the response to be successful (200)
         self.assertTrue(payment.is_successful())
 
@@ -83,13 +83,13 @@ class TestTransaction(IntegrationTestCase):
         # GIVEN a new AccountDelete transaction
         account_delete = AccountDelete(
             account=ACCOUNT,
-            # WITH fee higher than 2 XRP
+            # WITH fee higher than 2 XAH
             fee=FEE,
             destination=DESTINATION,
             destination_tag=DESTINATION_TAG,
         )
-        # We expect an XRPLException to be raised
-        with self.assertRaises(XRPLException):
+        # We expect an XAHLException to be raised
+        with self.assertRaises(XAHLException):
             await sign_and_reliable_submission_async(account_delete, WALLET, client)
 
     @test_async_and_sync(globals())
@@ -103,11 +103,11 @@ class TestTransaction(IntegrationTestCase):
             message_key=MESSAGE_KEY,
             transfer_rate=TRANSFER_RATE,
             tick_size=TICK_SIZE,
-            # WITH fee higher than 2 XRP
+            # WITH fee higher than 2 XAH
             fee=FEE,
         )
-        # We expect an XRPLException to be raised
-        with self.assertRaises(XRPLException):
+        # We expect an XAHLException to be raised
+        with self.assertRaises(XAHLException):
             await sign_and_reliable_submission_async(account_set, WALLET, client)
 
     @test_async_and_sync(globals())
@@ -117,7 +117,7 @@ class TestTransaction(IntegrationTestCase):
             Payment(
                 account=WALLET.address,
                 amount="1",
-                # WITH the fee higher than 2 XRP
+                # WITH the fee higher than 2 XAH
                 fee=FEE,
                 destination=DESTINATION,
             ),
@@ -132,8 +132,8 @@ class TestTransaction(IntegrationTestCase):
     @test_async_and_sync(
         globals(),
         [
-            "xrpl.transaction.autofill_and_sign",
-            "xrpl.transaction.submit",
+            "xahau.transaction.autofill_and_sign",
+            "xahau.transaction.submit",
         ],
     )
     async def test_payment_high_fee_authorized_with_submit_alias(self, client):
@@ -152,7 +152,7 @@ class TestTransaction(IntegrationTestCase):
         response = await submit_transaction_alias_async(signed_and_autofilled, client)
         self.assertTrue(response.is_successful())
 
-    @test_async_and_sync(globals(), ["xrpl.transaction.autofill"])
+    @test_async_and_sync(globals(), ["xahau.transaction.autofill"])
     async def test_calculate_account_delete_fee(self, client):
         # GIVEN a new AccountDelete transaction
         account_delete = AccountDelete(
@@ -164,7 +164,7 @@ class TestTransaction(IntegrationTestCase):
         # AFTER autofilling the transaction fee
         account_delete_autofilled = await autofill(account_delete, client)
 
-        # THEN we expect the calculated fee to be 50 XRP (default in standalone)
+        # THEN we expect the calculated fee to be 50 XAH (default in standalone)
         server_state = await client.request(ServerState())
         expected_fee = str(
             server_state.result["state"]["validated_ledger"]["reserve_inc"]
@@ -173,7 +173,7 @@ class TestTransaction(IntegrationTestCase):
 
     @test_async_and_sync(
         globals(),
-        ["xrpl.transaction.autofill", "xrpl.ledger.get_fee"],
+        ["xahau.transaction.autofill", "xahau.ledger.get_fee"],
     )
     async def test_calculate_escrow_finish_fee(self, client):
         # GIVEN a new EscrowFinish transaction
@@ -199,7 +199,7 @@ class TestTransaction(IntegrationTestCase):
 
     @test_async_and_sync(
         globals(),
-        ["xrpl.transaction.autofill", "xrpl.ledger.get_fee"],
+        ["xahau.transaction.autofill", "xahau.ledger.get_fee"],
     )
     async def test_calculate_payment_fee(self, client):
         # GIVEN a new Payment transaction
@@ -218,7 +218,7 @@ class TestTransaction(IntegrationTestCase):
 
     @test_async_and_sync(
         globals(),
-        ["xrpl.transaction.autofill"],
+        ["xahau.transaction.autofill"],
     )
     async def test_networkid_non_reserved_networks(self, client):
         tx = AccountSet(
@@ -233,7 +233,7 @@ class TestTransaction(IntegrationTestCase):
         self.assertEqual(client.network_id, 63456)
         self.assertEqual(transaction.network_id, 63456)
 
-    @test_async_and_sync(globals(), ["xrpl.transaction.autofill"], use_testnet=True)
+    @test_async_and_sync(globals(), ["xahau.transaction.autofill"], use_testnet=True)
     async def test_networkid_reserved_networks(self, client):
         tx = AccountSet(
             account="rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
@@ -246,16 +246,16 @@ class TestTransaction(IntegrationTestCase):
 
         # Although the client network_id property is set,
         # the corresponding field in transaction is not populated
-        self.assertIsNone(transaction.network_id)
-        self.assertEqual(client.network_id, 1)
+        self.assertIsNotNone(transaction.network_id)
+        self.assertEqual(client.network_id, 21338)
 
 
 class TestSubmitAndWait(IntegrationTestCase):
     @test_async_and_sync(
         globals(),
         [
-            "xrpl.transaction.submit_and_wait",
-            "xrpl.ledger.get_fee",
+            "xahau.transaction.submit_and_wait",
+            "xahau.ledger.get_fee",
         ],
     )
     async def test_submit_and_wait_simple(self, client):
@@ -268,13 +268,13 @@ class TestSubmitAndWait(IntegrationTestCase):
         self.assertTrue(response.result["validated"])
         self.assertEqual(response.result["meta"]["TransactionResult"], "tesSUCCESS")
         self.assertTrue(response.is_successful())
-        self.assertEqual(response.result["tx_json"]["Fee"], await get_fee(client))
+        self.assertEqual(response.result["Fee"], await get_fee(client))
 
     @test_async_and_sync(
         globals(),
         [
-            "xrpl.transaction.submit_and_wait",
-            "xrpl.ledger.get_fee",
+            "xahau.transaction.submit_and_wait",
+            "xahau.ledger.get_fee",
         ],
     )
     async def test_submit_and_wait_payment(self, client):
@@ -288,14 +288,14 @@ class TestSubmitAndWait(IntegrationTestCase):
         self.assertTrue(response.result["validated"])
         self.assertEqual(response.result["meta"]["TransactionResult"], "tesSUCCESS")
         self.assertTrue(response.is_successful())
-        self.assertEqual(response.result["tx_json"]["Fee"], await get_fee(client))
+        self.assertEqual(response.result["Fee"], await get_fee(client))
 
     @test_async_and_sync(
         globals(),
         [
-            "xrpl.transaction.autofill_and_sign",
-            "xrpl.transaction.submit_and_wait",
-            "xrpl.ledger.get_fee",
+            "xahau.transaction.autofill_and_sign",
+            "xahau.transaction.submit_and_wait",
+            "xahau.ledger.get_fee",
         ],
     )
     async def test_submit_and_wait_signed(self, client):
@@ -312,14 +312,14 @@ class TestSubmitAndWait(IntegrationTestCase):
         self.assertTrue(response.result["validated"])
         self.assertEqual(response.result["meta"]["TransactionResult"], "tesSUCCESS")
         self.assertTrue(response.is_successful())
-        self.assertEqual(response.result["tx_json"]["Fee"], await get_fee(client))
+        self.assertEqual(response.result["Fee"], await get_fee(client))
 
     @test_async_and_sync(
         globals(),
         [
-            "xrpl.transaction.autofill_and_sign",
-            "xrpl.transaction.submit_and_wait",
-            "xrpl.ledger.get_fee",
+            "xahau.transaction.autofill_and_sign",
+            "xahau.transaction.submit_and_wait",
+            "xahau.ledger.get_fee",
         ],
     )
     async def test_submit_and_wait_blob(self, client):
@@ -337,13 +337,13 @@ class TestSubmitAndWait(IntegrationTestCase):
         self.assertTrue(response.result["validated"])
         self.assertEqual(response.result["meta"]["TransactionResult"], "tesSUCCESS")
         self.assertTrue(response.is_successful())
-        self.assertEqual(response.result["tx_json"]["Fee"], await get_fee(client))
+        self.assertEqual(response.result["Fee"], await get_fee(client))
 
     @test_async_and_sync(
         globals(),
         [
-            "xrpl.transaction.submit_and_wait",
-            "xrpl.ledger.get_latest_validated_ledger_sequence",
+            "xahau.transaction.submit_and_wait",
+            "xahau.ledger.get_latest_validated_ledger_sequence",
         ],
     )
     async def test_submit_and_wait_last_ledger_expiration(self, client):
@@ -354,31 +354,31 @@ class TestSubmitAndWait(IntegrationTestCase):
             destination=DESTINATION,
         )
         await accept_ledger_async(delay=1)
-        with self.assertRaises(XRPLReliableSubmissionException):
+        with self.assertRaises(XAHLReliableSubmissionException):
             await submit_and_wait(payment_transaction, client, WALLET)
 
     @test_async_and_sync(
         globals(),
         [
-            "xrpl.transaction.submit_and_wait",
+            "xahau.transaction.submit_and_wait",
         ],
     )
     async def test_submit_and_wait_tec_error(self, client):
         payment_transaction = Payment(
             account=ACCOUNT,
-            amount=xrp_to_drops(10**10),  # tecINSUFFICIENT_FUNDS
+            amount=xah_to_drops(10**10),  # tecINSUFFICIENT_FUNDS
             destination=DESTINATION,
         )
         await accept_ledger_async(delay=1)
-        with self.assertRaises(XRPLReliableSubmissionException):
+        with self.assertRaises(XAHLReliableSubmissionException):
             await submit_and_wait(payment_transaction, client, WALLET)
 
     @test_async_and_sync(
         globals(),
         [
-            "xrpl.transaction.sign",
-            "xrpl.transaction.submit_and_wait",
-            "xrpl.ledger.get_latest_validated_ledger_sequence",
+            "xahau.transaction.sign",
+            "xahau.transaction.submit_and_wait",
+            "xahau.ledger.get_latest_validated_ledger_sequence",
         ],
     )
     async def test_submit_and_wait_bad_transaction(self, client):
@@ -392,15 +392,15 @@ class TestSubmitAndWait(IntegrationTestCase):
         }
         payment_transaction = Payment.from_dict(payment_dict)
         signed_payment_transaction = sign(payment_transaction, WALLET)
-        with self.assertRaises(XRPLRequestFailureException):
+        with self.assertRaises(XAHLRequestFailureException):
             await submit_and_wait(signed_payment_transaction, client)
 
     @test_async_and_sync(
         globals(),
         [
-            "xrpl.transaction.sign",
-            "xrpl.transaction.submit_and_wait",
-            "xrpl.account.get_next_valid_seq_number",
+            "xahau.transaction.sign",
+            "xahau.transaction.submit_and_wait",
+            "xahau.account.get_next_valid_seq_number",
         ],
     )
     async def test_reliable_submission_no_last_ledger_sequence(self, client):
@@ -412,13 +412,13 @@ class TestSubmitAndWait(IntegrationTestCase):
         }
         payment_transaction = Payment.from_dict(payment_dict)
         signed_payment_transaction = sign(payment_transaction, WALLET)
-        with self.assertRaises(XRPLReliableSubmissionException):
+        with self.assertRaises(XAHLReliableSubmissionException):
             await submit_and_wait(signed_payment_transaction, client)
 
     @test_async_and_sync(
         globals(),
         [
-            "xrpl.transaction.sign_and_submit",
+            "xahau.transaction.sign_and_submit",
         ],
     )
     async def test_sign_and_submit(self, client):

@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.currencies import IssuedCurrency
-from xrpl.models.exceptions import XRPLModelException
+from xahau.models.currencies import IssuedCurrency
+from xahau.models.exceptions import XAHLModelException
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 
@@ -42,7 +42,7 @@ class TestIssuedCurrency(TestCase):
 
     def test_incorrect_currency_code_format(self):
         # the "+" is not allowed in a currency format"
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             IssuedCurrency(
                 currency="+XX",
                 issuer=_ACCOUNT,
@@ -57,7 +57,7 @@ class TestIssuedCurrency(TestCase):
 
     def test_incorrect_hex_format(self):
         # the "+" is not allowed in a currency format"
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             IssuedCurrency(
                 currency="+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
                 issuer=_ACCOUNT,
@@ -65,25 +65,25 @@ class TestIssuedCurrency(TestCase):
 
     def test_invalid_currency_length(self):
         # length of currency must be either 3 or 40
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             IssuedCurrency(
                 currency="XXXX",
                 issuer=_ACCOUNT,
             )
 
     def test_xrp_currency_is_invalid(self):
-        # issued currencies can't use XRP (just use a string amount then)
-        with self.assertRaises(XRPLModelException):
+        # issued currencies can't use XAH (just use a string amount then)
+        with self.assertRaises(XAHLModelException):
             IssuedCurrency(
-                currency="XRP",
+                currency="XAH",
                 issuer=_ACCOUNT,
             )
 
     def test_xrp_lower_currency_is_invalid(self):
-        # issued currencies can't use XRP (just use a string amount then)
-        with self.assertRaises(XRPLModelException):
+        # issued currencies can't use XAH (just use a string amount then)
+        with self.assertRaises(XAHLModelException):
             IssuedCurrency(
-                currency="xrp",
+                currency="xah",
                 issuer=_ACCOUNT,
             )
 

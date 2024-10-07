@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.currencies import IssuedCurrency
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.currencies import IssuedCurrency
 
 _ISSUER = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 
