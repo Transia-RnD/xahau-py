@@ -1,10 +1,10 @@
 from unittest import TestCase
 
-from xrpl.core.binarycodec.binary_wrappers import BinaryParser
-from xrpl.core.binarycodec.exceptions import XRPLBinaryCodecException
-from xrpl.core.binarycodec.types.hash128 import Hash128
-from xrpl.core.binarycodec.types.hash160 import Hash160
-from xrpl.core.binarycodec.types.hash256 import Hash256
+from xahau.core.binarycodec.binary_wrappers import BinaryParser
+from xahau.core.binarycodec.exceptions import XAHLBinaryCodecException
+from xahau.core.binarycodec.types.hash128 import Hash128
+from xahau.core.binarycodec.types.hash160 import Hash160
+from xahau.core.binarycodec.types.hash256 import Hash256
 
 
 class TestHash128(TestCase):
@@ -27,12 +27,12 @@ class TestHash128(TestCase):
         # 17 bytes, 34 nibbles
         too_many_bytes_hex = "1000000000200000000030000000001234"
         self.assertRaises(
-            XRPLBinaryCodecException, Hash128.from_value, too_many_bytes_hex
+            XAHLBinaryCodecException, Hash128.from_value, too_many_bytes_hex
         )
 
     def test_raises_invalid_value_type(self):
         invalid_value = 1
-        self.assertRaises(XRPLBinaryCodecException, Hash128.from_value, invalid_value)
+        self.assertRaises(XAHLBinaryCodecException, Hash128.from_value, invalid_value)
 
     def test_unset_value(self):
         unset_value = Hash128.from_value("")
@@ -59,12 +59,12 @@ class TestHash160(TestCase):
         # 21 bytes, 42 nibbles
         too_many_bytes_hex = "100000000020000000003000000000400000000012"
         self.assertRaises(
-            XRPLBinaryCodecException, Hash160.from_value, too_many_bytes_hex
+            XAHLBinaryCodecException, Hash160.from_value, too_many_bytes_hex
         )
 
     def test_raises_invalid_value_type(self):
         invalid_value = 1
-        self.assertRaises(XRPLBinaryCodecException, Hash160.from_value, invalid_value)
+        self.assertRaises(XAHLBinaryCodecException, Hash160.from_value, invalid_value)
 
 
 class TestHash256(TestCase):
@@ -91,9 +91,9 @@ class TestHash256(TestCase):
             "100000000020000000003000000000400000000050000000006000000000123456"
         )
         self.assertRaises(
-            XRPLBinaryCodecException, Hash256.from_value, too_many_bytes_hex
+            XAHLBinaryCodecException, Hash256.from_value, too_many_bytes_hex
         )
 
     def test_raises_invalid_value_type(self):
         invalid_value = 1
-        self.assertRaises(XRPLBinaryCodecException, Hash256.from_value, invalid_value)
+        self.assertRaises(XAHLBinaryCodecException, Hash256.from_value, invalid_value)

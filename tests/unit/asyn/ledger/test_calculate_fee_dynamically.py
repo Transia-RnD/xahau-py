@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from xrpl.asyncio.ledger.main import calculate_fee_dynamically
+from xahau.asyncio.ledger.main import calculate_fee_dynamically
 
 
 class TestCalculateFeeDynamically(TestCase):

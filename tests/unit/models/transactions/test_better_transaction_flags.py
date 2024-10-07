@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from xrpl import models
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.transaction.main import sign
-from xrpl.wallet.main import Wallet
+from xahau import models
+from xahau.models.exceptions import XAHLModelException
+from xahau.transaction.main import sign
+from xahau.wallet.main import Wallet
 
 # from typing import Iterable
 
@@ -23,8 +23,8 @@ class TestBetterTransactionFlags(TestCase):
                 TF_OPTIONAL_DEST_TAG=True,
                 TF_REQUIRE_AUTH=True,
                 TF_OPTIONAL_AUTH=True,
-                TF_DISALLOW_XRP=True,
-                TF_ALLOW_XRP=True,
+                TF_DISALLOW_XAH=True,
+                TF_ALLOW_XAH=True,
             ),
         )
         self.assertTrue(actual.has_flag(flag=0x00010000))
@@ -84,7 +84,7 @@ class TestBetterTransactionFlags(TestCase):
             nftoken_taxon=0,
             flags=models.NFTokenMintFlagInterface(
                 TF_BURNABLE=True,
-                TF_ONLY_XRP=True,
+                TF_ONLY_XAH=True,
                 TF_TRANSFERABLE=True,
                 TF_TRUSTLINE=True,
             ),
@@ -302,9 +302,9 @@ class TestBetterTransactionFlags(TestCase):
     def test_xchain_modify_bridge_flags(self):
         bridge = models.XChainBridge(
             locking_chain_door=ACCOUNT,
-            locking_chain_issue=models.XRP(),
+            locking_chain_issue=models.XAH(),
             issuing_chain_door="rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
-            issuing_chain_issue=models.XRP(),
+            issuing_chain_issue=models.XAH(),
         )
         actual = models.XChainModifyBridge(
             account=ACCOUNT,
@@ -385,7 +385,7 @@ class TestBetterTransactionFlags(TestCase):
                 transaction=pymnt,
                 wallet=WALLET,
             )
-        except XRPLModelException:
+        except XAHLModelException:
             self.fail(
                 "If no flags are defined 'flags' have to be 0. Txn could not be signed."
             )
@@ -393,7 +393,7 @@ class TestBetterTransactionFlags(TestCase):
     def test_false_flag_definition(self):
         dest = "ra5nK24KXen9AHvsdFTKHSANinZseWnPcX"
         amnt = "10000000"
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             tx = models.Payment(
                 account=ACCOUNT,
                 destination=dest,
@@ -407,7 +407,7 @@ class TestBetterTransactionFlags(TestCase):
                 ],
             )
             sign(transaction=tx, wallet=WALLET)
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             tx = models.Payment(
                 account=ACCOUNT,
                 destination=dest,
@@ -415,7 +415,7 @@ class TestBetterTransactionFlags(TestCase):
                 flags=["1"],
             )
             sign(transaction=tx, wallet=WALLET)
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             tx = models.Payment(
                 account=ACCOUNT,
                 destination=dest,

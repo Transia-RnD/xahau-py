@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
-from xrpl.core.binarycodec.exceptions import XRPLBinaryCodecException
-from xrpl.core.binarycodec.types.st_array import _ARRAY_END_MARKER, STArray
+from xahau.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
+from xahau.core.binarycodec.exceptions import XAHLBinaryCodecException
+from xahau.core.binarycodec.types.st_array import _ARRAY_END_MARKER, STArray
 
 MEMO = {
     "Memo": {
@@ -44,18 +44,18 @@ class TestSTArray(TestCase):
 
     def test_from_value_non_list(self):
         obj = 123
-        with self.assertRaises(XRPLBinaryCodecException):
+        with self.assertRaises(XAHLBinaryCodecException):
             STArray.from_value(obj)
 
     def test_from_value_bad_list(self):
         obj = [123]
-        with self.assertRaises(XRPLBinaryCodecException):
+        with self.assertRaises(XAHLBinaryCodecException):
             STArray.from_value(obj)
 
     def test_raises_invalid_value_type(self):
         invalid_value = 1
         self.assertRaises(
-            XRPLBinaryCodecException,
+            XAHLBinaryCodecException,
             STArray.from_value,
             invalid_value,
         )

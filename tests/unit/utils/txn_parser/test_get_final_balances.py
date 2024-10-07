@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from unittest import TestCase
 
-from xrpl.utils import get_final_balances
+from xahau.utils import get_final_balances
 
 path_to_json = "tests/unit/utils/txn_parser/transaction_jsons/"
 with open(path_to_json + "payment_iou_destination_no_balance.json", "r") as infile:
@@ -44,7 +44,7 @@ class TestGetFinalBalances(TestCase):
                         "issuer": "rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q",
                         "value": "1.535330905250352",
                     },
-                    {"currency": "XRP", "value": "239.807992"},
+                    {"currency": "XAH", "value": "239.807992"},
                 ],
             },
             {
@@ -80,7 +80,7 @@ class TestGetFinalBalances(TestCase):
         expected = [
             {
                 "account": "r4nmQNH4Fhjfh6cHDbvVSsBv7KySbj4cBf",
-                "balances": [{"currency": "XRP", "value": "999.99999"}],
+                "balances": [{"currency": "XAH", "value": "999.99999"}],
             },
             {
                 "account": "rnYDWQaRdMb5neCGgvFfhw3MBoxmv5LtfH",
@@ -156,7 +156,7 @@ class TestGetFinalBalances(TestCase):
                         "issuer": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
                         "value": "-100",
                     },
-                    {"currency": "XRP", "value": "999.99997"},
+                    {"currency": "XAH", "value": "999.99997"},
                 ],
             },
         ]
@@ -183,7 +183,7 @@ class TestGetFinalBalances(TestCase):
                         "issuer": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
                         "value": "100",
                     },
-                    {"currency": "XRP", "value": "999.99998"},
+                    {"currency": "XAH", "value": "999.99998"},
                 ],
             },
         ]
@@ -214,7 +214,7 @@ class TestGetFinalBalances(TestCase):
             },
             {
                 "account": "rLDYrujdKUfVx28T9vRDAbyJ7G2WVXKo4K",
-                "balances": [{"currency": "XRP", "value": "99.976002"}],
+                "balances": [{"currency": "XAH", "value": "99.976002"}],
             },
         ]
         self.assertEqual(actual, expected)
@@ -230,7 +230,7 @@ class TestGetFinalBalances(TestCase):
                         "issuer": "rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q",
                         "value": "1.525330905250352",
                     },
-                    {"currency": "XRP", "value": "239.555992"},
+                    {"currency": "XAH", "value": "239.555992"},
                 ],
             },
             {
@@ -266,11 +266,11 @@ class TestGetFinalBalances(TestCase):
         expected = [
             {
                 "account": "rLDYrujdKUfVx28T9vRDAbyJ7G2WVXKo4K",
-                "balances": [{"currency": "XRP", "value": "100"}],
+                "balances": [{"currency": "XAH", "value": "100"}],
             },
             {
                 "account": "rKmBGxocj9Abgy25J51Mk1iqFzW9aVF9Tc",
-                "balances": [{"currency": "XRP", "value": "339.903994"}],
+                "balances": [{"currency": "XAH", "value": "339.903994"}],
             },
         ]
         self.assertEqual(actual, expected)
@@ -286,7 +286,7 @@ class TestGetFinalBalances(TestCase):
                         "issuer": "rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q",
                         "value": "10",
                     },
-                    {"currency": "XRP", "value": "99.740302"},
+                    {"currency": "XAH", "value": "99.740302"},
                 ],
             },
             {
@@ -327,7 +327,7 @@ class TestGetFinalBalances(TestCase):
             },
             {
                 "account": "rLDYrujdKUfVx28T9vRDAbyJ7G2WVXKo4K",
-                "balances": [{"currency": "XRP", "value": "99.752302"}],
+                "balances": [{"currency": "XAH", "value": "99.752302"}],
             },
         ]
         self.assertEqual(actual, expected)
@@ -343,7 +343,7 @@ class TestGetFinalBalances(TestCase):
                         "issuer": "rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q",
                         "value": "0.02",
                     },
-                    {"currency": "XRP", "value": "99.940002"},
+                    {"currency": "XAH", "value": "99.940002"},
                 ],
             },
             {
@@ -370,7 +370,7 @@ class TestGetFinalBalances(TestCase):
                         "issuer": "rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q",
                         "value": "0.02",
                     },
-                    {"currency": "XRP", "value": "99.884302"},
+                    {"currency": "XAH", "value": "99.884302"},
                 ],
             },
             {
@@ -391,11 +391,11 @@ class TestGetFinalBalances(TestCase):
         expected = [
             {
                 "account": "rsApBGKJmMfExxZBrGnzxEXyq7TMhMRg4e",
-                "balances": [{"currency": "XRP", "value": "9248.902096"}],
+                "balances": [{"currency": "XAH", "value": "9248.902096"}],
             },
             {
                 "account": "rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q",
-                "balances": [{"currency": "XRP", "value": "149.99998"}],
+                "balances": [{"currency": "XAH", "value": "149.99998"}],
             },
         ]
         self.assertEqual(actual, expected)

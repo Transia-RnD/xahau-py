@@ -1,10 +1,10 @@
 from unittest import TestCase
 
-from xrpl.models.currencies import IssuedCurrency
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.requests import AccountInfo
-from xrpl.models.transactions import Payment, PaymentFlag
-from xrpl.models.utils import _is_kw_only_attr_defined_in_dataclass
+from xahau.models.currencies import IssuedCurrency
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.requests import AccountInfo
+from xahau.models.transactions import Payment, PaymentFlag
+from xahau.models.utils import _is_kw_only_attr_defined_in_dataclass
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _FEE = "0.00001"
@@ -14,14 +14,14 @@ currency = "BTC"
 issuer = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 
 _DESTINATION = "rf1BiGeXwwQoi8Z2ueFYTEXSwuJYfV2Jpn"
-_XRP_AMOUNT = "10000"
+_XAH_AMOUNT = "10000"
 
 
 class _KW_only_test_context_manager:
     def __init__(self):
         # Newer versions of Python returns a TypeError, unlike the older versions
         self.error_type = (
-            TypeError if _is_kw_only_attr_defined_in_dataclass() else XRPLModelException
+            TypeError if _is_kw_only_attr_defined_in_dataclass() else XAHLModelException
         )
 
     # Depending on the version of Python's interpreter, the correct exception type is
@@ -49,8 +49,8 @@ class TestUtils(TestCase):
                     account=_ACCOUNT,
                     fee=_FEE,
                     sequence=_SEQUENCE,
-                    amount=_XRP_AMOUNT,
-                    send_max=_XRP_AMOUNT,
+                    amount=_XAH_AMOUNT,
+                    send_max=_XAH_AMOUNT,
                     destination=_DESTINATION,
                     flags=PaymentFlag.TF_PARTIAL_PAYMENT,
                 )

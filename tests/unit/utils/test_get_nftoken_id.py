@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from unittest import TestCase
 
-from xrpl.utils import get_nftoken_id
+from xahau.utils import get_nftoken_id
 
 path_to_json = "tests/unit/utils/txn_parser/transaction_jsons/"
 with open(path_to_json + "nftokenmint_response1.json", "r") as infile:

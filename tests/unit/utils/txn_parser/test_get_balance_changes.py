@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from unittest import TestCase
 
-from xrpl.utils import get_balance_changes
+from xahau.utils import get_balance_changes
 
 path_to_json = "tests/unit/utils/txn_parser/transaction_jsons/"
 with open(path_to_json + "payment_iou_destination_no_balance.json", "r") as infile:
@@ -45,7 +45,7 @@ class TestGetBalanceChanges(TestCase):
                         "value": "-0.01",
                     },
                     {
-                        "currency": "XRP",
+                        "currency": "XAH",
                         "value": "-0.012",
                     },
                 ],
@@ -105,7 +105,7 @@ class TestGetBalanceChanges(TestCase):
                         "value": "-100",
                     },
                     {
-                        "currency": "XRP",
+                        "currency": "XAH",
                         "value": "-0.00001",
                     },
                     {
@@ -194,7 +194,7 @@ class TestGetBalanceChanges(TestCase):
                         "issuer": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
                         "value": "-200",
                     },
-                    {"currency": "XRP", "value": "-0.00001"},
+                    {"currency": "XAH", "value": "-0.00001"},
                 ],
             },
         ]
@@ -222,7 +222,7 @@ class TestGetBalanceChanges(TestCase):
                         "value": "-100",
                     },
                     {
-                        "currency": "XRP",
+                        "currency": "XAH",
                         "value": "-0.00001",
                     },
                 ],
@@ -267,7 +267,7 @@ class TestGetBalanceChanges(TestCase):
                         "value": "-0.2",
                     },
                     {
-                        "currency": "XRP",
+                        "currency": "XAH",
                         "value": "-0.012",
                     },
                 ],
@@ -287,7 +287,7 @@ class TestGetBalanceChanges(TestCase):
                         "value": "-0.01",
                     },
                     {
-                        "currency": "XRP",
+                        "currency": "XAH",
                         "value": "-0.012",
                     },
                 ],
@@ -327,7 +327,7 @@ class TestGetBalanceChanges(TestCase):
                 "account": "rLDYrujdKUfVx28T9vRDAbyJ7G2WVXKo4K",
                 "balances": [
                     {
-                        "currency": "XRP",
+                        "currency": "XAH",
                         "value": "100",
                     }
                 ],
@@ -336,7 +336,7 @@ class TestGetBalanceChanges(TestCase):
                 "account": "rKmBGxocj9Abgy25J51Mk1iqFzW9aVF9Tc",
                 "balances": [
                     {
-                        "currency": "XRP",
+                        "currency": "XAH",
                         "value": "-100.012",
                     }
                 ],
@@ -356,7 +356,7 @@ class TestGetBalanceChanges(TestCase):
                         "value": "10",
                     },
                     {
-                        "currency": "XRP",
+                        "currency": "XAH",
                         "value": "-0.012",
                     },
                 ],
@@ -411,7 +411,7 @@ class TestGetBalanceChanges(TestCase):
                         "value": "-0.02",
                     },
                     {
-                        "currency": "XRP",
+                        "currency": "XAH",
                         "value": "-0.012",
                     },
                 ],
@@ -426,7 +426,7 @@ class TestGetBalanceChanges(TestCase):
                 "account": "rLDYrujdKUfVx28T9vRDAbyJ7G2WVXKo4K",
                 "balances": [
                     {
-                        "currency": "XRP",
+                        "currency": "XAH",
                         "value": "-0.012",
                     }
                 ],
@@ -441,7 +441,7 @@ class TestGetBalanceChanges(TestCase):
                 "account": "rLDYrujdKUfVx28T9vRDAbyJ7G2WVXKo4K",
                 "balances": [
                     {
-                        "currency": "XRP",
+                        "currency": "XAH",
                         "value": "-0.012",
                     }
                 ],
@@ -456,7 +456,7 @@ class TestGetBalanceChanges(TestCase):
                 "account": "rsApBGKJmMfExxZBrGnzxEXyq7TMhMRg4e",
                 "balances": [
                     {
-                        "currency": "XRP",
+                        "currency": "XAH",
                         "value": "-0.00001",
                     }
                 ],

@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import NFTokenAcceptOffer
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.transactions import NFTokenAcceptOffer
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _FEE = "0.00001"
@@ -13,7 +13,7 @@ _NFTOKEN_SELL_OFFER = "\
 
 class TestNFTokenAcceptOffer(TestCase):
     def test_no_nftoken_sell_offer_nor_buy_offer(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             NFTokenAcceptOffer(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -21,7 +21,7 @@ class TestNFTokenAcceptOffer(TestCase):
             )
 
     def test_nftoken_broker_fee_without_sell_offer(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             NFTokenAcceptOffer(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -31,7 +31,7 @@ class TestNFTokenAcceptOffer(TestCase):
             )
 
     def test_nftoken_broker_fee_without_buy_offer(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             NFTokenAcceptOffer(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -51,7 +51,7 @@ class TestNFTokenAcceptOffer(TestCase):
         self.assertTrue(tx.is_valid())
 
     def test_zero_nftoken_broker_fee_with_both_offers(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             NFTokenAcceptOffer(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -62,7 +62,7 @@ class TestNFTokenAcceptOffer(TestCase):
             )
 
     def test_negative_nftoken_broker_fee_with_both_offers(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             NFTokenAcceptOffer(
                 account=_ACCOUNT,
                 fee=_FEE,

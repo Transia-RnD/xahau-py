@@ -1,12 +1,12 @@
-import xrpl.core.binarycodec.types.amount as amount
+import xahau.core.binarycodec.types.amount as amount
 from tests.unit.core.binarycodec.types.test_serialized_type import (
     TestSerializedType,
     data_driven_fixtures_for_type,
 )
-from xrpl.core.binarycodec.binary_wrappers import BinaryParser
-from xrpl.core.binarycodec.exceptions import XRPLBinaryCodecException
-from xrpl.models.amounts.amount import is_issued_currency
-from xrpl.models.amounts.issued_currency_amount import IssuedCurrencyAmount
+from xahau.core.binarycodec.binary_wrappers import BinaryParser
+from xahau.core.binarycodec.exceptions import XAHLBinaryCodecException
+from xahau.models.amounts.amount import is_issued_currency
+from xahau.models.amounts.issued_currency_amount import IssuedCurrencyAmount
 
 # [IOU dict, expected serialized hex]
 IOU_CASES = [
@@ -57,7 +57,7 @@ IOU_CASES = [
     ],
     [
         {
-            "currency": "XRP",
+            "currency": "XAH",
             "value": "2.1",
             "issuer": "rrrrrrrrrrrrrrrrrrrrrhoLvTp",
         },
@@ -75,8 +75,8 @@ IOU_CASES = [
     ],
 ]
 
-# [XRP value, hex encoding]
-XRP_CASES = [
+# [XAH value, hex encoding]
+XAH_CASES = [
     ["100", "4000000000000064"],
     ["100000000000000000", "416345785D8A0000"],
 ]
@@ -96,17 +96,17 @@ class TestAmount(TestSerializedType):
         invalid_amount_decimal = "1.234"
 
         self.assertRaises(
-            XRPLBinaryCodecException,
+            XAHLBinaryCodecException,
             amount.verify_xrp_value,
             invalid_amount_large,
         )
         self.assertRaises(
-            XRPLBinaryCodecException,
+            XAHLBinaryCodecException,
             amount.verify_xrp_value,
             invalid_amount_small,
         )
         self.assertRaises(
-            XRPLBinaryCodecException,
+            XAHLBinaryCodecException,
             amount.verify_xrp_value,
             invalid_amount_decimal,
         )
@@ -135,7 +135,7 @@ class TestAmount(TestSerializedType):
     def test_raises_invalid_value_type(self):
         invalid_value = [1, 2, 3]
         self.assertRaises(
-            XRPLBinaryCodecException, amount.Amount.from_value, invalid_value
+            XAHLBinaryCodecException, amount.Amount.from_value, invalid_value
         )
 
     def test_from_value_issued_currency(self):
@@ -144,7 +144,7 @@ class TestAmount(TestSerializedType):
             self.assertEqual(amount_object.to_hex(), serialized)
 
     def test_from_value_xrp(self):
-        for json, serialized in XRP_CASES:
+        for json, serialized in XAH_CASES:
             amount_object = amount.Amount.from_value(json)
             self.assertEqual(amount_object.to_hex(), serialized)
 
@@ -155,7 +155,7 @@ class TestAmount(TestSerializedType):
             self.assertEqual(amount_object.to_json(), json)
 
     def test_to_json_xrp(self):
-        for json, serialized in XRP_CASES:
+        for json, serialized in XAH_CASES:
             parser = BinaryParser(serialized)
             amount_object = amount.Amount.from_parser(parser)
             self.assertEqual(amount_object.to_json(), json)

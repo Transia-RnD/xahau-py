@@ -1,7 +1,7 @@
 import warnings
 from unittest import TestCase
 
-from xrpl.models.response import Response, ResponseStatus
+from xahau.models.response import Response, ResponseStatus
 
 
 class TestResponse(TestCase):

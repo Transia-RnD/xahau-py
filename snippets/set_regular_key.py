@@ -1,9 +1,9 @@
 """Example of how we can setting a regular key"""
-from xrpl.account import get_balance
-from xrpl.clients import JsonRpcClient
-from xrpl.models import Payment, SetRegularKey
-from xrpl.transaction import submit_and_wait
-from xrpl.wallet import generate_faucet_wallet
+from xahau.account import get_balance
+from xahau.clients import JsonRpcClient
+from xahau.models import Payment, SetRegularKey
+from xahau.transaction import submit_and_wait
+from xahau.wallet import generate_faucet_wallet
 
 # References
 # - https://xrpl.org/assign-a-regular-key-pair.html#assign-a-regular-key-pair
@@ -11,7 +11,7 @@ from xrpl.wallet import generate_faucet_wallet
 # - https://xrpl.org/change-or-remove-a-regular-key-pair.html
 
 # Create a client to connect to the test network
-client = JsonRpcClient("https://s.altnet.rippletest.net:51234")
+client = JsonRpcClient("https://xahau-test.net")
 
 # Creating two wallets to send money between
 wallet1 = generate_faucet_wallet(client, debug=True)

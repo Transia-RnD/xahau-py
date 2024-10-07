@@ -5,8 +5,8 @@ from unittest import TestCase
 from tests.unit.core.binarycodec.fixtures.data_driven_fixtures import (
     get_whole_object_tests,
 )
-from xrpl.core.binarycodec.exceptions import XRPLBinaryCodecException
-from xrpl.core.binarycodec.main import (
+from xahau.core.binarycodec.exceptions import XAHLBinaryCodecException
+from xahau.core.binarycodec.main import (
     decode,
     encode,
     encode_for_multisigning,
@@ -152,22 +152,22 @@ class TestMainSimple(TestCase):
 
     def test_tx_invalid_amt(self):
         tx = {**TX_JSON, "Amount": "1000.789", "Fee": "10.123"}
-        with self.assertRaises(XRPLBinaryCodecException):
+        with self.assertRaises(XAHLBinaryCodecException):
             encode(tx)
 
     def test_tx_invalid_amt_invalid_fee(self):
         tx = {**TX_JSON, "Amount": "1000.001", "Fee": "10"}
-        with self.assertRaises(XRPLBinaryCodecException):
+        with self.assertRaises(XAHLBinaryCodecException):
             encode(tx)
 
     def test_tx_amount_number(self):
         tx = {**TX_JSON, "Amount": 1000.789}
-        with self.assertRaises(XRPLBinaryCodecException):
+        with self.assertRaises(XAHLBinaryCodecException):
             encode(tx)
 
     def test_tx_fee_number(self):
         tx = {**TX_JSON, "Amount": "1000.789", "Fee": 10.123}
-        with self.assertRaises(XRPLBinaryCodecException):
+        with self.assertRaises(XAHLBinaryCodecException):
             encode(tx)
 
     def test_lowercase(self):
@@ -311,19 +311,19 @@ class TestXAddress(TestCase):
         self.assertEqual(encode(json_null_x), encode(json_null_r))
 
     def test_xaddress_invalid(self):
-        with self.assertRaises(XRPLBinaryCodecException):
+        with self.assertRaises(XAHLBinaryCodecException):
             encode(json_invalid_x)
 
     def test_xaddress_invalid_field(self):
-        with self.assertRaises(XRPLBinaryCodecException):
+        with self.assertRaises(XAHLBinaryCodecException):
             encode(invalid_json_issuer_tagged)
 
     def test_xaddress_xaddr_and_mismatched_source_tag(self):
-        with self.assertRaises(XRPLBinaryCodecException):
+        with self.assertRaises(XAHLBinaryCodecException):
             encode(invalid_json_x_and_source_tag)
 
     def test_xaddress_xaddr_and_mismatched_dest_tag(self):
-        with self.assertRaises(XRPLBinaryCodecException):
+        with self.assertRaises(XAHLBinaryCodecException):
             encode(invalid_json_x_and_dest_tag)
 
     def test_xaddress_xaddr_and_matching_source_tag(self):

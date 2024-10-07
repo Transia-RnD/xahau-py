@@ -1,10 +1,10 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-from xrpl.constants import CryptoAlgorithm
-from xrpl.core import keypairs
-from xrpl.core.addresscodec.exceptions import XRPLAddressCodecException
-from xrpl.core.keypairs.exceptions import XRPLKeypairsException
+from xahau.constants import CryptoAlgorithm
+from xahau.core import keypairs
+from xahau.core.addresscodec.exceptions import XAHLAddressCodecException
+from xahau.core.keypairs.exceptions import XAHLKeypairsException
 
 _DUMMY_HEX = "0102030405060708090a0b0c0d0e0f10"
 _DUMMY_HEX_TOO_SHORT = "0102030405060708090a0b0c0d0e"
@@ -15,7 +15,7 @@ class TestMain(TestCase):
     # unfortunately, this patching is very brittle; it depends on the syntax
     # used to import secrets within the calling module.
     @patch(
-        "xrpl.core.keypairs.main.token_bytes",
+        "xahau.core.keypairs.main.token_bytes",
         autospec=True,
         return_value=bytes.fromhex(_DUMMY_HEX),
     )
@@ -36,11 +36,11 @@ class TestMain(TestCase):
         self.assertEqual(output, "sp5fghtJtpUorTwvof1NpDXAzNwf5")
 
     def test_generate_seed_entropy_provided_too_short(self):
-        with self.assertRaises(XRPLAddressCodecException):
+        with self.assertRaises(XAHLAddressCodecException):
             keypairs.generate_seed(_DUMMY_HEX_TOO_SHORT)
 
     def test_generate_seed_entropy_provided_too_long(self):
-        with self.assertRaises(XRPLAddressCodecException):
+        with self.assertRaises(XAHLAddressCodecException):
             keypairs.generate_seed(_DUMMY_HEX_TOO_LONG)
 
     def test_derive_keypair_ed25519(self):
@@ -55,7 +55,7 @@ class TestMain(TestCase):
         )
 
     def test_derive_keypair_ed25519_validator(self):
-        with self.assertRaises(XRPLKeypairsException):
+        with self.assertRaises(XAHLKeypairsException):
             keypairs.derive_keypair("sEdSKaCy2JT7JaM7v95H9SxkhP9wS2r", validator=True)
 
     def test_derive_keypair_ed25519_different_prefix(self):

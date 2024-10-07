@@ -14,11 +14,11 @@
         "XChainBridge": {
         "IssuingChainDoor": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
         "IssuingChainIssue": {
-            "currency": "XRP"
+            "currency": "XAH"
         },
         "LockingChainDoor": "rMAXACCrp3Y8PpswXcg3bKggHX76V3F8M4",
         "LockingChainIssue": {
-            "currency": "XRP"
+            "currency": "XAH"
         }
         },
         "date": 1695324182000
@@ -38,11 +38,11 @@
                 "XChainBridge": {
                 "IssuingChainDoor": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
                 "IssuingChainIssue": {
-                    "currency": "XRP"
+                    "currency": "XAH"
                 },
                 "LockingChainDoor": "rMAXACCrp3Y8PpswXcg3bKggHX76V3F8M4",
                 "LockingChainIssue": {
-                    "currency": "XRP"
+                    "currency": "XAH"
                 }
                 },
                 "XChainClaimID": "ac"
@@ -97,11 +97,11 @@
                 "XChainBridge": {
                 "IssuingChainDoor": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
                 "IssuingChainIssue": {
-                    "currency": "XRP"
+                    "currency": "XAH"
                 },
                 "LockingChainDoor": "rMAXACCrp3Y8PpswXcg3bKggHX76V3F8M4",
                 "LockingChainIssue": {
-                    "currency": "XRP"
+                    "currency": "XAH"
                 }
                 },
                 "XChainClaimID": "ac"

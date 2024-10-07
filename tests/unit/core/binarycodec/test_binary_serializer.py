@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
-from xrpl.core.binarycodec.binary_wrappers.binary_serializer import BinarySerializer
-from xrpl.core.binarycodec.types.blob import Blob
+from xahau.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
+from xahau.core.binarycodec.binary_wrappers.binary_serializer import BinarySerializer
+from xahau.core.binarycodec.types.blob import Blob
 
 
 class TestBinarySerializer(TestCase):

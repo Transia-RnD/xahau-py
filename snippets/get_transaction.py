@@ -1,6 +1,6 @@
 """Example of how we can see a transaction that was validated on the ledger"""
-from xrpl.clients import JsonRpcClient
-from xrpl.models import Ledger, Tx
+from xahau.clients import JsonRpcClient
+from xahau.models import Ledger, Tx
 
 # References
 # - https://xrpl.org/look-up-transaction-results.html
@@ -8,7 +8,7 @@ from xrpl.models import Ledger, Tx
 # - https://xrpl.org/tx.html
 
 # Create a client to connect to the main network
-client = JsonRpcClient("https://xrplcluster.com/")
+client = JsonRpcClient("https://xahau.network")
 
 # Create a Ledger request and have the client call it
 ledger_request = Ledger(ledger_index="validated", transactions=True)

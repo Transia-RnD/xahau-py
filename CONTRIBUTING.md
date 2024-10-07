@@ -2,11 +2,11 @@
 
 ## Set up your dev environment
 
-If you want to contribute code to `xrpl-py`, the following sections describe how to set up your developer environment.
+If you want to contribute code to `xahau-py`, the following sections describe how to set up your developer environment.
 
 ### Set up Python environment
 
-To make it easy to manage your Python environment with `xrpl-py`, including switching between versions, install `pyenv` and follow these steps:
+To make it easy to manage your Python environment with `xahau-py`, including switching between versions, install `pyenv` and follow these steps:
 
 - Install [`pyenv`](https://github.com/pyenv/pyenv):
 
@@ -14,7 +14,7 @@ To make it easy to manage your Python environment with `xrpl-py`, including swit
 
   For other installation options, see the [`pyenv` README](https://github.com/pyenv/pyenv#installation).
 
-- Use `pyenv` to install the optimized version for `xrpl-py` (currently 3.11.6):
+- Use `pyenv` to install the optimized version for `xahau-py` (currently 3.11.6):
 
         pyenv install 3.11.6
 
@@ -38,7 +38,7 @@ These steps assume that you're using a [Zsh](http://zsh.sourceforge.net/) shell.
 
 ### Manage dependencies and virtual environments
 
-To simplify managing library dependencies and the virtual environment, `xrpl-py` uses [`poetry`](https://python-poetry.org/docs).
+To simplify managing library dependencies and the virtual environment, `xahau-py` uses [`poetry`](https://python-poetry.org/docs).
 
 - [Install `poetry`](https://python-poetry.org/docs/#osx-linux-bashonwindows-install-instructions):
 
@@ -52,9 +52,9 @@ May need to run `export PATH="$HOME/.local/bin:$PATH"` to invoke Poetry (see ste
 
 ### Set up `pre-commit` hooks
 
-To run linting and other checks, `xrpl-py` uses [`pre-commit`](https://pre-commit.com/).
+To run linting and other checks, `xahau-py` uses [`pre-commit`](https://pre-commit.com/).
 
-**Note:** You only need to install `pre-commit` if you want to contribute code to `xrpl-py`.
+**Note:** You only need to install `pre-commit` if you want to contribute code to `xahau-py`.
 
 - Install `pre-commit`:
 
@@ -66,7 +66,7 @@ To run linting and other checks, `xrpl-py` uses [`pre-commit`](https://pre-commi
 To run the linter:
 
 ```bash
-poetry run flake8 xrpl tests --darglint-ignore-regex="^_(.*)"
+poetry run flake8 xahau tests --darglint-ignore-regex="^_(.*)"
 ```
 
 ### Running Tests
@@ -87,21 +87,17 @@ poetry run poe test_unit
 
 #### Integration Tests
 
-To run integration tests, you'll need a standalone rippled node running with WS port `6006` and JSON RPC port `5005`. You can run a docker container for this:
+To run integration tests, you'll need a standalone xahaud node running with WS port `6006` and JSON RPC port `5005`. You can run a docker container for this:
 
 ```bash
-docker run -p 5005:5005 -p 6006:6006 --interactive -t --volume $PWD/.ci-config:/opt/ripple/etc/ --platform linux/amd64 rippleci/rippled:2.2.0-b3 /opt/ripple/bin/rippled -a --conf /opt/ripple/etc/rippled.cfg
+docker run -p 5005:5005 -p 6006:6006 --interactive -t --platform linux/amd64 xahauci/xahaud:2024.9.11
 ```
 
 Breaking down the command:
 * `docker run -p 5005:5005 -p 6006:6006` starts a Docker container with an open port for admin JsonRPC and WebSocket requests.
 * `--interactive` allows you to interact with the container.
 * `-t` starts a terminal in the container for you to send commands to.
-* `--volume $PWD/.ci-config:/config/` identifies the `rippled.cfg` and `validators.txt` to import. It must be an absolute path, so we use `$PWD` instead of `./`.
-* `xrpllabsofficial/xrpld:1.12.0` is an image that is regularly updated with the latest `rippled` releases and can be found here: https://github.com/WietseWind/docker-rippled
-* `-a` starts `rippled` in standalone mode
-* `--start` signals to start `rippled` with the specified amendments in `rippled.cfg` enabled immediately instead of voting for 2 weeks on them.
-
+* `xahauci/xahaud:2024.9.11` is an image that is regularly updated with the latest `xahaud` releases
 Then to actually run the tests, run the command:
 
 ```bash
@@ -136,14 +132,14 @@ Replace `python3.11` with whatever version of Python you want to use (you must h
 
 ## Generate reference docs
 
-You can see the complete reference documentation at [`xrpl-py` docs](https://xrpl-py.readthedocs.io/en/latest/index.html). You can also generate them locally using `poetry` and `sphinx`:
+You can see the complete reference documentation at [`xahau-py` docs](https://xahau-py.readthedocs.io/en/latest/index.html). You can also generate them locally using `poetry` and `sphinx`:
 
 ```bash
 # Go to the docs/ folder
 cd docs/
 
 # Build the docs
-poetry run sphinx-apidoc -o source/ ../xrpl
+poetry run sphinx-apidoc -o source/ ../xahau
 poetry run make html
 ```
 
@@ -157,12 +153,12 @@ cd docs/_build/html/
 open index.html
 ```
 
-You can view docs builds for xrpl-py versions on the ReadTheDocs website here: https://readthedocs.org/projects/xrpl-py/builds/
+You can view docs builds for xahau-py versions on the ReadTheDocs website here: https://readthedocs.org/projects/xahau-py/builds/
 
 In order to test how a change in docs configuration looks like on ReadTheDocs before merging:
 1. Publish a branch with your docs configuration changes
-2. Active and hide the branch by scrolling down on this page: https://readthedocs.org/projects/xrpl-py/versions/
-3. View the page / build results here: https://readthedocs.org/projects/xrpl-py/builds/
+2. Active and hide the branch by scrolling down on this page: https://readthedocs.org/projects/xahau-py/versions/
+3. View the page / build results here: https://readthedocs.org/projects/xahau-py/builds/
 4. Once you're done testing, make the test branch inactive.
 
 ## Write integration tests
@@ -177,16 +173,16 @@ In order to test how a change in docs configuration looks like on ReadTheDocs be
 4. Be sure to reuse pre-made values, `WALLET`, `DESTINATION`, `TESTNET_WALLET`, `TESTNET_DESTINATION`, `OFFER`, and `PAYMENT_CHANNEL`, from `tests/integrations/reusable_values.py`
 5. Be sure to use condensed functions, like `submit_transaction_async` and `sign_and_reliable_submission_async`, from `tests/integrations/it_utils.py`
 
-Examples can be found in subfolders of [tests/integrations](https://github.com/XRPLF/xrpl-py/tree/main/tests/integration)
+Examples can be found in subfolders of [tests/integrations](https://github.com/XRPLF/xahau-py/tree/main/tests/integration)
 
 ## Updating `definitions.json`
 
 This should almost always be done using the [`xrpl-codec-gen`](https://github.com/RichardAH/xrpl-codec-gen) script - if the output needs manual intervention afterwards, consider updating the script instead.
 
-1. Clone / pull the latest changes from [rippled](https://github.com/XRPLF/rippled) - Specifically the `develop` branch is usually the right one.
+1. Clone / pull the latest changes from [xahaud](https://github.com/XRPLF/xahaud) - Specifically the `develop` branch is usually the right one.
 2. Clone / pull the latest changes from [`xrpl-codec-gen`](https://github.com/RichardAH/xrpl-codec-gen)
 3. From the `xrpl-codec-gen` tool, follow the steps in the `README.md` to generate a new `definitions.json` file.
-4. Replace the `definitions.json` file in the `ripple-binary-codec` with the newly generated file.
+4. Replace the `definitions.json` file in the `xahau-binary-codec` with the newly generated file.
 5. Verify that the changes make sense by inspection before submitting, as there may be updates required for the `xrpl-codec-gen` tool depending on the latest amendments we're updating to match.
 
 
@@ -208,21 +204,21 @@ This should almost always be done using the [`xrpl-codec-gen`](https://github.co
 3. Locally build and download the package.
    1. Pull main locally.
    2. Run `poetry build` to build the package locally.
-   3. Locally download the package by running `pip install path/to/local/xrpl-py/dist/.whl`.
+   3. Locally download the package by running `pip install path/to/local/xahau-py/dist/.whl`.
    4. Make sure that this local installation works as intended, and that the changes are reflected properly.
 4. Run `poetry publish --dry-run` and make sure everything looks good.
 5. Publish the update by running `poetry publish`.
    - This will require entering PyPI login info.
 6. Create a new Github release/tag off of this branch.
-7. Send an email to [xrpl-announce](https://groups.google.com/g/xrpl-announce).
+7. Send an email to [xahau-announce](https://groups.google.com/g/xahau-announce).
 8. Post an announcement in the [XRPL Discord #python channel](https://discord.com/channels/886050993802985492/886053080913821717) with a link to the changes and highlighting key changes.
 
 ## Mailing Lists
 
-We have a low-traffic mailing list for announcements of new `xrpl-py` releases. (About 1 email every couple of weeks)
+We have a low-traffic mailing list for announcements of new `xahau-py` releases. (About 1 email every couple of weeks)
 
-- [Subscribe to xrpl-announce](https://groups.google.com/g/xrpl-announce)
+- [Subscribe to xahau-announce](https://groups.google.com/g/xahau-announce)
 
-If you're using the XRP Ledger in production, you should run a [rippled server](https://github.com/ripple/rippled) and subscribe to the ripple-server mailing list as well.
+If you're using the XRP Ledger in production, you should run a [xahaud server](https://github.com/xahau/xahaud) and subscribe to the xahau-server mailing list as well.
 
-- [Subscribe to ripple-server](https://groups.google.com/g/ripple-server)
+- [Subscribe to xahau-server](https://groups.google.com/g/xahau-server)

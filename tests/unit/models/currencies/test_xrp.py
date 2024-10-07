@@ -1,16 +1,16 @@
 from unittest import TestCase
 
-from xrpl.models.currencies import XRP
-from xrpl.utils import xrp_to_drops
+from xahau.models.currencies import XAH
+from xahau.utils import xah_to_drops
 
 
-class TestXRP(TestCase):
+class TestXAH(TestCase):
     def test_to_dict(self):
-        self.assertEqual(XRP().to_dict()["currency"], "XRP")
+        self.assertEqual(XAH().to_dict()["currency"], "XAH")
 
     def test_to_amount(self):
         amount = 12
-        expected = xrp_to_drops(amount)
-        result = XRP().to_amount(amount)
+        expected = xah_to_drops(amount)
+        result = XAH().to_amount(amount)
 
         self.assertEqual(result, expected)

@@ -1,10 +1,10 @@
 """Example of how to find the best path to trade with"""
 
-from xrpl.clients import WebsocketClient
-from xrpl.models import IssuedCurrencyAmount, PathFind, Payment
-from xrpl.models.requests import PathFindSubcommand
-from xrpl.transaction import autofill_and_sign
-from xrpl.wallet import generate_faucet_wallet
+from xahau.clients import WebsocketClient
+from xahau.models import IssuedCurrencyAmount, PathFind, Payment
+from xahau.models.requests import PathFindSubcommand
+from xahau.transaction import autofill_and_sign
+from xahau.wallet import generate_faucet_wallet
 
 # References
 # - https://xrpl.org/paths.html#paths
@@ -12,12 +12,12 @@ from xrpl.wallet import generate_faucet_wallet
 # Prerequisites for this snippet. Please verify these conditions after a reset of the
 # test network:
 # - destination_account must have a trust line with the destination_amount.issuer
-# - There must be appropriate DEX Offers or XRP/TST AMM for the cross-currency exchange
+# - There must be appropriate DEX Offers or XAH/TST AMM for the cross-currency exchange
 
 # Create a client to connect to the test network
 # PathFind RPC requires the use of a Websocket client only
 
-with WebsocketClient("wss://s.altnet.rippletest.net:51233") as client:
+with WebsocketClient("wss://xahau-test.net") as client:
     # Creating wallet to send money from
     wallet = generate_faucet_wallet(client, debug=True)
 

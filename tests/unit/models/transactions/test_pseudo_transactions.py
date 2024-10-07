@@ -1,14 +1,14 @@
 from unittest import TestCase
 
-from xrpl.models.transactions.pseudo_transactions import (
+from xahau.models.transactions.pseudo_transactions import (
     EnableAmendment,
     SetFee,
     UNLModify,
 )
-from xrpl.models.transactions.pseudo_transactions.pseudo_transaction import (
+from xahau.models.transactions.pseudo_transactions.pseudo_transaction import (
     PseudoTransaction,
 )
-from xrpl.models.transactions.transaction import Transaction
+from xahau.models.transactions.transaction import Transaction
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _FEE = "0.00001"

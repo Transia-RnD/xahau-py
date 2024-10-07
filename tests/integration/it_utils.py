@@ -5,33 +5,27 @@ import importlib
 import inspect
 from threading import Timer as ThreadingTimer
 from time import sleep
-from typing import Any, Dict, cast
+from typing import cast
 
-import xrpl  # noqa: F401 - needed for sync tests
-from xrpl.asyncio.clients import AsyncJsonRpcClient, AsyncWebsocketClient
-from xrpl.asyncio.clients.async_client import AsyncClient
-from xrpl.asyncio.transaction import sign_and_submit as sign_and_submit_async
-from xrpl.clients import Client, JsonRpcClient, WebsocketClient
-from xrpl.clients.sync_client import SyncClient
-from xrpl.constants import CryptoAlgorithm
-from xrpl.models import GenericRequest, Payment, Request, Response, Transaction
-from xrpl.models.amounts.issued_currency_amount import IssuedCurrencyAmount
-from xrpl.models.currencies.issued_currency import IssuedCurrency
-from xrpl.models.currencies.xrp import XRP
-from xrpl.models.transactions.account_set import AccountSet, AccountSetAsfFlag
-from xrpl.models.transactions.amm_create import AMMCreate
-from xrpl.models.transactions.trust_set import TrustSet, TrustSetFlag
-from xrpl.transaction import sign_and_submit  # noqa: F401 - needed for sync tests
-from xrpl.transaction import (  # noqa: F401 - needed for sync tests
+import xahau  # noqa: F401 - needed for sync tests
+from xahau.asyncio.clients import AsyncJsonRpcClient, AsyncWebsocketClient
+from xahau.asyncio.clients.async_client import AsyncClient
+from xahau.asyncio.transaction import sign_and_submit as sign_and_submit_async
+from xahau.clients import Client, JsonRpcClient, WebsocketClient
+from xahau.clients.sync_client import SyncClient
+from xahau.constants import CryptoAlgorithm
+from xahau.models import GenericRequest, Payment, Request, Response, Transaction
+from xahau.transaction import sign_and_submit  # noqa: F401 - needed for sync tests
+from xahau.transaction import (  # noqa: F401 - needed for sync tests
     submit as submit_transaction_alias,
 )
-from xrpl.wallet import Wallet
+from xahau.wallet import Wallet
 
 JSON_RPC_URL = "http://127.0.0.1:5005"
 WEBSOCKET_URL = "ws://127.0.0.1:6006"
 
-JSON_TESTNET_URL = "https://s.altnet.rippletest.net:51234"
-WEBSOCKET_TESTNET_URL = "wss://s.altnet.rippletest.net:51233"
+JSON_TESTNET_URL = "https://xahau-test.net"
+WEBSOCKET_TESTNET_URL = "wss://xahau-test.net"
 
 JSON_RPC_CLIENT = JsonRpcClient(JSON_RPC_URL)
 ASYNC_JSON_RPC_CLIENT = AsyncJsonRpcClient(JSON_RPC_URL)
@@ -130,7 +124,7 @@ def submit_transaction(
     client: SyncClient,
     check_fee: bool = True,
 ) -> Response:
-    """Signs and submits a transaction to the XRPL."""
+    """Signs and submits a transaction to the XAHL."""
     return sign_and_submit(transaction, client, wallet, check_fee=check_fee)
 
 
@@ -311,157 +305,3 @@ def _get_non_decorator_code(function):
         if "def " in code_lines[line]:
             return code_lines[line:]
         line += 1
-
-
-def create_amm_pool(
-    client: SyncClient = JSON_RPC_CLIENT,
-) -> Dict[str, Any]:
-    issuer_wallet = Wallet.create()
-    fund_wallet(issuer_wallet)
-    lp_wallet = Wallet.create()
-    fund_wallet(lp_wallet)
-    currency_code = "USD"
-
-    # test prerequisites - create trustline and send funds
-    sign_and_reliable_submission(
-        AccountSet(
-            account=issuer_wallet.classic_address,
-            set_flag=AccountSetAsfFlag.ASF_DEFAULT_RIPPLE,
-        ),
-        issuer_wallet,
-    )
-
-    sign_and_reliable_submission(
-        TrustSet(
-            account=lp_wallet.classic_address,
-            flags=TrustSetFlag.TF_CLEAR_NO_RIPPLE,
-            limit_amount=IssuedCurrencyAmount(
-                issuer=issuer_wallet.classic_address,
-                currency=currency_code,
-                value="1000",
-            ),
-        ),
-        lp_wallet,
-    )
-
-    sign_and_reliable_submission(
-        Payment(
-            account=issuer_wallet.classic_address,
-            destination=lp_wallet.classic_address,
-            amount=IssuedCurrencyAmount(
-                currency=currency_code,
-                issuer=issuer_wallet.classic_address,
-                value="500",
-            ),
-        ),
-        issuer_wallet,
-    )
-
-    sign_and_reliable_submission(
-        AMMCreate(
-            account=lp_wallet.classic_address,
-            amount="250",
-            amount2=IssuedCurrencyAmount(
-                issuer=issuer_wallet.classic_address,
-                currency=currency_code,
-                value="250",
-            ),
-            trading_fee=12,
-        ),
-        lp_wallet,
-        client,
-    )
-
-    asset = XRP()
-    asset2 = IssuedCurrency(
-        currency=currency_code,
-        issuer=issuer_wallet.classic_address,
-    )
-
-    return {
-        "asset": asset,
-        "asset2": asset2,
-        "issuer_wallet": issuer_wallet,
-    }
-
-
-async def create_amm_pool_async(
-    client: AsyncClient = ASYNC_JSON_RPC_CLIENT,
-) -> Dict[str, Any]:
-    issuer_wallet = Wallet.create()
-    await fund_wallet_async(issuer_wallet)
-    lp_wallet = Wallet.create()
-    await fund_wallet_async(lp_wallet)
-    currency_code = "USD"
-
-    # test prerequisites - create trustline and send funds
-    await sign_and_reliable_submission_async(
-        AccountSet(
-            account=issuer_wallet.classic_address,
-            set_flag=AccountSetAsfFlag.ASF_DEFAULT_RIPPLE,
-        ),
-        issuer_wallet,
-    )
-
-    await sign_and_reliable_submission_async(
-        TrustSet(
-            account=lp_wallet.classic_address,
-            flags=TrustSetFlag.TF_CLEAR_NO_RIPPLE,
-            limit_amount=IssuedCurrencyAmount(
-                issuer=issuer_wallet.classic_address,
-                currency=currency_code,
-                value="1000",
-            ),
-        ),
-        lp_wallet,
-    )
-
-    await sign_and_reliable_submission_async(
-        Payment(
-            account=issuer_wallet.classic_address,
-            destination=lp_wallet.classic_address,
-            amount=IssuedCurrencyAmount(
-                currency=currency_code,
-                issuer=issuer_wallet.classic_address,
-                value="500",
-            ),
-        ),
-        issuer_wallet,
-    )
-
-    await sign_and_reliable_submission_async(
-        AMMCreate(
-            account=lp_wallet.classic_address,
-            amount="250",
-            amount2=IssuedCurrencyAmount(
-                issuer=issuer_wallet.classic_address,
-                currency=currency_code,
-                value="250",
-            ),
-            trading_fee=12,
-        ),
-        lp_wallet,
-        client,
-    )
-
-    asset = XRP()
-    asset2 = IssuedCurrency(
-        currency=currency_code,
-        issuer=issuer_wallet.classic_address,
-    )
-
-    return {
-        "asset": asset,
-        "asset2": asset2,
-        "issuer_wallet": issuer_wallet,
-    }
-
-
-def compare_amm_values(val, val2, round_buffer):
-    diff = abs(float(val) - float(val2))
-    if diff > round_buffer:
-        raise ValueError(
-            f"Values [{val}, {val2}] with difference {diff} are too far apart "
-            f"with round_buffer {round_buffer}"
-        )
-    return True

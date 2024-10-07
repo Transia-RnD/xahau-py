@@ -4,8 +4,8 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import WALLET
-from xrpl.models.response import ResponseStatus
-from xrpl.models.transactions import EscrowFinish
+from xahau.models.response import ResponseStatus
+from xahau.models.transactions import EscrowFinish
 
 # Special fee for EscrowFinish transactions that contain a fulfillment.
 # See note here: https://xrpl.org/escrowfinish.html

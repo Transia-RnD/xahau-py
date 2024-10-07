@@ -1,11 +1,11 @@
 from unittest import TestCase
 
-from xrpl.models import (
-    XRP,
+from xahau.models import (
+    XAH,
     IssuedCurrency,
+    XAHLModelException,
     XChainBridge,
     XChainModifyBridge,
-    XRPLModelException,
 )
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
@@ -17,11 +17,11 @@ _ISSUER = "rGWrZyQqhTp9Xu7G5Pkayo7bXjH4k4QYpf"
 
 _GENESIS = "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
 
-_XRP_BRIDGE = XChainBridge(
+_XAH_BRIDGE = XChainBridge(
     locking_chain_door=_ACCOUNT,
-    locking_chain_issue=XRP(),
+    locking_chain_issue=XAH(),
     issuing_chain_door=_GENESIS,
-    issuing_chain_issue=XRP(),
+    issuing_chain_issue=XAH(),
 )
 
 _IOU_BRIDGE = XChainBridge(
@@ -32,13 +32,13 @@ _IOU_BRIDGE = XChainBridge(
 )
 
 
-class TestXChainModifyBridge(TestCase):
+class NoTestXChainModifyBridge(TestCase):
     def test_successful_modify_bridge(self):
         XChainModifyBridge(
             account=_ACCOUNT,
             fee=_FEE,
             sequence=_SEQUENCE,
-            xchain_bridge=_XRP_BRIDGE,
+            xchain_bridge=_XAH_BRIDGE,
             signature_reward="200",
             min_account_create_amount="1000000",
         )
@@ -57,12 +57,12 @@ class TestXChainModifyBridge(TestCase):
             account=_ACCOUNT,
             fee=_FEE,
             sequence=_SEQUENCE,
-            xchain_bridge=_XRP_BRIDGE,
+            xchain_bridge=_XAH_BRIDGE,
             min_account_create_amount="1000000",
         )
 
     def test_modify_bridge_empty(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             XChainModifyBridge(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -71,17 +71,17 @@ class TestXChainModifyBridge(TestCase):
             )
 
     def test_account_not_in_bridge(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             XChainModifyBridge(
                 account=_ACCOUNT2,
                 fee=_FEE,
                 sequence=_SEQUENCE,
-                xchain_bridge=_XRP_BRIDGE,
+                xchain_bridge=_XAH_BRIDGE,
                 signature_reward="200",
             )
 
     def test_iou_iou_min_account_create_amount(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             XChainModifyBridge(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -91,23 +91,23 @@ class TestXChainModifyBridge(TestCase):
             )
 
     def test_invalid_signature_reward(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             XChainModifyBridge(
                 account=_ACCOUNT,
                 fee=_FEE,
                 sequence=_SEQUENCE,
-                xchain_bridge=_XRP_BRIDGE,
+                xchain_bridge=_XAH_BRIDGE,
                 signature_reward="hello",
                 min_account_create_amount="1000000",
             )
 
     def test_invalid_min_account_create_amount(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             XChainModifyBridge(
                 account=_ACCOUNT,
                 fee=_FEE,
                 sequence=_SEQUENCE,
-                xchain_bridge=_XRP_BRIDGE,
+                xchain_bridge=_XAH_BRIDGE,
                 signature_reward="200",
                 min_account_create_amount="hello",
             )

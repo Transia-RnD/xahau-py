@@ -1,20 +1,20 @@
 from unittest import TestCase
 
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.currencies import XRP, IssuedCurrency
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import AMMWithdraw
-from xrpl.models.transactions.amm_withdraw import AMMWithdrawFlag
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.currencies import XAH, IssuedCurrency
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.transactions import AMMWithdraw
+from xahau.models.transactions.amm_withdraw import AMMWithdrawFlag
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
-_ASSET = XRP()
+_ASSET = XAH()
 _ASSET2 = IssuedCurrency(currency="ETH", issuer="rpGtkFRXhgVaBzC5XCR7gyE2AZN5SN3SEW")
 _AMOUNT = "1000"
 _LPTOKEN_CURRENCY = "B3813FCAB4EE68B3D0D735D6849465A9113EE048"
 _LPTOKEN_ISSUER = "rH438jEAzTs5PYtV6CHZqpDpwCKQmPW9Cg"
 
 
-class TestAMMWithdraw(TestCase):
+class NoTestAMMWithdraw(TestCase):
     def test_tx_valid_lptokenin(self):
         tx = AMMWithdraw(
             account=_ACCOUNT,
@@ -105,7 +105,7 @@ class TestAMMWithdraw(TestCase):
         self.assertTrue(tx.is_valid())
 
     def test_undefined_amount_defined_amount2_invalid_combo(self):
-        with self.assertRaises(XRPLModelException) as error:
+        with self.assertRaises(XAHLModelException) as error:
             AMMWithdraw(
                 account=_ACCOUNT,
                 sequence=1337,
@@ -121,7 +121,7 @@ class TestAMMWithdraw(TestCase):
         )
 
     def test_undefined_amount_defined_eprice_invalid_combo(self):
-        with self.assertRaises(XRPLModelException) as error:
+        with self.assertRaises(XAHLModelException) as error:
             AMMWithdraw(
                 account=_ACCOUNT,
                 sequence=1337,

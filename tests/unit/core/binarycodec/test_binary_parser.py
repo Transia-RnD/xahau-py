@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.core.binarycodec.binary_wrappers import BinaryParser, BinarySerializer
-from xrpl.core.binarycodec.types.blob import Blob
+from xahau.core.binarycodec.binary_wrappers import BinaryParser, BinarySerializer
+from xahau.core.binarycodec.types.blob import Blob
 
 # Note that core field-reading logic will be tested by the implementation of
 # specific field type classes. These tests just sanity-check key helper methods.

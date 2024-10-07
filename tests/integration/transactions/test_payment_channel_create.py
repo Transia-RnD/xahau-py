@@ -4,7 +4,7 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import DESTINATION, WALLET
-from xrpl.models.transactions import PaymentChannelCreate
+from xahau.models.transactions import PaymentChannelCreate
 
 
 class TestPaymentChannelCreate(IntegrationTestCase):

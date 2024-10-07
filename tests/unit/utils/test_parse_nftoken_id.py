@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from unittest import TestCase
 
-from xrpl import XRPLException
-from xrpl.utils import parse_nftoken_id
+from xahau import XAHLException
+from xahau.utils import parse_nftoken_id
 
 
 class TestParseNFTokenID(TestCase):
@@ -25,5 +25,5 @@ class TestParseNFTokenID(TestCase):
         self.assertEqual(result, expected)
 
     def test_parse_nftoken_id_raises(self) -> None:
-        with self.assertRaises(XRPLException):
+        with self.assertRaises(XAHLException):
             parse_nftoken_id("ABCD")

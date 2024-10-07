@@ -1,13 +1,13 @@
 from unittest import TestCase
 
-from xrpl.asyncio.transaction.main import sign
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import AccountSet, OfferCreate, Payment
-from xrpl.models.transactions.transaction import Transaction
-from xrpl.models.transactions.types.transaction_type import TransactionType
-from xrpl.transaction.multisign import multisign
-from xrpl.utils.str_conversions import str_to_hex
-from xrpl.wallet import Wallet
+from xahau.asyncio.transaction.main import sign
+from xahau.models.exceptions import XAHLModelException
+from xahau.models.transactions import AccountSet, OfferCreate, Payment
+from xahau.models.transactions.transaction import Transaction
+from xahau.models.transactions.types.transaction_type import TransactionType
+from xahau.transaction.multisign import multisign
+from xahau.utils.str_conversions import str_to_hex
+from xahau.wallet import Wallet
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _FEE = "0.00001"
@@ -22,7 +22,7 @@ EXAMPLE_DOMAIN = str_to_hex("example.com")
 
 class TestTransaction(TestCase):
     def test_missing_required_field(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             # missing account
             Transaction(
                 fee=_FEE,
@@ -112,7 +112,7 @@ class TestTransaction(TestCase):
         self.assertEqual(value, _TICKET_SEQUENCE)
 
     def test_throws_when_ticket_sequence_and_sequence_both_nonzero(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             Transaction(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -122,7 +122,7 @@ class TestTransaction(TestCase):
             )
 
     def test_throws_when_ticket_sequence_and_account_tx_in_both_included(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             Transaction(
                 account=_ACCOUNT,
                 fee=_FEE,
@@ -132,7 +132,7 @@ class TestTransaction(TestCase):
             )
 
     def test_throws_when_account_is_wallet(self):
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             Transaction(
                 account=_WALLET,
                 fee=_FEE,
@@ -204,7 +204,7 @@ class TestTransaction(TestCase):
             "LastLedgerSequence": 6220218,
         }
 
-        with self.assertRaises(XRPLModelException):
+        with self.assertRaises(XAHLModelException):
             Payment.from_xrpl(payment_tx_json)
 
     def test_payment_txn_API_identical_amount_and_deliver_max(self):

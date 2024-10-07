@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-import xrpl.utils
+import xahau.utils
 
 _ORIGINAL = "https://en.wikipedia.org/wiki/Sunn_O%29%29%29"
 _HEX = """\
@@ -11,7 +11,7 @@ _HEX = """\
 
 class TestStrConversions(TestCase):
     def test_str_to_hex(self):
-        self.assertTrue(xrpl.utils.str_to_hex(_ORIGINAL) == _HEX)
+        self.assertTrue(xahau.utils.str_to_hex(_ORIGINAL) == _HEX)
 
     def test_hex_to_str(self):
-        self.assertTrue(xrpl.utils.hex_to_str(_HEX) == _ORIGINAL)
+        self.assertTrue(xahau.utils.hex_to_str(_HEX) == _ORIGINAL)
