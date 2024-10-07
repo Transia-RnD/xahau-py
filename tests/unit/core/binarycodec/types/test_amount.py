@@ -1,12 +1,12 @@
-import xrpl.core.binarycodec.types.amount as amount
+import xahau.core.binarycodec.types.amount as amount
 from tests.unit.core.binarycodec.types.test_serialized_type import (
     TestSerializedType,
     data_driven_fixtures_for_type,
 )
-from xrpl.core.binarycodec.binary_wrappers import BinaryParser
-from xrpl.core.binarycodec.exceptions import XRPLBinaryCodecException
-from xrpl.models.amounts.amount import is_issued_currency
-from xrpl.models.amounts.issued_currency_amount import IssuedCurrencyAmount
+from xahau.core.binarycodec.binary_wrappers import BinaryParser
+from xahau.core.binarycodec.exceptions import XRPLBinaryCodecException
+from xahau.models.amounts.amount import is_issued_currency
+from xahau.models.amounts.issued_currency_amount import IssuedCurrencyAmount
 
 # [IOU dict, expected serialized hex]
 IOU_CASES = [

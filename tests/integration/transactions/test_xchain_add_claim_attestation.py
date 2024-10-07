@@ -4,11 +4,11 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import BRIDGE, DESTINATION, WITNESS_WALLET
-from xrpl.core.binarycodec import encode
-from xrpl.core.keypairs import sign
-from xrpl.models import AccountInfo, Tx, XChainAddClaimAttestation, XChainCreateClaimID
-from xrpl.utils import get_xchain_claim_id, xrp_to_drops
-from xrpl.wallet import Wallet
+from xahau.core.binarycodec import encode
+from xahau.core.keypairs import sign
+from xahau.models import AccountInfo, Tx, XChainAddClaimAttestation, XChainCreateClaimID
+from xahau.utils import get_xchain_claim_id, xrp_to_drops
+from xahau.wallet import Wallet
 
 
 class TestXChainAddClaimAttestation(IntegrationTestCase):

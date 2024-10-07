@@ -8,8 +8,8 @@ from tests.integration.it_utils import (
     fund_wallet_async,
     sign_and_reliable_submission_async,
 )
-from xrpl.asyncio.clients.async_client import AsyncClient
-from xrpl.models import (
+from xahau.asyncio.clients.async_client import AsyncClient
+from xahau.models import (
     XRP,
     AMMDeposit,
     AMMDepositFlag,
@@ -21,7 +21,7 @@ from xrpl.models import (
     XChainBridge,
     XChainCreateBridge,
 )
-from xrpl.wallet import Wallet
+from xahau.wallet import Wallet
 
 
 # TODO: use `asyncio.gather` for these, to parallelize

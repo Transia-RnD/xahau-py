@@ -1,19 +1,19 @@
-[![Documentation Status](https://readthedocs.org/projects/xrpl-py/badge)](https://xrpl-py.readthedocs.io/)
+[![Documentation Status](https://readthedocs.org/projects/xahau-py/badge)](https://xahau-py.readthedocs.io/)
 
-# xrpl-py
+# xahau-py
 
-A pure Python implementation for interacting with the [XRP Ledger](https://xrpl.org/).
+A pure Python implementation for interacting with the [XRP Ledger](https://xahau.org/).
 
-The `xrpl-py` library simplifies the hardest parts of XRP Ledger interaction, like serialization and transaction signing. It also provides native Python methods and models for [XRP Ledger transactions](https://xrpl.org/transaction-formats.html) and core server [API](https://xrpl.org/api-conventions.html) ([`rippled`](https://github.com/ripple/rippled)) objects.
+The `xahau-py` library simplifies the hardest parts of XRP Ledger interaction, like serialization and transaction signing. It also provides native Python methods and models for [XRP Ledger transactions](https://xahau.org/transaction-formats.html) and core server [API](https://xahau.org/api-conventions.html) ([`rippled`](https://github.com/ripple/rippled)) objects.
 
 As an example, this is how you would use this library to send a payment on testnet:
 
 ```py
-from xrpl.account import get_balance
-from xrpl.clients import JsonRpcClient
-from xrpl.models import Payment, Tx
-from xrpl.transaction import submit_and_wait
-from xrpl.wallet import generate_faucet_wallet
+from xahau.account import get_balance
+from xahau.clients import JsonRpcClient
+from xahau.models import Payment, Tx
+from xahau.transaction import submit_and_wait
+from xahau.wallet import generate_faucet_wallet
 
 # Create a client to connect to the test network
 client = JsonRpcClient("https://s.altnet.rippletest.net:51234")
@@ -52,66 +52,66 @@ print(get_balance(wallet1.address, client))
 print(get_balance(wallet2.address, client))
 ```
 
-[![Downloads](https://pepy.tech/badge/xrpl-py/month)](https://pepy.tech/project/xrpl-py/month)
-[![Contributors](https://img.shields.io/github/contributors/xpring-eng/xrpl-py.svg)](https://github.com/xpring-eng/xrpl-py/graphs/contributors)
+[![Downloads](https://pepy.tech/badge/xahau-py/month)](https://pepy.tech/project/xahau-py/month)
+[![Contributors](https://img.shields.io/github/contributors/xpring-eng/xahau-py.svg)](https://github.com/xpring-eng/xahau-py/graphs/contributors)
 
 ## Installation and supported versions
 
-The `xrpl-py` library is available on [PyPI](https://pypi.org/). Install with `pip`:
+The `xahau-py` library is available on [PyPI](https://pypi.org/). Install with `pip`:
 
 
 ```
-pip3 install xrpl-py
+pip3 install xahau-py
 ```
 
 The library supports [Python 3.8](https://www.python.org/downloads/) and later.
 
-[![Supported Versions](https://img.shields.io/pypi/pyversions/xrpl-py.svg)](https://pypi.org/project/xrpl-py)
+[![Supported Versions](https://img.shields.io/pypi/pyversions/xahau-py.svg)](https://pypi.org/project/xahau-py)
 
 
 ## Features
 
-Use `xrpl-py` to build Python applications that leverage the [XRP Ledger](https://xrpl.org/). The library helps with all aspects of interacting with the XRP Ledger, including:
+Use `xahau-py` to build Python applications that leverage the [XRP Ledger](https://xahau.org/). The library helps with all aspects of interacting with the XRP Ledger, including:
 
 * Key and wallet management
 * Serialization
 * Transaction Signing
 
-`xrpl-py` also provides:
+`xahau-py` also provides:
 
-* A network client — See [`xrpl.clients`](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.clients.html) for more information.
-* Methods for inspecting accounts — See [XRPL Account Methods](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.account.html) for more information.
-* Codecs for encoding and decoding addresses and other objects — See [Core Codecs](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.core.html) for more information.
+* A network client — See [`xahau.clients`](https://xahau-py.readthedocs.io/en/stable/source/xahau.clients.html) for more information.
+* Methods for inspecting accounts — See [XRPL Account Methods](https://xahau-py.readthedocs.io/en/stable/source/xahau.account.html) for more information.
+* Codecs for encoding and decoding addresses and other objects — See [Core Codecs](https://xahau-py.readthedocs.io/en/stable/source/xahau.core.html) for more information.
 
-## [➡️ Reference Documentation](https://xrpl-py.readthedocs.io/en/stable/)
+## [➡️ Reference Documentation](https://xahau-py.readthedocs.io/en/stable/)
 
-See the complete [`xrpl-py` reference documentation on Read the Docs](https://xrpl-py.readthedocs.io/en/stable/index.html).
+See the complete [`xahau-py` reference documentation on Read the Docs](https://xahau-py.readthedocs.io/en/stable/index.html).
 
 
 ## Usage
 
-The following sections describe some of the most commonly used modules in the `xrpl-py` library and provide sample code.
+The following sections describe some of the most commonly used modules in the `xahau-py` library and provide sample code.
 
 ### Network client
 
-Use the `xrpl.clients` library to create a network client for connecting to the XRP Ledger.
+Use the `xahau.clients` library to create a network client for connecting to the XRP Ledger.
 
 ```py
-from xrpl.clients import JsonRpcClient
+from xahau.clients import JsonRpcClient
 JSON_RPC_URL = "https://s.altnet.rippletest.net:51234"
 client = JsonRpcClient(JSON_RPC_URL)
 ```
 
 ### Manage keys and wallets
 
-#### `xrpl.wallet`
+#### `xahau.wallet`
 
-Use the [`xrpl.wallet`](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.wallet.html) module to create a wallet from a given seed or or via a [Testnet faucet](https://xrpl.org/xrp-testnet-faucet.html).
+Use the [`xahau.wallet`](https://xahau-py.readthedocs.io/en/stable/source/xahau.wallet.html) module to create a wallet from a given seed or or via a [Testnet faucet](https://xahau.org/xrp-testnet-faucet.html).
 
-To create a wallet from a seed (in this case, the value generated using [`xrpl.keypairs`](#xrpl-keypairs)):
+To create a wallet from a seed (in this case, the value generated using [`xahau.keypairs`](#xahau-keypairs)):
 
 ```py
-wallet_from_seed = xrpl.wallet.Wallet.from_seed(seed)
+wallet_from_seed = xahau.wallet.Wallet.from_seed(seed)
 print(wallet_from_seed)
 # pub_key: ED46949E414A3D6D758D347BAEC9340DC78F7397FEE893132AAF5D56E4D7DE77B0
 # priv_key: -HIDDEN-
@@ -127,15 +127,15 @@ print("Classic address:", test_account)
 # Classic address: rEQB2hhp3rg7sHj6L8YyR4GG47Cb7pfcuw
 ```
 
-#### `xrpl.core.keypairs`
+#### `xahau.core.keypairs`
 
-Use the [`xrpl.core.keypairs`](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.core.keypairs.html#module-xrpl.core.keypairs) module to generate seeds and derive keypairs and addresses from those seed values.
+Use the [`xahau.core.keypairs`](https://xahau-py.readthedocs.io/en/stable/source/xahau.core.keypairs.html#module-xahau.core.keypairs) module to generate seeds and derive keypairs and addresses from those seed values.
 
-Here's an example of how to generate a `seed` value and derive an [XRP Ledger "classic" address](https://xrpl.org/cryptographic-keys.html#account-id-and-address) from that seed.
+Here's an example of how to generate a `seed` value and derive an [XRP Ledger "classic" address](https://xahau.org/cryptographic-keys.html#account-id-and-address) from that seed.
 
 
 ```py
-from xrpl.core import keypairs
+from xahau.core import keypairs
 seed = keypairs.generate_seed()
 public, private = keypairs.derive_keypair(seed)
 test_account = keypairs.derive_classic_address(public)
@@ -151,34 +151,34 @@ print("Store this in a secure place!")
 # Store this in a secure place!
 ```
 
-**Note:** You can use `xrpl.core.keypairs.sign` to sign transactions but `xrpl-py` also provides explicit methods for safely signing and submitting transactions. See [Transaction Signing](#transaction-signing) and [XRPL Transaction Methods](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.transaction.html#module-xrpl.transaction) for more information.
+**Note:** You can use `xahau.core.keypairs.sign` to sign transactions but `xahau-py` also provides explicit methods for safely signing and submitting transactions. See [Transaction Signing](#transaction-signing) and [XRPL Transaction Methods](https://xahau-py.readthedocs.io/en/stable/source/xahau.transaction.html#module-xahau.transaction) for more information.
 
 
 ### Serialize and sign transactions
 
-To securely submit transactions to the XRP Ledger, you need to first serialize data from JSON and other formats into the [XRP Ledger's canonical format](https://xrpl.org/serialization.html), then to [authorize the transaction](https://xrpl.org/transaction-basics.html#authorizing-transactions) by digitally [signing it](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.core.keypairs.html?highlight=sign#xrpl.core.keypairs.sign) with the account's private key. The `xrpl-py` library provides several methods to simplify this process.
+To securely submit transactions to the XRP Ledger, you need to first serialize data from JSON and other formats into the [XRP Ledger's canonical format](https://xahau.org/serialization.html), then to [authorize the transaction](https://xahau.org/transaction-basics.html#authorizing-transactions) by digitally [signing it](https://xahau-py.readthedocs.io/en/stable/source/xahau.core.keypairs.html?highlight=sign#xahau.core.keypairs.sign) with the account's private key. The `xahau-py` library provides several methods to simplify this process.
 
 
-Use the [`xrpl.transaction`](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.transaction.html) module to sign and submit transactions. The module offers three ways to do this:
+Use the [`xahau.transaction`](https://xahau-py.readthedocs.io/en/stable/source/xahau.transaction.html) module to sign and submit transactions. The module offers three ways to do this:
 
-* [`sign_and_submit`](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.transaction.html#xrpl.transaction.sign_and_submit) — Signs a transaction locally, then submits it to the XRP Ledger. This method does not implement [reliable transaction submission](https://xrpl.org/reliable-transaction-submission.html#reliable-transaction-submission) best practices, so only use it for development or testing purposes.
+* [`sign_and_submit`](https://xahau-py.readthedocs.io/en/stable/source/xahau.transaction.html#xahau.transaction.sign_and_submit) — Signs a transaction locally, then submits it to the XRP Ledger. This method does not implement [reliable transaction submission](https://xahau.org/reliable-transaction-submission.html#reliable-transaction-submission) best practices, so only use it for development or testing purposes.
 
-* [`sign`](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.transaction.html#xrpl.transaction.sign) — Signs a transaction locally. This method **does  not** submit the transaction to the XRP Ledger.
+* [`sign`](https://xahau-py.readthedocs.io/en/stable/source/xahau.transaction.html#xahau.transaction.sign) — Signs a transaction locally. This method **does  not** submit the transaction to the XRP Ledger.
 
-* [`submit_and_wait`](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.transaction.html#xrpl.transaction.submit_and_wait) — An implementation of the [reliable transaction submission guidelines](https://xrpl.org/reliable-transaction-submission.html#reliable-transaction-submission), this method submits a signed transaction to the XRP Ledger and then verifies that it has been included in a validated ledger (or has failed to do so). Use this method to submit transactions for production purposes.
+* [`submit_and_wait`](https://xahau-py.readthedocs.io/en/stable/source/xahau.transaction.html#xahau.transaction.submit_and_wait) — An implementation of the [reliable transaction submission guidelines](https://xahau.org/reliable-transaction-submission.html#reliable-transaction-submission), this method submits a signed transaction to the XRP Ledger and then verifies that it has been included in a validated ledger (or has failed to do so). Use this method to submit transactions for production purposes.
 
 
 ```py
-from xrpl.models.transactions import Payment
-from xrpl.transaction import sign, submit_and_wait
-from xrpl.ledger import get_latest_validated_ledger_sequence
-from xrpl.account import get_next_valid_seq_number
+from xahau.models.transactions import Payment
+from xahau.transaction import sign, submit_and_wait
+from xahau.ledger import get_latest_validated_ledger_sequence
+from xahau.account import get_next_valid_seq_number
 
 current_validated_ledger = get_latest_validated_ledger_sequence(client)
 
 # prepare the transaction
 # the amount is expressed in drops, not XRP
-# see https://xrpl.org/basic-data-types.html#specifying-currency-amounts
+# see https://xahau.org/basic-data-types.html#specifying-currency-amounts
 my_tx_payment = Payment(
     account=test_wallet.address,
     amount="2200000",
@@ -197,10 +197,10 @@ tx_response = submit_and_wait(my_tx_payment_signed, client)
 #### Get fee from the XRP Ledger
 
 
-In most cases, you can specify the minimum [transaction cost](https://xrpl.org/transaction-cost.html#current-transaction-cost) of `"10"` for the `fee` field unless you have a strong reason not to. But if you want to get the [current load-balanced transaction cost](https://xrpl.org/transaction-cost.html#current-transaction-cost) from the network, you can use the `get_fee` function:
+In most cases, you can specify the minimum [transaction cost](https://xahau.org/transaction-cost.html#current-transaction-cost) of `"10"` for the `fee` field unless you have a strong reason not to. But if you want to get the [current load-balanced transaction cost](https://xahau.org/transaction-cost.html#current-transaction-cost) from the network, you can use the `get_fee` function:
 
 ```py
-from xrpl.ledger import get_fee
+from xahau.ledger import get_fee
 fee = get_fee(client)
 print(fee)
 # 10
@@ -208,14 +208,14 @@ print(fee)
 
 #### Auto-filled fields
 
-The `xrpl-py` library automatically populates the `fee`, `sequence` and `last_ledger_sequence` fields when you create transactions. In the example above, you could omit those fields and let the library fill them in for you.
+The `xahau-py` library automatically populates the `fee`, `sequence` and `last_ledger_sequence` fields when you create transactions. In the example above, you could omit those fields and let the library fill them in for you.
 
 ```py
-from xrpl.models.transactions import Payment
-from xrpl.transaction import submit_and_wait, autofill_and_sign
+from xahau.models.transactions import Payment
+from xahau.transaction import submit_and_wait, autofill_and_sign
 # prepare the transaction
 # the amount is expressed in drops, not XRP
-# see https://xrpl.org/basic-data-types.html#specifying-currency-amounts
+# see https://xahau.org/basic-data-types.html#specifying-currency-amounts
 my_tx_payment = Payment(
     account=test_wallet.address,
     amount="2200000",
@@ -258,9 +258,9 @@ tx_response = submit_and_wait(my_tx_payment_signed, client)
 You can send `subscribe` and `unsubscribe` requests only using the WebSocket network client. These request methods allow you to be alerted of certain situations as they occur, such as when a new ledger is declared.
 
 ```py
-from xrpl.clients import WebsocketClient
+from xahau.clients import WebsocketClient
 url = "wss://s.altnet.rippletest.net/"
-from xrpl.models import Subscribe, StreamParameter
+from xahau.models import Subscribe, StreamParameter
 req = Subscribe(streams=[StreamParameter.LEDGER])
 # NOTE: this code will run forever without a timeout, until the process is killed
 with WebsocketClient(url) as client:
@@ -276,17 +276,17 @@ with WebsocketClient(url) as client:
 
 ### Asynchronous Code
 
-This library supports Python's [`asyncio`](https://docs.python.org/3/library/asyncio.html) package, which is used to run asynchronous code. All the async code is in [`xrpl.asyncio`](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.asyncio.html) If you are writing asynchronous code, please note that you will not be able to use any synchronous sugar functions, due to how event loops are handled. However, every synchronous method has a corresponding asynchronous method that you can use.
+This library supports Python's [`asyncio`](https://docs.python.org/3/library/asyncio.html) package, which is used to run asynchronous code. All the async code is in [`xahau.asyncio`](https://xahau-py.readthedocs.io/en/stable/source/xahau.asyncio.html) If you are writing asynchronous code, please note that you will not be able to use any synchronous sugar functions, due to how event loops are handled. However, every synchronous method has a corresponding asynchronous method that you can use.
 
 This sample code is the asynchronous equivalent of the above section on submitting a transaction.
 
 ```py
 import asyncio
-from xrpl.models.transactions import Payment
-from xrpl.asyncio.transaction import sign, submit_and_wait
-from xrpl.asyncio.ledger import get_latest_validated_ledger_sequence
-from xrpl.asyncio.account import get_next_valid_seq_number
-from xrpl.asyncio.clients import AsyncJsonRpcClient
+from xahau.models.transactions import Payment
+from xahau.asyncio.transaction import sign, submit_and_wait
+from xahau.asyncio.ledger import get_latest_validated_ledger_sequence
+from xahau.asyncio.account import get_next_valid_seq_number
+from xahau.asyncio.clients import AsyncJsonRpcClient
 
 async_client = AsyncJsonRpcClient(JSON_RPC_URL)
 
@@ -295,7 +295,7 @@ async def submit_sample_transaction():
 
     # prepare the transaction
     # the amount is expressed in drops, not XRP
-    # see https://xrpl.org/basic-data-types.html#specifying-currency-amounts
+    # see https://xahau.org/basic-data-types.html#specifying-currency-amounts
     my_tx_payment = Payment(
         account=test_wallet.address,
         amount="2200000",
@@ -312,11 +312,11 @@ asyncio.run(submit_sample_transaction())
 
 ### Encode addresses
 
-Use [`xrpl.core.addresscodec`](https://xrpl-py.readthedocs.io/en/stable/source/xrpl.core.addresscodec.html) to encode and decode addresses into and from the ["classic" and X-address formats](https://xrpl.org/accounts.html#addresses).
+Use [`xahau.core.addresscodec`](https://xahau-py.readthedocs.io/en/stable/source/xahau.core.addresscodec.html) to encode and decode addresses into and from the ["classic" and X-address formats](https://xahau.org/accounts.html#addresses).
 
 ```py
 # convert classic address to x-address
-from xrpl.core import addresscodec
+from xahau.core import addresscodec
 testnet_xaddress = (
     addresscodec.classic_address_to_xaddress(
         "rMPUKmzmDWEX1tQhzQ8oGFNfAEhnWNFwz",
@@ -330,7 +330,7 @@ print(testnet_xaddress)
 
 ## Migrating
 
-If you're currently using `xrpl-py` version 1, you can use [this guide to migrate to v2](https://xrpl.org/blog/2023/xrpl-py-2.0-release.html).
+If you're currently using `xahau-py` version 1, you can use [this guide to migrate to v2](https://xahau.org/blog/2023/xahau-py-2.0-release.html).
 
 ## Contributing
 
@@ -338,25 +338,25 @@ If you want to contribute to this project, see [CONTRIBUTING.md].
 
 ### Mailing Lists
 
-We have a low-traffic mailing list for announcements of new `xrpl-py` releases. (About 1 email per week)
+We have a low-traffic mailing list for announcements of new `xahau-py` releases. (About 1 email per week)
 
-+ [Subscribe to xrpl-announce](https://groups.google.com/g/xrpl-announce)
++ [Subscribe to xahau-announce](https://groups.google.com/g/xahau-announce)
 
 If you're using the XRP Ledger in production, you should run a [rippled server](https://github.com/ripple/rippled) and subscribe to the ripple-server mailing list as well.
 
 + [Subscribe to ripple-server](https://groups.google.com/g/ripple-server)
 
 ### Code Samples
-- For samples of common use cases, see the [XRPL.org Code Samples](https://xrpl.org/code-samples.html) page.
+- For samples of common use cases, see the [XRPL.org Code Samples](https://xahau.org/code-samples.html) page.
 - You can also browse those samples [directly on GitHub](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples).
 
 ### Report an issue
 
-Experienced an issue? Report it [here](https://github.com/XRPLF/xrpl-py/issues/new).
+Experienced an issue? Report it [here](https://github.com/XRPLF/xahau-py/issues/new).
 
 ## License
 
-The `xrpl-py` library is licensed under the ISC License. See [LICENSE] for more information.
+The `xahau-py` library is licensed under the ISC License. See [LICENSE] for more information.
 
 
 

@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
-from xrpl.core.binarycodec.types.st_object import STObject
+from xahau.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
+from xahau.core.binarycodec.types.st_object import STObject
 
 expected_json = {
     "Account": "raD5qJMAShLeHZXf9wjUmo6vRK4arj9cF3",

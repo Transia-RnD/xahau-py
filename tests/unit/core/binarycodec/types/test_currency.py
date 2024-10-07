@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-import xrpl.core.binarycodec.types.currency as currency
-from xrpl.core.binarycodec.exceptions import XRPLBinaryCodecException
+import xahau.core.binarycodec.types.currency as currency
+from xahau.core.binarycodec.exceptions import XRPLBinaryCodecException
 
 XRP_HEX_CODE = "0000000000000000000000000000000000000000"
 ILLEGAL_XRP_HEX_CODE = "0000000000000000000000005852500000000000"

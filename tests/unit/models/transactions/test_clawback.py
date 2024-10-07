@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import Clawback
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.transactions import Clawback
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _XRP_AMOUNT = "1000"

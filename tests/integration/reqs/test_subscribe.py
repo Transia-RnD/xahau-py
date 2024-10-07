@@ -5,9 +5,9 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import DESTINATION, WALLET
-from xrpl.models.requests import StreamParameter, Subscribe
-from xrpl.models.requests.unsubscribe import Unsubscribe
-from xrpl.models.transactions.payment import Payment
+from xahau.models.requests import StreamParameter, Subscribe
+from xahau.models.requests.unsubscribe import Unsubscribe
+from xahau.models.transactions.payment import Payment
 
 _MESSAGE_LIMIT = 3
 

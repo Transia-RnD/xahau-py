@@ -2,11 +2,11 @@ import asyncio
 from unittest import TestCase
 
 from tests.unit.core.addresscodec.test_main_test_cases import test_cases
-from xrpl.asyncio.transaction.main import _calculate_fee_per_transaction_type
-from xrpl.core import addresscodec
-from xrpl.core.addresscodec.main import MAX_32_BIT_UNSIGNED_INT
-from xrpl.models.amounts.issued_currency_amount import IssuedCurrencyAmount
-from xrpl.models.transactions.payment import Payment
+from xahau.asyncio.transaction.main import _calculate_fee_per_transaction_type
+from xahau.core import addresscodec
+from xahau.core.addresscodec.main import MAX_32_BIT_UNSIGNED_INT
+from xahau.models.amounts.issued_currency_amount import IssuedCurrencyAmount
+from xahau.models.transactions.payment import Payment
 
 
 class TestMain(TestCase):

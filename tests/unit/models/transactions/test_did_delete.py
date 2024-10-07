@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from xrpl.models import DIDDelete
+from xahau.models import DIDDelete
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 

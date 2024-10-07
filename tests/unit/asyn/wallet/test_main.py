@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl.constants import CryptoAlgorithm, XRPLException
-from xrpl.core.addresscodec.exceptions import XRPLAddressCodecException
-from xrpl.wallet.main import Wallet
+from xahau.constants import CryptoAlgorithm, XRPLException
+from xahau.core.addresscodec.exceptions import XRPLAddressCodecException
+from xahau.wallet.main import Wallet
 
 constants = {
     "regular_key_pair": {

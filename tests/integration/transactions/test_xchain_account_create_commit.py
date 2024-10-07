@@ -4,8 +4,8 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import BRIDGE, WALLET
-from xrpl.models import AccountInfo, XChainAccountCreateCommit
-from xrpl.wallet import Wallet
+from xahau.models import AccountInfo, XChainAccountCreateCommit
+from xahau.wallet import Wallet
 
 
 class TestXChainAccountCreateCommit(IntegrationTestCase):

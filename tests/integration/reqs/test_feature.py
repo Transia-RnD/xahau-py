@@ -1,6 +1,6 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.it_utils import test_async_and_sync
-from xrpl.models.requests import Feature
+from xahau.models.requests import Feature
 
 AMM_AMENDMENT = "8CC0774A3BF66D1D22E76BBDA8E8A232E6B6313834301B3B23E8601196AE6455"
 

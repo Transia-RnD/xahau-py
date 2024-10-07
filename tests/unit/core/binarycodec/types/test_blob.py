@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.core.binarycodec import XRPLBinaryCodecException
-from xrpl.core.binarycodec.types.blob import Blob
+from xahau.core.binarycodec import XRPLBinaryCodecException
+from xahau.core.binarycodec.types.blob import Blob
 
 
 class TestBlob(TestCase):

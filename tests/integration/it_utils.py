@@ -8,29 +8,29 @@ from time import sleep
 from typing import Any, Dict, cast
 
 import xrpl  # noqa: F401 - needed for sync tests
-from xrpl.asyncio.clients import AsyncJsonRpcClient, AsyncWebsocketClient
-from xrpl.asyncio.clients.async_client import AsyncClient
-from xrpl.asyncio.transaction import sign_and_submit as sign_and_submit_async
-from xrpl.clients import Client, JsonRpcClient, WebsocketClient
-from xrpl.clients.sync_client import SyncClient
-from xrpl.constants import CryptoAlgorithm
-from xrpl.models import GenericRequest, Payment, Request, Response, Transaction
-from xrpl.models.amounts.issued_currency_amount import IssuedCurrencyAmount
-from xrpl.models.currencies.issued_currency import IssuedCurrency
-from xrpl.models.currencies.xrp import XRP
-from xrpl.models.transactions.account_set import AccountSet, AccountSetAsfFlag
-from xrpl.models.transactions.amm_create import AMMCreate
-from xrpl.models.transactions.trust_set import TrustSet, TrustSetFlag
-from xrpl.transaction import sign_and_submit  # noqa: F401 - needed for sync tests
-from xrpl.transaction import (  # noqa: F401 - needed for sync tests
+from xahau.asyncio.clients import AsyncJsonRpcClient, AsyncWebsocketClient
+from xahau.asyncio.clients.async_client import AsyncClient
+from xahau.asyncio.transaction import sign_and_submit as sign_and_submit_async
+from xahau.clients import Client, JsonRpcClient, WebsocketClient
+from xahau.clients.sync_client import SyncClient
+from xahau.constants import CryptoAlgorithm
+from xahau.models import GenericRequest, Payment, Request, Response, Transaction
+from xahau.models.amounts.issued_currency_amount import IssuedCurrencyAmount
+from xahau.models.currencies.issued_currency import IssuedCurrency
+from xahau.models.currencies.xrp import XRP
+from xahau.models.transactions.account_set import AccountSet, AccountSetAsfFlag
+from xahau.models.transactions.amm_create import AMMCreate
+from xahau.models.transactions.trust_set import TrustSet, TrustSetFlag
+from xahau.transaction import sign_and_submit  # noqa: F401 - needed for sync tests
+from xahau.transaction import (  # noqa: F401 - needed for sync tests
     submit as submit_transaction_alias,
 )
-from xrpl.wallet import Wallet
+from xahau.wallet import Wallet
 
 JSON_RPC_URL = "http://127.0.0.1:5005"
 WEBSOCKET_URL = "ws://127.0.0.1:6006"
 
-JSON_TESTNET_URL = "https://s.altnet.rippletest.net:51234"
+JSON_TESTNET_URL = "https://xahau-test.net"
 WEBSOCKET_TESTNET_URL = "wss://s.altnet.rippletest.net:51233"
 
 JSON_RPC_CLIENT = JsonRpcClient(JSON_RPC_URL)

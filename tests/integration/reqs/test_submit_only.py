@@ -1,11 +1,11 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.it_utils import test_async_and_sync
 from tests.integration.reusable_values import WALLET
-from xrpl.asyncio.transaction import autofill_and_sign
-from xrpl.core.binarycodec import encode
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.requests import SubmitOnly
-from xrpl.models.transactions import OfferCreate
+from xahau.asyncio.transaction import autofill_and_sign
+from xahau.core.binarycodec import encode
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.requests import SubmitOnly
+from xahau.models.transactions import OfferCreate
 
 TX = OfferCreate(
     account=WALLET.address,

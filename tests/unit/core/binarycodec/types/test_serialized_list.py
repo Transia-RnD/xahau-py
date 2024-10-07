@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
-from xrpl.core.binarycodec.exceptions import XRPLBinaryCodecException
-from xrpl.core.binarycodec.types.st_array import _ARRAY_END_MARKER, STArray
+from xahau.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
+from xahau.core.binarycodec.exceptions import XRPLBinaryCodecException
+from xahau.core.binarycodec.types.st_array import _ARRAY_END_MARKER, STArray
 
 MEMO = {
     "Memo": {

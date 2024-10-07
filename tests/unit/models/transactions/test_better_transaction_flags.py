@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from xrpl import models
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.transaction.main import sign
-from xrpl.wallet.main import Wallet
+from xahau import models
+from xahau.models.exceptions import XRPLModelException
+from xahau.transaction.main import sign
+from xahau.wallet.main import Wallet
 
 # from typing import Iterable
 

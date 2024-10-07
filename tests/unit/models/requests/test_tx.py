@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.requests import Tx
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.requests import Tx
 
 _TRANSACTION_HASH = "C53ECF838647FA5A4C780377025FEC7999AB4182590510CA461444B207AB74A9"
 _CTID = "C005523E00000000"

@@ -1,9 +1,9 @@
 from sys import maxsize
 from unittest import TestCase
 
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import AMMCreate
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.transactions import AMMCreate
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _IOU_ISSUER = "rPyfep3gcLzkosKC9XiE77Y8DZWG6iWDT9"

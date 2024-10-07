@@ -4,9 +4,9 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import DESTINATION, WALLET
-from xrpl.models.response import ResponseStatus
-from xrpl.models.transactions import AccountDelete
-from xrpl.utils import xrp_to_drops
+from xahau.models.response import ResponseStatus
+from xahau.models.transactions import AccountDelete
+from xahau.utils import xrp_to_drops
 
 # We can re-use the shared wallet bc this test should fail to actually delete
 # the associated account.

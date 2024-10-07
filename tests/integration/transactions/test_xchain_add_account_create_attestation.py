@@ -4,16 +4,16 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import BRIDGE, WITNESS_WALLET
-from xrpl.asyncio.account import does_account_exist
-from xrpl.core.binarycodec import encode
-from xrpl.core.keypairs import sign
-from xrpl.models import (
+from xahau.asyncio.account import does_account_exist
+from xahau.core.binarycodec import encode
+from xahau.core.keypairs import sign
+from xahau.models import (
     AccountObjects,
     AccountObjectType,
     XChainAddAccountCreateAttestation,
 )
-from xrpl.utils import xrp_to_drops
-from xrpl.wallet import Wallet
+from xahau.utils import xrp_to_drops
+from xahau.wallet import Wallet
 
 
 class TestXChainAddAccountCreateAttestation(IntegrationTestCase):

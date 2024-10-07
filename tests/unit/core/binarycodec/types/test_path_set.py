@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl.core.binarycodec import XRPLBinaryCodecException
-from xrpl.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
-from xrpl.core.binarycodec.types.path_set import PathSet
+from xahau.core.binarycodec import XRPLBinaryCodecException
+from xahau.core.binarycodec.binary_wrappers.binary_parser import BinaryParser
+from xahau.core.binarycodec.types.path_set import PathSet
 
 buffer = (
     "31585E1F3BD02A15D6"

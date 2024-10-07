@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-import xrpl.core.binarycodec.field_id_codec as field_id_codec
+import xahau.core.binarycodec.field_id_codec as field_id_codec
 from tests.unit.core.binarycodec.fixtures import data_driven_fixtures
 
 

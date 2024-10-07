@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import DIDSet
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.transactions import DIDSet
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _VALID_FIELD = "1234567890abcdefABCDEF"

@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.currencies import XRP, IssuedCurrency
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import AMMBid, AuthAccount
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.currencies import XRP, IssuedCurrency
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.transactions import AMMBid, AuthAccount
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _ASSET = XRP()

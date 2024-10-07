@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.currencies import IssuedCurrency
-from xrpl.models.exceptions import XRPLModelException
+from xahau.models.currencies import IssuedCurrency
+from xahau.models.exceptions import XRPLModelException
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 

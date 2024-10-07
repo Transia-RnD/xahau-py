@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.currencies import XRP
-from xrpl.utils import xrp_to_drops
+from xahau.models.currencies import XRP
+from xahau.utils import xrp_to_drops
 
 
 class TestXRP(TestCase):

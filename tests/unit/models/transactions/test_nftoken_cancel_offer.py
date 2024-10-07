@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import NFTokenCancelOffer
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.transactions import NFTokenCancelOffer
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _FEE = "0.00001"

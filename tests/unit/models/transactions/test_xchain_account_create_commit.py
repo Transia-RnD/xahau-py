@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from xrpl.models import (
+from xahau.models import (
     XRP,
     IssuedCurrency,
     XChainAccountCreateCommit,

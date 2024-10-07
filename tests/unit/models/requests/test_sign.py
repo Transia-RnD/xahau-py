@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from xrpl.constants import CryptoAlgorithm
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.requests import Sign
-from xrpl.models.transactions import AccountSet, AccountSetAsfFlag
+from xahau.constants import CryptoAlgorithm
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.requests import Sign
+from xahau.models.transactions import AccountSet, AccountSetAsfFlag
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _FEE = "0.00001"

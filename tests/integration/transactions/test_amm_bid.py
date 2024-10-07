@@ -10,10 +10,10 @@ from tests.integration.reusable_values import (
     AMM_ISSUER_WALLET,
     WALLET,
 )
-from xrpl.models.amounts.issued_currency_amount import IssuedCurrencyAmount
-from xrpl.models.auth_account import AuthAccount
-from xrpl.models.requests.amm_info import AMMInfo
-from xrpl.models.transactions.amm_bid import AMMBid
+from xahau.models.amounts.issued_currency_amount import IssuedCurrencyAmount
+from xahau.models.auth_account import AuthAccount
+from xahau.models.requests.amm_info import AMMInfo
+from xahau.models.transactions.amm_bid import AMMBid
 
 asset = AMM_ASSET
 asset2 = AMM_ASSET2

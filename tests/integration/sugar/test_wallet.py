@@ -3,14 +3,14 @@ from threading import Thread
 
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.it_utils import submit_transaction_async
-from xrpl.asyncio.clients import AsyncJsonRpcClient, AsyncWebsocketClient
-from xrpl.asyncio.wallet import generate_faucet_wallet
-from xrpl.clients import JsonRpcClient, WebsocketClient
-from xrpl.core.addresscodec.main import classic_address_to_xaddress
-from xrpl.models.requests import AccountInfo
-from xrpl.models.transactions import Payment
-from xrpl.wallet import generate_faucet_wallet as sync_generate_faucet_wallet
-from xrpl.wallet.main import Wallet
+from xahau.asyncio.clients import AsyncJsonRpcClient, AsyncWebsocketClient
+from xahau.asyncio.wallet import generate_faucet_wallet
+from xahau.clients import JsonRpcClient, WebsocketClient
+from xahau.core.addresscodec.main import classic_address_to_xaddress
+from xahau.models.requests import AccountInfo
+from xahau.models.transactions import Payment
+from xahau.wallet import generate_faucet_wallet as sync_generate_faucet_wallet
+from xahau.wallet.main import Wallet
 
 
 def sync_generate_faucet_wallet_and_fund_again(

@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "xrpl-py"
+name = "xahau-py"
 version = "3.0.0"
-description = "A complete Python library for interacting with the XRP ledger"
+description = "A complete Python library for interacting with the Xahau Ledger"
 readme = "README.md"
-repository = "https://github.com/XRPLF/xrpl-py"
+repository = "https://github.com/Xahau/xahau-py"
 authors = [
   "Mayukha Vadari <mvadari@ripple.com>",
   "Greg Weisbrod <gweisbrod@ripple.com>",
@@ -13,20 +13,22 @@ authors = [
   "Mayur Bhandary <mbhandary@ripple.com>",
   "Nathan Nichols <nnichols@ripple.com>",
   "Caleb Kniffen <ckniffen@ripple.com>",
-  "Omar Khan <okhan@ripple.com>"
+  "Omar Khan <okhan@ripple.com>",
+  "Denis Angell <denis@xrpl-labs.com>",
+  "Tequ <tequ@xrplf.com>"
 ]
 keywords = [
-  "xrp",
-  "xrpl",
+  "xah",
+  "xahau",
   "cryptocurrency",
 ]
 license = "ISC"
-documentation = "https://xrpl-py.readthedocs.io"
+documentation = "https://xahau-py.readthedocs.io"
 include = [
   "LICENSE",
 ]
 packages = [
-  { include = "xrpl" },
+  { include = "xahau" },
 ]
 
 [tool.poetry.dependencies]
@@ -69,7 +71,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.coverage.run]
 branch = true
-source = ["xrpl"]
+source = ["xahau"]
 
 [tool.coverage.report]
 show_missing = true

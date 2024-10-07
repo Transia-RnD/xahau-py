@@ -6,11 +6,11 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import DESTINATION, WALLET
-from xrpl.asyncio.account import does_account_exist, get_balance, get_latest_transaction
-from xrpl.asyncio.clients.exceptions import XRPLRequestFailureException
-from xrpl.core.addresscodec import classic_address_to_xaddress
-from xrpl.models.transactions import Payment
-from xrpl.wallet import Wallet
+from xahau.asyncio.account import does_account_exist, get_balance, get_latest_transaction
+from xahau.asyncio.clients.exceptions import XRPLRequestFailureException
+from xahau.core.addresscodec import classic_address_to_xaddress
+from xahau.models.transactions import Payment
+from xahau.wallet import Wallet
 
 NEW_WALLET = Wallet.create()
 fund_wallet(NEW_WALLET)

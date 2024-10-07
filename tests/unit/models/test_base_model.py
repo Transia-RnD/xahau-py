@@ -2,10 +2,10 @@ import json
 import os
 from unittest import TestCase
 
-from xrpl.models import XRPLModelException
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.currencies import XRP, IssuedCurrency
-from xrpl.models.requests import (
+from xahau.models import XRPLModelException
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.currencies import XRP, IssuedCurrency
+from xahau.models.requests import (
     AccountChannels,
     BookOffers,
     PathFind,
@@ -16,8 +16,8 @@ from xrpl.models.requests import (
     SubmitMultisigned,
     SubmitOnly,
 )
-from xrpl.models.requests.request import _DEFAULT_API_VERSION
-from xrpl.models.transactions import (
+from xahau.models.requests.request import _DEFAULT_API_VERSION
+from xahau.models.transactions import (
     AMMBid,
     AuthAccount,
     CheckCreate,
@@ -30,8 +30,8 @@ from xrpl.models.transactions import (
     TrustSetFlag,
     XChainClaim,
 )
-from xrpl.models.transactions.transaction import Transaction
-from xrpl.models.xchain_bridge import XChainBridge
+from xahau.models.transactions.transaction import Transaction
+from xahau.models.xchain_bridge import XChainBridge
 
 currency = "BTC"
 value = "100"

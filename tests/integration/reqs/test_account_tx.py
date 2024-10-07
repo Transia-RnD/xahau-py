@@ -1,7 +1,7 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.it_utils import test_async_and_sync
 from tests.integration.reusable_values import WALLET
-from xrpl.models.requests import AccountTx
+from xahau.models.requests import AccountTx
 
 
 class TestAccountTx(IntegrationTestCase):
@@ -52,6 +52,6 @@ class TestAccountTx(IntegrationTestCase):
             AccountTx(account=WALLET.address, api_version=2)
         )
 
-        # if api_version is not explicitly specified, xrpl-py inserts api_version:2
+        # if api_version is not explicitly specified, xahau-py inserts api_version:2
         # inside the Requests
         self.assertEqual(response_with_version.result, response_without_version.result)

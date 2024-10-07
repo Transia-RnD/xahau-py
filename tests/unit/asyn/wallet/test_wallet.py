@@ -1,13 +1,13 @@
 from unittest import TestCase
 
-from xrpl.asyncio.wallet.wallet_generation import (
+from xahau.asyncio.wallet.wallet_generation import (
     _DEV_FAUCET_URL,
     _TEST_FAUCET_URL,
     get_faucet_url,
     process_faucet_host_url,
 )
-from xrpl.core.addresscodec import classic_address_to_xaddress
-from xrpl.wallet import Wallet
+from xahau.core.addresscodec import classic_address_to_xaddress
+from xahau.wallet import Wallet
 
 
 class TestWallet(TestCase):

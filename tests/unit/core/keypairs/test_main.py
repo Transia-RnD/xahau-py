@@ -1,10 +1,10 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-from xrpl.constants import CryptoAlgorithm
-from xrpl.core import keypairs
-from xrpl.core.addresscodec.exceptions import XRPLAddressCodecException
-from xrpl.core.keypairs.exceptions import XRPLKeypairsException
+from xahau.constants import CryptoAlgorithm
+from xahau.core import keypairs
+from xahau.core.addresscodec.exceptions import XRPLAddressCodecException
+from xahau.core.keypairs.exceptions import XRPLKeypairsException
 
 _DUMMY_HEX = "0102030405060708090a0b0c0d0e0f10"
 _DUMMY_HEX_TOO_SHORT = "0102030405060708090a0b0c0d0e"
@@ -15,7 +15,7 @@ class TestMain(TestCase):
     # unfortunately, this patching is very brittle; it depends on the syntax
     # used to import secrets within the calling module.
     @patch(
-        "xrpl.core.keypairs.main.token_bytes",
+        "xahau.core.keypairs.main.token_bytes",
         autospec=True,
         return_value=bytes.fromhex(_DUMMY_HEX),
     )

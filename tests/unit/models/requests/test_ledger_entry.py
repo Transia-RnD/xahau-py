@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl.models import XRP, LedgerEntry, XChainBridge
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.requests.ledger_entry import Oracle, RippleState
+from xahau.models import XRP, LedgerEntry, XChainBridge
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.requests.ledger_entry import Oracle, RippleState
 
 
 class TestLedgerEntry(TestCase):

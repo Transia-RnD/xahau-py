@@ -1,9 +1,9 @@
 import time
 from unittest import TestCase
 
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import OracleSet
-from xrpl.models.transactions.oracle_set import (
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.transactions import OracleSet
+from xahau.models.transactions.oracle_set import (
     EPOCH_OFFSET,
     MAX_ORACLE_PROVIDER,
     MAX_ORACLE_SYMBOL_CLASS,

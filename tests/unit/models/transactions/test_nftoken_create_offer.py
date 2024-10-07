@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import NFTokenCreateOffer, NFTokenCreateOfferFlag
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.transactions import NFTokenCreateOffer, NFTokenCreateOfferFlag
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _ANOTHER_ACCOUNT = "rsA2LpzuawewSBQXkiju3YQTMzW13pAAdW"

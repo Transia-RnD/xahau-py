@@ -1,10 +1,10 @@
 """Example of how to find the best path to trade with"""
 
-from xrpl.clients import WebsocketClient
-from xrpl.models import IssuedCurrencyAmount, PathFind, Payment
-from xrpl.models.requests import PathFindSubcommand
-from xrpl.transaction import autofill_and_sign
-from xrpl.wallet import generate_faucet_wallet
+from xahau.clients import WebsocketClient
+from xahau.models import IssuedCurrencyAmount, PathFind, Payment
+from xahau.models.requests import PathFindSubcommand
+from xahau.transaction import autofill_and_sign
+from xahau.wallet import generate_faucet_wallet
 
 # References
 # - https://xrpl.org/paths.html#paths

@@ -4,8 +4,8 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import WALLET
-from xrpl.models.response import ResponseStatus
-from xrpl.models.transactions import CheckCash
+from xahau.models.response import ResponseStatus
+from xahau.models.transactions import CheckCash
 
 ACCOUNT = WALLET.address
 CHECK_ID = "838766BA2B995C00744175F69A1B11E32C3DBC40E64801A4056FCBD657F57334"

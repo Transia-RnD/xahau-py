@@ -4,8 +4,8 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import WALLET
-from xrpl.models import AccountObjects, AccountObjectType, DIDDelete, DIDSet
-from xrpl.models.response import ResponseStatus
+from xahau.models import AccountObjects, AccountObjectType, DIDDelete, DIDSet
+from xahau.models.response import ResponseStatus
 
 _VALID_FIELD = "1234567890abcdefABCDEF"
 

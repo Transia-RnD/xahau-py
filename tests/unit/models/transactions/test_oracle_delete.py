@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from xrpl.models.transactions import OracleDelete
+from xahau.models.transactions import OracleDelete
 
 _ACCOUNT = "rsA2LpzuawewSBQXkiju3YQTMzW13pAAdW"
 

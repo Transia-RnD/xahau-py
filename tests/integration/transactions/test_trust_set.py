@@ -4,10 +4,10 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import WALLET
-from xrpl.models.amounts import IssuedCurrencyAmount
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import TrustSet, TrustSetFlag
-from xrpl.wallet import Wallet
+from xahau.models.amounts import IssuedCurrencyAmount
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.transactions import TrustSet, TrustSetFlag
+from xahau.wallet import Wallet
 
 
 class TestTrustSet(IntegrationTestCase):

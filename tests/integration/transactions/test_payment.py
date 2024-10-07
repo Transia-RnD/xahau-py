@@ -4,8 +4,8 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import DESTINATION, WALLET
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import Payment
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.transactions import Payment
 
 
 class TestPayment(IntegrationTestCase):

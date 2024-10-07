@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.constants import CryptoAlgorithm
-from xrpl.core import addresscodec
+from xahau.constants import CryptoAlgorithm
+from xahau.core import addresscodec
 
 
 class TestCodec(TestCase):

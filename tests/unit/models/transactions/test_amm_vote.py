@@ -1,9 +1,9 @@
 from sys import maxsize
 from unittest import TestCase
 
-from xrpl.models.currencies import XRP, IssuedCurrency
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import AMMVote
+from xahau.models.currencies import XRP, IssuedCurrency
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.transactions import AMMVote
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _ASSET = XRP()

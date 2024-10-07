@@ -6,23 +6,23 @@ from tests.integration.it_utils import (
 )
 from tests.integration.reusable_values import DESTINATION as DESTINATION_WALLET
 from tests.integration.reusable_values import WALLET
-from xrpl.asyncio.ledger import get_fee, get_latest_validated_ledger_sequence
-from xrpl.asyncio.transaction import (
+from xahau.asyncio.ledger import get_fee, get_latest_validated_ledger_sequence
+from xahau.asyncio.transaction import (
     XRPLReliableSubmissionException,
     autofill,
     autofill_and_sign,
     sign,
 )
-from xrpl.asyncio.transaction import submit as submit_transaction_alias_async
-from xrpl.asyncio.transaction import submit_and_wait
-from xrpl.asyncio.transaction.main import sign_and_submit
-from xrpl.clients import XRPLRequestFailureException
-from xrpl.core.addresscodec import classic_address_to_xaddress
-from xrpl.core.binarycodec.main import encode
-from xrpl.models.exceptions import XRPLException
-from xrpl.models.requests import ServerState, Tx
-from xrpl.models.transactions import AccountDelete, AccountSet, EscrowFinish, Payment
-from xrpl.utils import xrp_to_drops
+from xahau.asyncio.transaction import submit as submit_transaction_alias_async
+from xahau.asyncio.transaction import submit_and_wait
+from xahau.asyncio.transaction.main import sign_and_submit
+from xahau.clients import XRPLRequestFailureException
+from xahau.core.addresscodec import classic_address_to_xaddress
+from xahau.core.binarycodec.main import encode
+from xahau.models.exceptions import XRPLException
+from xahau.models.requests import ServerState, Tx
+from xahau.models.transactions import AccountDelete, AccountSet, EscrowFinish, Payment
+from xahau.utils import xrp_to_drops
 
 ACCOUNT = WALLET.address
 DESTINATION = DESTINATION_WALLET.address

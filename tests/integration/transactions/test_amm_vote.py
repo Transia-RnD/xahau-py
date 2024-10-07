@@ -10,8 +10,8 @@ from tests.integration.reusable_values import (
     AMM_ISSUER_WALLET,
     WALLET,
 )
-from xrpl.models.requests.amm_info import AMMInfo
-from xrpl.models.transactions.amm_vote import AMMVote
+from xahau.models.requests.amm_info import AMMInfo
+from xahau.models.transactions.amm_vote import AMMVote
 
 asset = AMM_ASSET
 asset2 = AMM_ASSET2

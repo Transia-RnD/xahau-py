@@ -5,8 +5,8 @@ from unittest import TestCase
 from tests.unit.core.binarycodec.fixtures.data_driven_fixtures import (
     get_whole_object_tests,
 )
-from xrpl.core.binarycodec.exceptions import XRPLBinaryCodecException
-from xrpl.core.binarycodec.main import (
+from xahau.core.binarycodec.exceptions import XRPLBinaryCodecException
+from xahau.core.binarycodec.main import (
     decode,
     encode,
     encode_for_multisigning,

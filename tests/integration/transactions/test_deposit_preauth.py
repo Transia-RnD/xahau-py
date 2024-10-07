@@ -4,8 +4,8 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import WALLET
-from xrpl.models.response import ResponseStatus
-from xrpl.models.transactions import DepositPreauth
+from xahau.models.response import ResponseStatus
+from xahau.models.transactions import DepositPreauth
 
 ACCOUNT = WALLET.address
 ADDRESS = "rEhxGqkqPPSxQ3P25J66ft5TwpzV14k2de"

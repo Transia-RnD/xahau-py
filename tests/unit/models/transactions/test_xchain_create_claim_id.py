@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from xrpl.models import XRP, XChainBridge, XChainCreateClaimID, XRPLModelException
+from xahau.models import XRP, XChainBridge, XChainCreateClaimID, XRPLModelException
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _ACCOUNT2 = "rpZc4mVfWUif9CRoHRKKcmhu1nx2xktxBo"

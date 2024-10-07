@@ -6,10 +6,10 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import WALLET
-from xrpl.models import AccountObjects, AccountObjectType, OracleSet
-from xrpl.models.response import ResponseStatus
-from xrpl.models.transactions.oracle_set import PriceData
-from xrpl.utils import str_to_hex
+from xahau.models import AccountObjects, AccountObjectType, OracleSet
+from xahau.models.response import ResponseStatus
+from xahau.models.transactions.oracle_set import PriceData
+from xahau.utils import str_to_hex
 
 _PROVIDER = str_to_hex("provider")
 _ASSET_CLASS = str_to_hex("currency")

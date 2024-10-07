@@ -5,7 +5,7 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import WALLET
-from xrpl.models import (
+from xahau.models import (
     AccountSet,
     AccountSetAsfFlag,
     Clawback,
@@ -14,7 +14,7 @@ from xrpl.models import (
     TrustSet,
     TrustSetFlag,
 )
-from xrpl.wallet import Wallet
+from xahau.wallet import Wallet
 
 HOLDER = Wallet.create()
 fund_wallet(HOLDER)

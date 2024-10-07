@@ -4,21 +4,21 @@ from tests.unit.core.binarycodec.fixtures.data_driven_fixtures import (
     ValueTest,
     get_value_tests,
 )
-from xrpl.core.binarycodec.exceptions import XRPLBinaryCodecException
-from xrpl.core.binarycodec.types.account_id import AccountID
-from xrpl.core.binarycodec.types.amount import Amount
-from xrpl.core.binarycodec.types.blob import Blob
-from xrpl.core.binarycodec.types.currency import Currency
-from xrpl.core.binarycodec.types.hash128 import Hash128
-from xrpl.core.binarycodec.types.hash160 import Hash160
-from xrpl.core.binarycodec.types.hash256 import Hash256
-from xrpl.core.binarycodec.types.path_set import PathSet
-from xrpl.core.binarycodec.types.serialized_type import SerializedType
-from xrpl.core.binarycodec.types.uint8 import UInt8
-from xrpl.core.binarycodec.types.uint16 import UInt16
-from xrpl.core.binarycodec.types.uint32 import UInt32
-from xrpl.core.binarycodec.types.uint64 import UInt64
-from xrpl.core.binarycodec.types.vector256 import Vector256
+from xahau.core.binarycodec.exceptions import XRPLBinaryCodecException
+from xahau.core.binarycodec.types.account_id import AccountID
+from xahau.core.binarycodec.types.amount import Amount
+from xahau.core.binarycodec.types.blob import Blob
+from xahau.core.binarycodec.types.currency import Currency
+from xahau.core.binarycodec.types.hash128 import Hash128
+from xahau.core.binarycodec.types.hash160 import Hash160
+from xahau.core.binarycodec.types.hash256 import Hash256
+from xahau.core.binarycodec.types.path_set import PathSet
+from xahau.core.binarycodec.types.serialized_type import SerializedType
+from xahau.core.binarycodec.types.uint8 import UInt8
+from xahau.core.binarycodec.types.uint16 import UInt16
+from xahau.core.binarycodec.types.uint32 import UInt32
+from xahau.core.binarycodec.types.uint64 import UInt64
+from xahau.core.binarycodec.types.vector256 import Vector256
 
 TYPE_MAP = {
     "AccountID": AccountID,

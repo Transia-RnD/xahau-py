@@ -1,6 +1,6 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.it_utils import create_amm_pool_async, test_async_and_sync
-from xrpl.models.requests.amm_info import AMMInfo
+from xahau.models.requests.amm_info import AMMInfo
 
 
 class TestAMMCreate(IntegrationTestCase):

@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.currencies import XRP, IssuedCurrency
-from xrpl.models.transactions import AMMDelete
+from xahau.models.currencies import XRP, IssuedCurrency
+from xahau.models.transactions import AMMDelete
 
 
 class TestAMMDeposit(TestCase):

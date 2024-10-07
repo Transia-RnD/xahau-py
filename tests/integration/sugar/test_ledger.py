@@ -1,7 +1,7 @@
 from tests.integration.integration_test_case import IntegrationTestCase
 from tests.integration.it_utils import test_async_and_sync
-from xrpl.asyncio.ledger import get_fee
-from xrpl.utils import drops_to_xrp
+from xahau.asyncio.ledger import get_fee
+from xahau.utils import drops_to_xrp
 
 
 class TestLedger(IntegrationTestCase):

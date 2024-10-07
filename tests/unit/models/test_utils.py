@@ -1,10 +1,10 @@
 from unittest import TestCase
 
-from xrpl.models.currencies import IssuedCurrency
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.requests import AccountInfo
-from xrpl.models.transactions import Payment, PaymentFlag
-from xrpl.models.utils import _is_kw_only_attr_defined_in_dataclass
+from xahau.models.currencies import IssuedCurrency
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.requests import AccountInfo
+from xahau.models.transactions import Payment, PaymentFlag
+from xahau.models.utils import _is_kw_only_attr_defined_in_dataclass
 
 _ACCOUNT = "r9LqNeG6qHxjeUocjvVki2XR35weJ9mZgQ"
 _FEE = "0.00001"

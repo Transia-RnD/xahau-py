@@ -5,9 +5,9 @@ import re
 import sys
 from typing import Dict, List, Tuple
 
-from xrpl.models.base_model import _key_to_json
-from xrpl.models.transactions.types.pseudo_transaction_type import PseudoTransactionType
-from xrpl.models.transactions.types.transaction_type import TransactionType
+from xahau.models.base_model import _key_to_json
+from xahau.models.transactions.types.pseudo_transaction_type import PseudoTransactionType
+from xahau.models.transactions.types.transaction_type import TransactionType
 
 
 def _read_file(filename: str) -> str:
@@ -70,11 +70,11 @@ TYPE_MAP = {
 }
 
 IMPORT_MAP = {
-    "Amount": "from xrpl.models.amounts import Amount",
-    "Currency": "from xrpl.models.currencies import Currency",
-    "Path": "from xrpl.models.path import Path",
-    "XChainBridge": "from xrpl.models.xchain_bridge import XChainBridge",
-    "REQUIRED": "from xrpl.models.required import REQUIRED",
+    "Amount": "from xahau.models.amounts import Amount",
+    "Currency": "from xahau.models.currencies import Currency",
+    "Path": "from xahau.models.path import Path",
+    "XChainBridge": "from xahau.models.xchain_bridge import XChainBridge",
+    "REQUIRED": "from xahau.models.required import REQUIRED",
 }
 
 
@@ -85,7 +85,7 @@ def _update_index_file(tx: str, name: str) -> None:
     index_file = index_file.replace(
         "    XChainModifyBridgeFlagInterface,\n)",
         "    XChainModifyBridgeFlagInterface,\n)\n"
-        + f"from xrpl.models.transactions.{name} import {tx}",
+        + f"from xahau.models.transactions.{name} import {tx}",
     )
     index_file = index_file.replace(
         '"XChainModifyBridgeFlagInterface",',
@@ -166,9 +166,9 @@ from dataclasses import dataclass, field
 {type_line}
 
 {other_import_lines}
-from xrpl.models.transactions.transaction import Transaction
-from xrpl.models.transactions.types import TransactionType
-from xrpl.models.utils import KW_ONLY_DATACLASS, require_kwargs_on_init
+from xahau.models.transactions.transaction import Transaction
+from xahau.models.transactions.types import TransactionType
+from xahau.models.utils import KW_ONLY_DATACLASS, require_kwargs_on_init
 """
 
         imported_models = imported_models.replace("\n\n\n\n", "\n\n")

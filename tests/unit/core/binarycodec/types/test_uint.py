@@ -1,10 +1,10 @@
 from unittest import TestCase
 
-from xrpl.core.binarycodec import XRPLBinaryCodecException
-from xrpl.core.binarycodec.types.uint8 import UInt8
-from xrpl.core.binarycodec.types.uint16 import UInt16
-from xrpl.core.binarycodec.types.uint32 import UInt32
-from xrpl.core.binarycodec.types.uint64 import UInt64
+from xahau.core.binarycodec import XRPLBinaryCodecException
+from xahau.core.binarycodec.types.uint8 import UInt8
+from xahau.core.binarycodec.types.uint16 import UInt16
+from xahau.core.binarycodec.types.uint32 import UInt32
+from xahau.core.binarycodec.types.uint64 import UInt64
 
 
 class TestUInt(TestCase):

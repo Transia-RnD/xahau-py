@@ -4,7 +4,7 @@ from tests.integration.it_utils import (
     test_async_and_sync,
 )
 from tests.integration.reusable_values import WALLET
-from xrpl.models.transactions import TicketCreate
+from xahau.models.transactions import TicketCreate
 
 
 class TestTicketCreate(IntegrationTestCase):

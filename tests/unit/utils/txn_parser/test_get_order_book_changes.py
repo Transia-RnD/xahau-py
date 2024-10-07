@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from unittest import TestCase
 
-from xrpl.utils import get_order_book_changes
+from xahau.utils import get_order_book_changes
 
 path_to_json = "tests/unit/utils/txn_parser/transaction_jsons/"
 with open(path_to_json + "offer_created.json", "r") as infile:

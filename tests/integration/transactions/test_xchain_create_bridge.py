@@ -5,14 +5,14 @@ from tests.integration.it_utils import (
     sign_and_reliable_submission_async,
     test_async_and_sync,
 )
-from xrpl.models import (
+from xahau.models import (
     XRP,
     AccountObjects,
     AccountObjectType,
     XChainBridge,
     XChainCreateBridge,
 )
-from xrpl.wallet import Wallet
+from xahau.wallet import Wallet
 
 
 class TestXChainCreateBridge(IntegrationTestCase):

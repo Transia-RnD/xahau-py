@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from xrpl.models.exceptions import XRPLModelException
-from xrpl.models.transactions import EscrowCreate
+from xahau.models.exceptions import XRPLModelException
+from xahau.models.transactions import EscrowCreate
 
 
 class TestEscrowCreate(TestCase):

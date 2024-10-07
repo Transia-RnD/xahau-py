@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from xrpl import CryptoAlgorithm
-from xrpl.core.addresscodec.exceptions import XRPLAddressCodecException
-from xrpl.wallet import Wallet
+from xahau import CryptoAlgorithm
+from xahau.core.addresscodec.exceptions import XRPLAddressCodecException
+from xahau.wallet import Wallet
 
 SEED = "ssQgsaM2ujhyWoDw3Yb1TNjkZTVT2"
 SECP_ADDRESS = "r9o97fQwt54s73b1UzgbhvZTPDHYgSqz7G"
