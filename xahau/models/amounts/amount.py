@@ -3,6 +3,7 @@ An Amount is an object specifying a currency, a quantity of that currency, and t
 counterparty (issuer) on the trustline that holds the value. For XAH, there is no
 counterparty.
 """
+
 from typing import Union, cast
 
 from xahau.models.amounts.issued_currency_amount import IssuedCurrencyAmount

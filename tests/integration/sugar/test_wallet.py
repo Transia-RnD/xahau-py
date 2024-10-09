@@ -66,7 +66,7 @@ async def generate_faucet_wallet_and_fund_again(
 
 
 class TestWallet(IntegrationTestCase):
-    async def _test_run_faucet_tests(self):
+    async def __test_run_faucet_tests(self):
         # run all the tests that start with `_test_` in parallel
         def run_test(test_name):
             with self.subTest(method=test_name):

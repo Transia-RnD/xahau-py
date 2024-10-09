@@ -1,8 +1,10 @@
 """Model for PaymentChannelClaim transaction type."""
+
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
 
+from xahau.models.amounts import Amount
 from xahau.models.flags import FlagInterface
 from xahau.models.required import REQUIRED
 from xahau.models.transactions.transaction import Transaction
@@ -73,13 +75,13 @@ class PaymentChannelClaim(Transaction):
     :meta hide-value:
     """
 
-    balance: Optional[str] = None
+    balance: Optional[Amount] = None
     """
     The cumulative amount of XAH to have delivered through this channel after
     processing this claim. Required unless closing the channel.
     """
 
-    amount: Optional[str] = None
+    amount: Optional[Amount] = None
     """
     The cumulative amount of XAH that has been authorized to deliver by the
     attached claim signature. Required unless closing the channel.

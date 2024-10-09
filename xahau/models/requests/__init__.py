@@ -6,6 +6,7 @@ from xahau.models.requests.account_channels import AccountChannels
 from xahau.models.requests.account_currencies import AccountCurrencies
 from xahau.models.requests.account_info import AccountInfo
 from xahau.models.requests.account_lines import AccountLines
+from xahau.models.requests.account_namespace import AccountNamespace
 from xahau.models.requests.account_nfts import AccountNFTs
 from xahau.models.requests.account_objects import AccountObjects, AccountObjectType
 from xahau.models.requests.account_offers import AccountOffers
@@ -56,6 +57,7 @@ __all__ = [
     "AccountCurrencies",
     "AccountInfo",
     "AccountLines",
+    "AccountNamespace",
     "AccountNFTs",
     "AccountObjects",
     "AccountObjectType",

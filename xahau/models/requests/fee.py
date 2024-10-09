@@ -6,6 +6,7 @@ enabled.
 This is a public command available to unprivileged users.
 """
 from dataclasses import dataclass, field
+from typing import Optional
 
 from xahau.models.requests.request import Request, RequestMethod
 from xahau.models.utils import KW_ONLY_DATACLASS, require_kwargs_on_init
@@ -21,5 +22,7 @@ class Fee(Request):
 
     This is a public command available to unprivileged users.
     """
+
+    tx_blob: Optional[str] = None
 
     method: RequestMethod = field(default=RequestMethod.FEE, init=False)

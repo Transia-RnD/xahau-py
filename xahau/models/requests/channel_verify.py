@@ -3,8 +3,10 @@ The channel_verify method checks the validity of a
 signature that can be used to redeem a specific amount of
 XAH from a payment channel.
 """
+
 from dataclasses import dataclass, field
 
+from xahau.models.amounts import Amount
 from xahau.models.requests.request import Request, RequestMethod
 from xahau.models.required import REQUIRED
 from xahau.models.utils import KW_ONLY_DATACLASS, require_kwargs_on_init
@@ -27,7 +29,7 @@ class ChannelVerify(Request):
     :meta hide-value:
     """
 
-    amount: str = REQUIRED  # type: ignore
+    amount: Amount = REQUIRED  # type: ignore
     """
     This field is required.
 

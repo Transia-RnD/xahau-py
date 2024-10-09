@@ -21,6 +21,7 @@ from typing import Dict, Optional
 from typing_extensions import Self
 
 from xahau.constants import CryptoAlgorithm
+from xahau.models.amounts import Amount
 from xahau.models.requests.request import Request, RequestMethod
 from xahau.models.required import REQUIRED
 from xahau.models.utils import KW_ONLY_DATACLASS, require_kwargs_on_init
@@ -53,7 +54,7 @@ class ChannelAuthorize(Request):
     :meta hide-value:
     """
 
-    amount: str = REQUIRED  # type: ignore
+    amount: Amount = REQUIRED  # type: ignore
     """
     This field is required.
 
